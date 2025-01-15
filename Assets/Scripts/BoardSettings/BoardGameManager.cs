@@ -57,7 +57,7 @@ public class BoardGameManager : MonoBehaviour
 
         currentTileIndex = targetTileIndex;
         
-        player.DOMove(tiles[currentTileIndex].position, 1f).SetEase(Ease.OutQuad);
+        player.DOMove(tiles[currentTileIndex].position + new Vector3(0,player.position.y,0), 1f).SetEase(Ease.OutQuad);
 
         if (IsPenaltyTile(tiles[currentTileIndex]))
         {

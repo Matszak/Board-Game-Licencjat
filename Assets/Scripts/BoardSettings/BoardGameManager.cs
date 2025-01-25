@@ -9,47 +9,26 @@ using DG.Tweening;
 public class BoardGameManager : MonoBehaviour
 {
     [Header("Dice Controller")]
-    [SerializeField] private TMP_Text diceResultText;
-    [SerializeField] private Button rollDiceButton;
+    [SerializeField] private DiceRoll diceRoll;
+    
     
     [Header("Player Movement Controller")]
     public Transform[] tiles;
     public Transform player;
     
     private int currentTileIndex = 0;
-
     private int dicePenalty = 0;
-
     public Transform[] penaltyTiles;
-
+    
 
     private void Start()
     {
-        if (rollDiceButton != null)
-        {
-            rollDiceButton.onClick.AddListener(RollDiceAndMove);
-        }
+  
+        diceRoll.OnDiceRolled += MovePlayer;
+        diceRoll.RequestDiceRoll(1,6);
     }
 
-    private void RollDiceAndMove()
-    {
-        int diceResult = UnityEngine.Random.Range(1, 7);
-        diceResultText.text = diceResult.ToString();
-
-        diceResult += dicePenalty;
-        
-        int targetPosition = diceResult + currentTileIndex;
-
-        if (targetPosition >= tiles.Length)
-        {
-            targetPosition = tiles.Length - 1;
-        }
-
-        MovePlayer(diceResult);
-
-        currentTileIndex = targetPosition;
-    }
-
+ 
 
     public void MovePlayer(int steps)
     {

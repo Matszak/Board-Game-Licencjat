@@ -6,12 +6,12 @@ using UnityEngine.UI;
 
 public class DiceRollAnimation : MonoBehaviour
 {
-    [SerializeField] private DiceRoll diceRoll;
+     
      [SerializeField] private TextMeshProUGUI textMesh;
     
     void Start()
     {
-        diceRoll.OnDiceRolled += PlayAnimation;
+        DiceRoll.OnDiceRolled += PlayAnimation;
     }
 
     private void PlayAnimation(int obj)
@@ -19,9 +19,5 @@ public class DiceRollAnimation : MonoBehaviour
         textMesh.text = obj.ToString();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+ 
 }

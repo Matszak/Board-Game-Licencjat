@@ -8,9 +8,6 @@ using DG.Tweening;
 
 public class BoardGameManager : MonoBehaviour
 {
-    [Header("Dice Controller")]
-    [SerializeField] private DiceRoll diceRoll;
-    
     
     [Header("Player Movement Controller")]
     public Transform[] tiles;
@@ -18,17 +15,20 @@ public class BoardGameManager : MonoBehaviour
     
     private int currentTileIndex = 0;
     private int dicePenalty = 0;
-    public Transform[] penaltyTiles;
     
+    public Transform[] penaltyTiles;
 
-    private void Start()
+    
+    private void OnEnable()
     {
-  
-        diceRoll.OnDiceRolled += MovePlayer;
-        diceRoll.RequestDiceRoll(1,6);
+        DiceRoll.OnDiceRolled += MovePlayer;
     }
-
- 
+    private void OnDisable()
+    {
+        DiceRoll.OnDiceRolled -= MovePlayer;
+    }
+    
+   
 
     public void MovePlayer(int steps)
     {

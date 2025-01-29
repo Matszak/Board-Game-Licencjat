@@ -313,7 +313,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 333091596}
         m_TargetAssemblyTypeName: DiceRoll, Assembly-CSharp
-        m_MethodName: Roll
+        m_MethodName: OnButtonClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -704,9 +704,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   uiButtonPrefab: {fileID: 182944338}
-  RollDiceButton: {fileID: 182944340}
-  numberOfDices: 0
-  sides: 0
 --- !u!4 &333091597
 Transform:
   m_ObjectHideFlags: 0
@@ -734,7 +731,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: adc027266f67f774dbc6d721b64e6baf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  diceRoll: {fileID: 333091596}
   textMesh: {fileID: 810117744}
 --- !u!1 &391613475
 GameObject:
@@ -765,7 +761,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17733350ed1390647b4854bdca2fba3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  diceRoll: {fileID: 333091596}
   tiles:
   - {fileID: 887577065}
   - {fileID: 2121242991}

@@ -310,7 +310,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 182944341}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1264495013}
+        m_TargetAssemblyTypeName: DiceRoll, Assembly-CSharp
+        m_MethodName: OnButtonClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &182944341
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -762,8 +774,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17733350ed1390647b4854bdca2fba3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  diceResultText: {fileID: 256474942}
-  rollDiceButton: {fileID: 182944340}
   tiles:
   - {fileID: 887577065}
   - {fileID: 2121242991}
@@ -1783,6 +1793,65 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!1 &1264495011
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1264495014}
+  - component: {fileID: 1264495013}
+  - component: {fileID: 1264495012}
+  m_Layer: 0
+  m_Name: DiceRoller
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1264495012
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1264495011}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: adc027266f67f774dbc6d721b64e6baf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  textMesh: {fileID: 0}
+--- !u!114 &1264495013
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1264495011}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e57bb395f04c71148a36dd98d2451e44, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  uiButtonPrefab: {fileID: 0}
+--- !u!4 &1264495014
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1264495011}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 382.5496, y: 346.5696, z: -0.81787634}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1441935719
 GameObject:
   m_ObjectHideFlags: 0
@@ -2360,3 +2429,4 @@ SceneRoots:
   - {fileID: 391613477}
   - {fileID: 265015187}
   - {fileID: 1127763344}
+  - {fileID: 1264495014}

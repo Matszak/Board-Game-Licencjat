@@ -27,17 +27,35 @@ public class BoardGameManager : MonoBehaviour
     {
         DiceRoll.OnDiceRolled -= MovePlayer;
     }
-    
-   
+
+    private void Start()
+    {
+        Vector3 startPosition = new Vector3(tiles[currentTileIndex].position.x, player.position.y, tiles[currentTileIndex].position.z);
+        player.transform.position = startPosition;
+    }
 
     public void MovePlayer(int steps)
     {
         int targetTileIndex = Math.Min(currentTileIndex + steps, tiles.Length - 1);
-
+        
+        
+        
+        Sequence sequence = DOTween.Sequence();
+        
+        for (int i = currentTileIndex; i <= targetTileIndex; i++)
+        {
+            Vector3 movePosition = new Vector3(
+                tiles[i].position.x,
+                player.position.y,
+                tiles[i].position.z);
+ 
+            sequence.Append(player.DOJump(movePosition,6f,1, 0.5f).SetEase(Ease.OutQuad));
+        }
+        sequence.Play();
         currentTileIndex = targetTileIndex;
         
-        Vector3 movePosition = new Vector3(tiles[currentTileIndex].position.x, player.position.y, tiles[currentTileIndex].position.z);
-        player.DOMove(movePosition, 1f).SetEase(Ease.OutQuad);
+        
+       
 
         if (IsPenaltyTile(tiles[currentTileIndex]))
         {

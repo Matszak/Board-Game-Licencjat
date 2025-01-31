@@ -16,6 +16,7 @@ public class AdventureTile : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            
             transform.DORotate(new Vector3(0, 0, 180), 0.5f, RotateMode.Fast).SetEase(Ease.Linear);
             
             if (OnStep != null)

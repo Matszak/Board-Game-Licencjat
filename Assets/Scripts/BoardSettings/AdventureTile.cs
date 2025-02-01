@@ -7,23 +7,34 @@ using Unity.VisualScripting;
 
 public class AdventureTile : MonoBehaviour
 {
+    public void TileAction()
+    {
+        transform.DORotate(new Vector3(0, 0, 180), 0.5f, RotateMode.Fast).SetEase(Ease.Linear);
+        Debug.Log("3");
+
+    }
     public delegate void EnteredTile();
 
     public static event EnteredTile OnStep;
     
-    
-    private void OnTriggerEnter(Collider other)
+
+    /*private void OnTriggerStay(Collider other)
     {
         if (other.CompareTag("Player"))
-        {
-            transform.DORotate(new Vector3(0, 0, 180), 0.5f, RotateMode.Fast).SetEase(Ease.Linear);
-            
-            if (OnStep != null)
-            {
-                OnStep();
+        {   
+            if (other.TryGetComponent<Rigidbody>(out Rigidbody rb))
+            { 
+                if (rb.velocity.magnitude == 0)
+                { 
+                    
+                    if (OnStep != null)
+                    {
+                        OnStep();
+                    }
+                }
+  
             }
+   
         }
-        
-        
-    }
+    }*/
 }

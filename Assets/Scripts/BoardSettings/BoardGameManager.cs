@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using DG.Tweening;
+using UnityEngine.EventSystems;
 
 public class BoardGameManager : MonoBehaviour
 {
@@ -36,7 +37,7 @@ public class BoardGameManager : MonoBehaviour
 
         currentTileIndex = targetTileIndex;
         
-        player.DOMove(tiles[currentTileIndex].position, 1f).SetEase(Ease.OutQuad);
+        player.DOMove(tiles[currentTileIndex].position, 1f).SetEase(Ease.OutQuad).OnComplete(StartActionOnTile);
 
         if (IsPenaltyTile(tiles[currentTileIndex]))
         {
@@ -48,6 +49,25 @@ public class BoardGameManager : MonoBehaviour
         }
     }
 
+    private void StartActionOnTile()
+    {
+        StartCoroutine(TileActionAfterDelay());
+    }
+
+    private IEnumerator TileActionAfterDelay()
+    {
+        yield return new WaitForSeconds(1);
+        if (Physics.Raycast(player.transform.position + Vector3.up * 5, Vector3.down, out RaycastHit hit, 10, LayerMask.GetMask("Tile")))
+        { 
+            AdventureTile tile = hit.transform.GetComponent<AdventureTile>();
+            if (tile)
+            {
+                tile.TileAction();
+            }
+        }
+
+        yield break;
+    }
     private bool IsPenaltyTile(Transform tile)
     {
         foreach (Transform penaltyTiles in penaltyTiles)

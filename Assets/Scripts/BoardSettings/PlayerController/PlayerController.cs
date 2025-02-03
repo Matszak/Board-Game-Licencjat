@@ -35,6 +35,7 @@ public class PlayerController : MonoBehaviour
         if (data.Player.PlayerObcject == gameObject)
         {
             int rollResult = 5;
+            
             _playerMovement.MovePlayer(rollResult,data.Player);
         }
     }

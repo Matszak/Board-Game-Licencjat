@@ -8,7 +8,7 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance { get; private set; }
 
     private int currentTurn = 0;
-    private int currentPlayer = 0;
+    public int currentPlayer = 0;
 
     [SerializeField] private List<Player> _players = new List<Player>();
 

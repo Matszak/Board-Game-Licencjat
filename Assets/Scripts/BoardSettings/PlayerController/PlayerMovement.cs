@@ -9,11 +9,9 @@ public class PlayerMovement : MonoBehaviour
     [Header("Player Movement Controller")]
     public Transform[] tiles;
     
-    
      
     private int dicePenalty = 0;
-
- 
+    
 
     public void MovePlayer(int steps, Player player)
     {

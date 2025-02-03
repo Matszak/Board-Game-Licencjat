@@ -11,7 +11,7 @@ public class DiceRollAnimation : MonoBehaviour
     
     void Start()
     {
-        DiceRoll.OnDiceRolled += PlayAnimation;
+        DiceRoll.DiceRolled += PlayAnimation;
     }
 
     private void PlayAnimation(int obj)

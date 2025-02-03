@@ -13,11 +13,18 @@ public class DiceRoll : MonoBehaviour
     
      
     public static event Action<int> OnDiceRolled;
-  
-    public void OnEnable()
+    
+
+    public void Start()
     {
-        //BoardGameManager.RequestDiceRoll += RollDices;
+        
     }
+
+    public void RequestDiceRoll()
+    {
+        uiButtonPrefab.SetActive(true);
+    }
+
 
     public void OnButtonClick()
     {
@@ -32,6 +39,7 @@ public class DiceRoll : MonoBehaviour
         {
            rollResult += typeOfDice.RollDice();
         }
+        uiButtonPrefab.SetActive(false);
         OnDiceRolled?.Invoke(rollResult);
     }
 }

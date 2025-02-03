@@ -24,8 +24,14 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public event Action<TurnStatedData> TurnStarted;
+    public void Start()
+    {
+        NextTurn();
+    }
 
+    public event Action<TurnStatedData> TurnStarted;
+    
+    [ContextMenu("Next Turn")]
     public void NextTurn()
     {
         currentTurn++;
@@ -38,6 +44,8 @@ public class GameManager : MonoBehaviour
         
         TurnStarted?.Invoke(new TurnStatedData{Turn = currentTurn, Player = _players[currentPlayer]});
     }
+    
+  
     
     public class TurnStatedData
     {
@@ -52,4 +60,5 @@ public class Player
 {
     public string Name;
     public GameObject PlayerObcject;
+    public int TileIndex;
 }  

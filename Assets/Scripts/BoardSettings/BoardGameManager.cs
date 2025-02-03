@@ -21,11 +21,11 @@ public class BoardGameManager : MonoBehaviour
     
     private void OnEnable()
     {
-        DiceRoll.OnDiceRolled += MovePlayer;
+        DiceRoll.DiceRolled += MovePlayer;
     }
     private void OnDisable()
     {
-        DiceRoll.OnDiceRolled -= MovePlayer;
+        DiceRoll.DiceRolled -= MovePlayer;
     }
 
     private void Start()

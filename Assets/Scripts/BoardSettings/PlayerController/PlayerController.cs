@@ -2,24 +2,26 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
+using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
  
 
 public class PlayerController : MonoBehaviour
 {
+    public DiceRoll DiceRoll;
+
+    public Player player;
     public GameManager GameManager;
     [SerializeField] private PlayerMovement _playerMovement;
      
     [SerializeField] private DiceRoll diceRoll;
-    private int rollResult = 0;
-    
-   
- 
-    
+
+
     private void OnEnable()
     {
-        
         GameManager.TurnStarted += OnTurnStarted;
+        DiceRoll.DiceRolled += OnDiceRolled;
     }
 
  
@@ -29,15 +31,18 @@ public class PlayerController : MonoBehaviour
         GameManager.TurnStarted += OnTurnStarted;
         _playerMovement = GetComponent<PlayerMovement>();
     }
-
+    
     private void OnTurnStarted(GameManager.TurnStatedData data)
     {
         if (data.Player.PlayerObcject == gameObject)
         {
-            int rollResult = 5;
-            
-            _playerMovement.MovePlayer(rollResult,data.Player);
+            diceRoll.RequestDiceRoll();
         }
+    }
+    
+    private void OnDiceRolled(int rollResult)
+    {
+        _playerMovement.MovePlayer(rollResult, player);
     }
     
     
@@ -45,6 +50,7 @@ public class PlayerController : MonoBehaviour
     private void OnDestroy()
     {
         GameManager.TurnStarted -= OnTurnStarted;
+        DiceRoll.DiceRolled -= OnDiceRolled;
     }
 
  

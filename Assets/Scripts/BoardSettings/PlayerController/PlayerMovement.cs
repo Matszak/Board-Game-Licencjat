@@ -32,11 +32,8 @@ public class PlayerMovement : MonoBehaviour
 
             sequence.Append(player.PlayerObcject.transform.DOJump(movePosition, 6f, 1, 0.5f).SetEase(Ease.OutQuad));
         }
-
+        sequence.OnComplete(() => player.TileIndex = targetTileIndex);
         sequence.Play();
-        player.TileIndex = targetTileIndex;
-       
-
     }
     
 }

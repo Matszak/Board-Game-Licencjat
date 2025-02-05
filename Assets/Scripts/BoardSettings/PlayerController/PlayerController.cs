@@ -9,14 +9,12 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public DiceRoll DiceRoll;
-
-    public Player player;
     public GameManager GameManager;
+
     [SerializeField] private PlayerMovement _playerMovement;
-     
     [SerializeField] private DiceRoll diceRoll;
 
+    private Player player;
 
     private void OnEnable()
     {
@@ -31,10 +29,15 @@ public class PlayerController : MonoBehaviour
         GameManager.TurnStarted += OnTurnStarted;
         _playerMovement = GetComponent<PlayerMovement>();
     }
+
+    public void InitializePlayer(Player _player)
+    {
+        player = _player;
+    }
     
     private void OnTurnStarted(GameManager.TurnStatedData data)
     {
-        if (data.Player.PlayerObcject == gameObject)
+        if (data.Player.PlayerObject == gameObject)
         {
             diceRoll.RequestDiceRoll();
         }
@@ -42,9 +45,9 @@ public class PlayerController : MonoBehaviour
     
     private void OnDiceRolled(int rollResult)
     {
+        if (GameManager.currentPlayer != player.ID) return;
         _playerMovement.MovePlayer(rollResult, player);
     }
-    
     
 
     private void OnDestroy()

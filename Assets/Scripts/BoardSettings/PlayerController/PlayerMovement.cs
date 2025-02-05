@@ -15,7 +15,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void MovePlayer(int steps, Player player)
     {
-        int targetTileIndex = Math.Min(player.TileIndex + steps, tiles.Length - 1);
+        int targetTileIndex = Math.Min(player.TileIndex + steps, tiles.Length - 1); 
 
         
         Sequence sequence = DOTween.Sequence();
@@ -25,13 +25,15 @@ public class PlayerMovement : MonoBehaviour
         {
             Vector3 movePosition = new Vector3(
                 tiles[i].position.x,
-                player.PlayerObcject.transform.position.y,
+                player.PlayerObject.transform.position.y,
                 tiles[i].position.z);
 
-            sequence.Append(player.PlayerObcject.transform.DOJump(movePosition, 6f, 1, 0.5f).SetEase(Ease.OutQuad));
+            sequence.Append(player.PlayerObject.transform.DOJump(movePosition, 6f, 1, 0.5f).SetEase(Ease.OutQuad));
         }
         sequence.OnComplete(() => player.TileIndex = targetTileIndex);
         sequence.Play();
+        
+        
     }
     
 }

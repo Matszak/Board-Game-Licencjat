@@ -17,11 +17,6 @@ public class DiceRoll : MonoBehaviour
     public static event Action<int> DiceRolled;
     
 
-    public void Start()
-    {
-        
-    }
-
     public void RequestDiceRoll()
     {
         uiButtonPrefab.SetActive(true);

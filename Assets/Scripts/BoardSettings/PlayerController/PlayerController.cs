@@ -5,34 +5,54 @@ using DG.Tweening;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
- 
+using UnityEngine.Serialization;
+
 
 public class PlayerController : MonoBehaviour
 {
-    public GameManager GameManager;
+    [FormerlySerializedAs("_gameManager")] public GameManager gameManager;
 
-    [SerializeField] private PlayerMovement _playerMovement;
+    // zmiana nazwy na poprawną 
+    [FormerlySerializedAs("_playerMovement")] [SerializeField] private PlayerMovement playerMovement;
+    [FormerlySerializedAs("checkIfOnCard")] [SerializeField] private AdventureCardsChecker adventureCardsChecker;
     [SerializeField] private DiceRoll diceRoll;
 
-    private Player player;
+    private Player _player;
 
     private void OnEnable()
     {
-        GameManager.TurnStarted += OnTurnStarted;
+        gameManager.TurnStarted += OnTurnStarted;
         DiceRoll.DiceRolled += OnDiceRolled;
+   
+        playerMovement.OnEndMovePlayerMove += CheckIfOnCard;
     }
 
+    private void CheckIfOnCard()
+    {
+        if (gameManager.currentPlayer != _player.ID) return;
+        if (!adventureCardsChecker.CheckIfStayOnCard(_player))
+        {
+            gameManager.NextTurn();
+        }
  
+    }
+
+
     private void Start()
     {
-        GameManager = GameManager.Instance;
-        GameManager.TurnStarted += OnTurnStarted;
-        _playerMovement = GetComponent<PlayerMovement>();
+        gameManager = GameManager.Instance;
+        
+        //Jest już w on enabled, chyba działa.
+        gameManager.TurnStarted += OnTurnStarted;
+        playerMovement.OnEndMovePlayerMove += CheckIfOnCard;
+        playerMovement = GetComponent<PlayerMovement>();
+        adventureCardsChecker = GetComponent<AdventureCardsChecker>();
     }
 
-    public void InitializePlayer(Player _player)
+    public void InitializePlayer(Player player)
     {
-        player = _player;
+        //zmienłem nazwe bo _ jest do prywatnych
+        _player = player;
     }
     
     private void OnTurnStarted(GameManager.TurnStatedData data)
@@ -45,15 +65,16 @@ public class PlayerController : MonoBehaviour
     
     private void OnDiceRolled(int rollResult)
     {
-        if (GameManager.currentPlayer != player.ID) return;
-        _playerMovement.MovePlayer(rollResult, player);
+        if (gameManager.currentPlayer != _player.ID) return;
+        playerMovement.MovePlayer(rollResult, _player);
     }
     
 
     private void OnDestroy()
     {
-        GameManager.TurnStarted -= OnTurnStarted;
+        gameManager.TurnStarted -= OnTurnStarted;
         DiceRoll.DiceRolled -= OnDiceRolled;
+        playerMovement.OnEndMovePlayerMove -= CheckIfOnCard;
     }
 
  

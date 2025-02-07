@@ -35,11 +35,11 @@ public class GameManager : MonoBehaviour
     public event Action<TurnStatedData> TurnStarted;
     
     [ContextMenu("Next Turn")]
-    public void NextTurn()
+    public void NextTurn()  
     {
         currentTurn++;
         currentPlayer++;
-
+        
         if (currentPlayer >= _players.Count)
         {
             currentPlayer = 0;

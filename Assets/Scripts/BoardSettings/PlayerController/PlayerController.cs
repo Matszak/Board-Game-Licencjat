@@ -10,9 +10,8 @@ using UnityEngine.Serialization;
 
 public class PlayerController : MonoBehaviour
 {
-    [FormerlySerializedAs("_gameManager")] public GameManager gameManager;
-
-    // zmiana nazwy na poprawną 
+ 
+ 
     private PlayerMovement _playerMovement;
     private AdventureCardsChecker _adventureCardsChecker;
     [SerializeField] private DiceRoll diceRoll;
@@ -21,18 +20,20 @@ public class PlayerController : MonoBehaviour
 
     private void OnEnable()
     {
-        gameManager.TurnStarted += OnTurnStarted;
+        GameManager.Instance.TurnStarted += OnTurnStarted;
         DiceRoll.DiceRolled += OnDiceRolled;
         _playerMovement.OnEndMovePlayerMove += CheckIfOnCard;
     }
 
     private void CheckIfOnCard()
     {
-        if (gameManager.currentPlayer != _player.ID) return;
+        if (GameManager.Instance.currentPlayer != _player.ID) return;
         if (!_adventureCardsChecker.CheckIfStayOnCard(_player))
         {
-            gameManager.NextTurn();
+            GameManager.Instance.NextTurn();
         }
+        
+            
  
     }
 
@@ -42,15 +43,10 @@ public class PlayerController : MonoBehaviour
         _adventureCardsChecker = GetComponent<AdventureCardsChecker>();
     }
 
-    private void Start()
-    {
-        gameManager = GameManager.Instance;
-        
-    }
-
+ 
     public void InitializePlayer(Player player)
     {
-        //zmienłem nazwe bo _ jest do prywatnych
+       
         _player = player;
     }
     
@@ -64,14 +60,14 @@ public class PlayerController : MonoBehaviour
     
     private void OnDiceRolled(int rollResult)
     {
-        if (gameManager.currentPlayer != _player.ID) return;
+        if (GameManager.Instance.currentPlayer != _player.ID) return;
         _playerMovement.MovePlayer(rollResult, _player);
     }
     
 
     private void OnDestroy()
     {
-        gameManager.TurnStarted -= OnTurnStarted;
+        GameManager.Instance.TurnStarted -= OnTurnStarted;
         DiceRoll.DiceRolled -= OnDiceRolled;
         _playerMovement.OnEndMovePlayerMove -= CheckIfOnCard;
     }

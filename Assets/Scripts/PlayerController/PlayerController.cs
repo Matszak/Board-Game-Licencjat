@@ -23,6 +23,7 @@ public class PlayerController : MonoBehaviour
         GameManager.Instance.TurnStarted += OnTurnStarted;
         DiceRoll.DiceRolled += OnDiceRolled;
         _playerMovement.OnEndMovePlayerMove += CheckIfOnCard;
+        
     }
 
     private void CheckIfOnCard()

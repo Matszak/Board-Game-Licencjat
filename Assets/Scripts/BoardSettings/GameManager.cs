@@ -30,6 +30,7 @@ public class GameManager : MonoBehaviour
     {
         NextTurn();
         InitializePlayers();
+        
     }
 
     public event Action<TurnStatedData> TurnStarted;
@@ -63,6 +64,7 @@ public class GameManager : MonoBehaviour
         _player.ID = avaialblePlayerIndex;
         avaialblePlayerIndex++;
     }
+    
     
     public class TurnStatedData
     {

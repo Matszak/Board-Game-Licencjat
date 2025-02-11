@@ -802,12 +802,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _players:
-  - Name: a
-    PlayerObcject: {fileID: 1859548631}
+  - ID: 0
+    Name: a
+    PlayerObject: {fileID: 1894247897}
     TileIndex: 0
-  - Name: b
-    PlayerObcject: {fileID: 1894247897}
+  - ID: 0
+    Name: b
+    PlayerObject: {fileID: 1859548631}
     TileIndex: 0
+  currentPlayer: 0
 --- !u!1 &409404782
 GameObject:
   m_ObjectHideFlags: 0
@@ -1225,7 +1228,6 @@ GameObject:
   - component: {fileID: 887577064}
   - component: {fileID: 887577063}
   - component: {fileID: 887577062}
-  - component: {fileID: 887577066}
   m_Layer: 3
   m_Name: Plane 1
   m_TagString: Untagged
@@ -1320,18 +1322,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 265015187}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &887577066
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 887577061}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4c2344ebeb0d47c4c927838ef4c698ac, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &940455896
 GameObject:
   m_ObjectHideFlags: 0
@@ -1905,6 +1895,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   uiButtonPrefab: {fileID: 182944338}
+  rollResult: 0
 --- !u!4 &1264495014
 Transform:
   m_ObjectHideFlags: 0
@@ -2121,6 +2112,7 @@ GameObject:
   - component: {fileID: 1859548632}
   - component: {fileID: 1859548636}
   - component: {fileID: 1859548637}
+  - component: {fileID: 1859548638}
   m_Layer: 0
   m_Name: Cylinder
   m_TagString: Untagged
@@ -2228,8 +2220,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bfb4daeb01e670419ffe362d849be10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GameManager: {fileID: 391613478}
-  _playerMovement: {fileID: 1859548637}
+  gameManager: {fileID: 391613478}
+  playerMovement: {fileID: 1859548637}
+  adventureCardsChecker: {fileID: 1859548638}
   diceRoll: {fileID: 1264495013}
 --- !u!114 &1859548637
 MonoBehaviour:
@@ -2253,6 +2246,18 @@ MonoBehaviour:
   - {fileID: 972642631}
   - {fileID: 942948097}
   - {fileID: 940455897}
+--- !u!114 &1859548638
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1859548631}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c30538848154b724f93681a1b63f5b08, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1894247897
 GameObject:
   m_ObjectHideFlags: 0
@@ -2268,6 +2273,7 @@ GameObject:
   - component: {fileID: 1894247902}
   - component: {fileID: 1894247904}
   - component: {fileID: 1894247903}
+  - component: {fileID: 1894247905}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -2402,8 +2408,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bfb4daeb01e670419ffe362d849be10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GameManager: {fileID: 391613478}
-  _playerMovement: {fileID: 1894247904}
+  gameManager: {fileID: 391613478}
+  playerMovement: {fileID: 1894247904}
+  adventureCardsChecker: {fileID: 1894247905}
   diceRoll: {fileID: 1264495013}
 --- !u!114 &1894247904
 MonoBehaviour:
@@ -2427,6 +2434,18 @@ MonoBehaviour:
   - {fileID: 972642631}
   - {fileID: 942948097}
   - {fileID: 940455897}
+--- !u!114 &1894247905
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1894247897}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c30538848154b724f93681a1b63f5b08, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2067065716
 GameObject:
   m_ObjectHideFlags: 0

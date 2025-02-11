@@ -32,9 +32,6 @@ public class PlayerController : MonoBehaviour
         {
             GameManager.Instance.NextTurn();
         }
-        
-            
- 
     }
 
     private void Awake()
@@ -42,11 +39,9 @@ public class PlayerController : MonoBehaviour
         _playerMovement = GetComponent<PlayerMovement>();
         _adventureCardsChecker = GetComponent<AdventureCardsChecker>();
     }
-
- 
+    
     public void InitializePlayer(Player player)
     {
-       
         _player = player;
     }
     
@@ -63,7 +58,6 @@ public class PlayerController : MonoBehaviour
         if (GameManager.Instance.currentPlayer != _player.ID) return;
         _playerMovement.MovePlayer(rollResult, _player);
     }
-    
 
     private void OnDestroy()
     {
@@ -71,8 +65,7 @@ public class PlayerController : MonoBehaviour
         DiceRoll.DiceRolled -= OnDiceRolled;
         _playerMovement.OnEndMovePlayerMove -= CheckIfOnCard;
     }
-
- 
+    
 
 }
 

@@ -1,18 +1,19 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Cinemachine;
 using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
-    [SerializeField] private Camera _camera;
+    [SerializeField] private CinemachineVirtualCamera _camera;
     
     public Vector3 offset;
     public Transform target;
 
     private void Awake()
     {
-        _camera = GetComponent<Camera>();
+        _camera = GetComponent<CinemachineVirtualCamera>();
     }
 
     void Start()
@@ -27,19 +28,18 @@ public class CameraController : MonoBehaviour
 
     public void OnCameraFollowed(GameManager.TurnStatedData data)
     {
-        target = data.Player.PlayerObject.transform;
-        StopAllCoroutines();
-        StartCoroutine(SmothCameraFollowed());
-    }
-
-    private IEnumerator SmothCameraFollowed()
-    {
-        while (Vector3.Distance(transform.position, target.position + offset) > 0.1f)
+        if (data.Player.PlayerObject != null)
         {
-            transform.position = Vector3.Lerp(transform.position, target.position + offset, Time.deltaTime);
-            transform.LookAt(target);
-            yield return null;
+            Transform playerTransform = data.Player.PlayerObject.transform;
+            
+     
+           
+      
+            _camera.Follow = playerTransform;
+            _camera.LookAt = playerTransform;
+       
+ 
         }
     }
-    
+  
 }

@@ -9,7 +9,7 @@ public class PlayerMovement : MonoBehaviour
     [Header("Player Movement Controller")]
     public Transform[] tiles;
     
-    public event Action OnEndMovePlayerMove;
+    public event Action<Player> OnEndMovePlayerMove;
     private int dicePenalty = 0;
 
 
@@ -35,10 +35,10 @@ public class PlayerMovement : MonoBehaviour
         {
             player.TileIndex = targetTileIndex;
             //GameManager.Instance.NextTurn();
-            OnEndMovePlayerMove?.Invoke();
+            OnEndMovePlayerMove?.Invoke(player);
         });
         sequence.Play();
-
+ 
     }
 
 }

@@ -12,13 +12,14 @@ public class DiceRoll : MonoBehaviour
     [SerializeField] private  GameObject  uiButtonPrefab;
     
     public int rollResult;
-
+    private Player _player;
      
-    public static event Action<int> DiceRolled;
+    public static event Action<int, Player> DiceRolled;
     
 
-    public void RequestDiceRoll()
+    public void RequestDiceRoll(Player player)
     {
+        _player = player;
         uiButtonPrefab.SetActive(true);
     }
 
@@ -36,6 +37,6 @@ public class DiceRoll : MonoBehaviour
            rollResult += typeOfDice.RollDice();
         }
         uiButtonPrefab.SetActive(false);
-        DiceRolled?.Invoke(rollResult);
+        DiceRolled?.Invoke(rollResult,_player);
     }
 }

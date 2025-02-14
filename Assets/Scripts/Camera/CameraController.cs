@@ -35,7 +35,6 @@ public class CameraController : MonoBehaviour
                
             _camera.Follow = playerTransform;
             _camera.LookAt = playerTransform;
-       
  
         }
     }

@@ -14,7 +14,7 @@ public class DiceRollAnimation : MonoBehaviour
         DiceRoll.DiceRolled += PlayAnimation;
     }
 
-    private void PlayAnimation(int obj)
+    private void PlayAnimation(int obj, Player player)
     {
         //TODO Implement rol dice animation
         //textMesh.text = obj.ToString();

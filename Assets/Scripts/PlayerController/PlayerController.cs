@@ -26,18 +26,16 @@ public class PlayerController : MonoBehaviour
         
     }
 
-    private void CheckIfOnCard()
+    private void CheckIfOnCard(Player player)
     {
-        if (GameManager.Instance.currentPlayer != _player.ID) return;
+        if(player != _player) return;
         if (!_adventureCardsChecker.CheckIfStayOnCard(_player))
         {
             GameManager.Instance.NextTurn();
         }
    
         GameManager.Instance.CardTriggered(_player);
-        
-        
-        
+         
     }
 
     private void Awake()
@@ -46,23 +44,20 @@ public class PlayerController : MonoBehaviour
         _adventureCardsChecker = GetComponent<AdventureCardsChecker>();
     }
     
-    public void InitializePlayer(Player player)
-    {
-        _player = player;
-    }
-    
     private void OnTurnStarted(GameManager.TurnStatedData data)
     {
         if (data.Player.PlayerObject == gameObject)
         {
-            diceRoll.RequestDiceRoll();
+            _player = data.Player;
+            diceRoll.RequestDiceRoll(data.Player);
+            
         }
     }
     
-    private void OnDiceRolled(int rollResult)
+    private void OnDiceRolled(int rollResult, Player player)
     {
-        if (GameManager.Instance.currentPlayer != _player.ID) return;
-        _playerMovement.MovePlayer(rollResult, _player);
+         
+        _playerMovement.MovePlayer(rollResult, player);
     }
 
     private void OnDestroy()

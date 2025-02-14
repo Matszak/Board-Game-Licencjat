@@ -16,25 +16,5 @@ public class AdventureTile : MonoBehaviour
     public delegate void EnteredTile();
 
     public static event EnteredTile OnStep;
-    
 
-    /*private void OnTriggerStay(Collider other)
-    {
-        if (other.CompareTag("Player"))
-        {   
-            if (other.TryGetComponent<Rigidbody>(out Rigidbody rb))
-            { 
-                if (rb.velocity.magnitude == 0)
-                { 
-                    
-                    if (OnStep != null)
-                    {
-                        OnStep();
-                    }
-                }
-  
-            }
-   
-        }
-    }*/
 }

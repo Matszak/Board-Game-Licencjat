@@ -29,7 +29,6 @@ public class GameManager : MonoBehaviour
     public void Start()
     {
         NextTurn();
-        InitializePlayers();
         
     }
 
@@ -54,23 +53,6 @@ public class GameManager : MonoBehaviour
         
         TurnStarted?.Invoke(new TurnStatedData{Turn = currentTurn, Player = _players[currentPlayer]});
     }
-
-    
-    private void InitializePlayers()
-    {
-        foreach (var player in _players)
-        {
-            SetPlayerID(player);
-            player.PlayerObject.GetComponent<PlayerController>().InitializePlayer(player);
-        }
-    }
-    
-    private void SetPlayerID(Player _player)
-    {
-        _player.ID = avaialblePlayerIndex;
-        avaialblePlayerIndex++;
-    }
-    
     
     public class TurnStatedData
     {
@@ -79,11 +61,9 @@ public class GameManager : MonoBehaviour
     }
 }
 
-
 [Serializable]
 public class Player
 {
-    public int ID;
     public string Name;
     public GameObject PlayerObject;
     public int TileIndex;

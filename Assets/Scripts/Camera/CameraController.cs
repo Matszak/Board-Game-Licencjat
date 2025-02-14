@@ -16,11 +16,12 @@ public class CameraController : MonoBehaviour
         _camera = GetComponent<CinemachineVirtualCamera>();
     }
 
-    void Start()
+
+    private void Start()
     {
         GameManager.Instance.TurnStarted += OnCameraFollowed;
     }
-    
+        
     void OnDestroy()
     {
         GameManager.Instance.TurnStarted -= OnCameraFollowed;
@@ -31,10 +32,7 @@ public class CameraController : MonoBehaviour
         if (data.Player.PlayerObject != null)
         {
             Transform playerTransform = data.Player.PlayerObject.transform;
-            
-     
-           
-      
+               
             _camera.Follow = playerTransform;
             _camera.LookAt = playerTransform;
        

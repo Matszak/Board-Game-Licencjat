@@ -34,6 +34,12 @@ public class GameManager : MonoBehaviour
     }
 
     public event Action<TurnStatedData> TurnStarted;
+    public event Action<Player> OnCardTriggered;
+
+    public void CardTriggered(Player player)
+    {
+        OnCardTriggered?.Invoke(player);
+    }
     
     [ContextMenu("Next Turn")]
     public void NextTurn()  
@@ -81,4 +87,5 @@ public class Player
     public string Name;
     public GameObject PlayerObject;
     public int TileIndex;
+ 
 }  

@@ -7,24 +7,25 @@ public class AdventuresCards : MonoBehaviour
 {
     [SerializeField] private GameObject card;
 
-    [SerializeField] private List<GameObject> cards = new List<GameObject>();
-    private void OnEnable()
+    //[SerializeField] private List<GameObject> cards = new List<GameObject>();
+    
+    
+    private void Start()
     {
-        AdventureTile.OnStep += Showcard;
+        card.SetActive(false);
+        GameManager.Instance.OnCardTriggered += ShowCard;
     }
 
     private void OnDisable()
     {
-        AdventureTile.OnStep -= Showcard;
+        GameManager.Instance.OnCardTriggered -= ShowCard;
     }
 
-    void Showcard()
+    private void ShowCard(Player player)
     {
+        
+        Debug.Log("ShowCard");
         card.SetActive(true);
     }
-
-    private void Start()
-    {
-        card.SetActive(false);
-    }
+ 
 }

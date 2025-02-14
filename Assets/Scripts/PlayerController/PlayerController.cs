@@ -33,6 +33,11 @@ public class PlayerController : MonoBehaviour
         {
             GameManager.Instance.NextTurn();
         }
+   
+        GameManager.Instance.CardTriggered(_player);
+        
+        
+        
     }
 
     private void Awake()

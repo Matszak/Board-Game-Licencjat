@@ -10,7 +10,7 @@ public class PlayerMovement : MonoBehaviour
     public Transform[] tiles;
     
     public event Action<Player> OnEndMovePlayerMove;
-    private int dicePenalty = 0;
+   // private int dicePenalty = 0;
 
 
     public void MovePlayer(int steps, Player player)

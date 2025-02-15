@@ -34,9 +34,10 @@ public class GameManager : MonoBehaviour
 
     public event Action<TurnStatedData> TurnStarted;
     public event Action<Player> OnCardTriggered;
-
+    
+     
     public void CardTriggered(Player player)
-    {
+    {   
         OnCardTriggered?.Invoke(player);
     }
     

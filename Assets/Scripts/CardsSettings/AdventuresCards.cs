@@ -1,31 +1,64 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 public class AdventuresCards : MonoBehaviour
 {
-    [SerializeField] private GameObject card;
-
-    //[SerializeField] private List<GameObject> cards = new List<GameObject>();
+    [SerializeField] private GameObject cardsUI;
+    
+    [SerializeField] private Image cardImage;
+    [SerializeField] private TextMeshProUGUI cardText;
+    
+    [SerializeField] private Card[] cards;
+    Player _player;
+   
+    private Card _selectedCard;
     
     
     private void Start()
     {
-        card.SetActive(false);
-        GameManager.Instance.OnCardTriggered += ShowCard;
+        cardsUI.SetActive(false);
+        GameManager.Instance.TurnStarted += OnTurnStarted;
+        GameManager.Instance.OnCardTriggered += TriggerCard;
+    }
+
+    private void OnTurnStarted(GameManager.TurnStatedData obj)
+    {
+        // assign current player
+        _player = obj.Player;
     }
 
     private void OnDisable()
     {
-        GameManager.Instance.OnCardTriggered -= ShowCard;
+        GameManager.Instance.OnCardTriggered -= TriggerCard;
     }
 
-    private void ShowCard(Player player)
+    private void TriggerCard(Player player)
     {
-        
-        Debug.Log("ShowCard");
-        card.SetActive(true);
+        // check if current player triggered this card
+         if (player != _player) return;
+         // get random card from cards list
+         _selectedCard = cards[Random.Range(0, cards.Length)];
+         
+         // assing stuff from card to ui, name of card and image 
+         cardImage.sprite = _selectedCard.CardImage;
+         cardText = _selectedCard.NameText;
+         
+         // when everything set show UI
+         cardsUI.SetActive(true);
+    }
+
+    public void OnButtonClick()
+    {
+         // trigger card now, and send which player triggered it.
+         _selectedCard.TriggerCard(_player);
+         // set UI to false
+        cardsUI.SetActive(false);
+        GameManager.Instance.NextTurn();
     }
  
 }

@@ -4,5 +4,5 @@ using UnityEngine;
 
 public interface ICard   
 {
-    void TriggerCard(Player player);
+    
 }

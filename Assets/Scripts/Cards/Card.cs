@@ -6,17 +6,14 @@ using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
 
- 
-public class Card : MonoBehaviour, ICard
+[CreateAssetMenu(fileName = "Card", menuName = "Card", order = 1)]
+public abstract class Card :ScriptableObject 
 {
     public GameObject cardPrefab;
     public Sprite CardImage;
-    public TextMeshProUGUI NameText;  
+    public string NameText;
+
+ 
+    public abstract void TriggerCard(Player player);
     
-    
-    public void TriggerCard(Player player)
-    {
-       Debug.Log("Trigger Card");
-       Debug.Log($"Im card {CardImage.name}, {NameText.text}");
-    }
 }

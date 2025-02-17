@@ -11,16 +11,13 @@ public class PlayerMovement : MonoBehaviour
     
     public event Action<Player> OnEndMovePlayerMove;
    // private int dicePenalty = 0;
-
-
+   
     public void MovePlayer(int steps, Player player)
     {
         int targetTileIndex = Math.Min(player.TileIndex + steps, tiles.Length - 1);
-
-
+        
         Sequence sequence = DOTween.Sequence();
-
-
+        
         for (int i = player.TileIndex; i <= targetTileIndex; i++)
         {
             Vector3 movePosition = new Vector3(
@@ -40,5 +37,4 @@ public class PlayerMovement : MonoBehaviour
         sequence.Play();
  
     }
-
 }

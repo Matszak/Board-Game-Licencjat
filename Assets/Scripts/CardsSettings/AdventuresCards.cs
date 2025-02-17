@@ -19,11 +19,11 @@ public class AdventuresCards : MonoBehaviour
     private Card _selectedCard;
     
     
-    private void Start()
+    private void Awake()
     {
-        cardsUI.SetActive(false);
         GameManager.Instance.TurnStarted += OnTurnStarted;
         GameManager.Instance.OnCardTriggered += TriggerCard;
+        cardsUI.SetActive(false);
     }
 
     private void OnTurnStarted(GameManager.TurnStatedData obj)

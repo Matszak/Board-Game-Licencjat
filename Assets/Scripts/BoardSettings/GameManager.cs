@@ -28,7 +28,7 @@ public class GameManager : MonoBehaviour
 
     public void Start()
     {
-        NextTurn();
+        TurnStarted?.Invoke(new TurnStatedData{Turn = currentTurn, Player = _players[currentPlayer]});
         
     }
 

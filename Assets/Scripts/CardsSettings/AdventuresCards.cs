@@ -19,13 +19,17 @@ public class AdventuresCards : MonoBehaviour
     private Card _selectedCard;
     
     
-    private void Awake()
+    private void OnEnable()
     {
         GameManager.Instance.TurnStarted += OnTurnStarted;
         GameManager.Instance.OnCardTriggered += TriggerCard;
-        cardsUI.SetActive(false);
+        
     }
 
+    private void Awake()
+    {
+        cardsUI.SetActive(false);
+    }
     private void OnTurnStarted(GameManager.TurnStatedData obj)
     {
         // assign current player

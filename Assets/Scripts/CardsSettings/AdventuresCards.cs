@@ -14,7 +14,7 @@ public class AdventuresCards : MonoBehaviour
     [SerializeField] private TextMeshProUGUI cardText;
     
     [SerializeField] private Card[] cards;
-    Player _player;
+    private Player _player;
    
     private Card _selectedCard;
     
@@ -62,7 +62,7 @@ public class AdventuresCards : MonoBehaviour
          _selectedCard.TriggerCard(_player);
          // set UI to false
         cardsUI.SetActive(false);
-        GameManager.Instance.NextTurn();
+        GameManager.Instance.TurnEnded(_player);
     }
  
 }

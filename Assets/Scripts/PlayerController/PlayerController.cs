@@ -31,7 +31,7 @@ public class PlayerController : MonoBehaviour
         if(player != _player) return;
         if (!_adventureCardsChecker.CheckIfStayOnCard(_player))
         {
-            GameManager.Instance.NextTurn();
+            GameManager.Instance.TurnEnded(_player);
         }
 
          

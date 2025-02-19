@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardPrefab: {fileID: 0}
   CardImage: {fileID: 0}
-  NameText: 
+  NameText: Minus Roll
   DescriptionText: 
-  movePlayerBack: 0
+  movePlayerBack: 2

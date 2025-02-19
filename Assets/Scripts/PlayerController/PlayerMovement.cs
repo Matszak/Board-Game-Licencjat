@@ -14,11 +14,11 @@ public class PlayerMovement : MonoBehaviour
 
    public void MovePlayerBack(int steps, Player player)
    {
-       int targetTileIndex = Math.Min(player.TileIndex + steps, tiles.Length - 1);
+       int targetTileIndex = Math.Max(player.TileIndex - steps, 0);
         
        Sequence sequence = DOTween.Sequence();
         
-       for (int i = player.TileIndex; i <= -targetTileIndex; i++)
+       for (int i = player.TileIndex; i >= targetTileIndex; i--)
        {
            Vector3 movePosition = new Vector3(
                tiles[i].position.x,

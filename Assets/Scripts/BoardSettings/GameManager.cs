@@ -41,6 +41,7 @@ public class GameManager : MonoBehaviour
     public void TurnEnded(Player player)
     {
         OnTurnEnded?.Invoke(player);
+         
     }
     
     public void CardTriggered(Player player)

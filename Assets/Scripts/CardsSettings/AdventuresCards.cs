@@ -17,13 +17,18 @@ public class AdventuresCards : MonoBehaviour
     private Player _player;
    
     private Card _selectedCard;
-    
+    private bool checkForCard = false;
     
     private void OnEnable()
     {
         GameManager.Instance.TurnStarted += OnTurnStarted;
         GameManager.Instance.OnCardTriggered += TriggerCard;
-        
+        GameManager.Instance.OnTurnEnded += StopChecking;
+    }
+
+    private void StopChecking(Player obj)
+    {
+        checkForCard = false;
     }
 
     private void Awake()
@@ -33,6 +38,7 @@ public class AdventuresCards : MonoBehaviour
     private void OnTurnStarted(GameManager.TurnStatedData obj)
     {
         // assign current player
+        checkForCard = true;
         _player = obj.Player;
     }
 
@@ -45,6 +51,7 @@ public class AdventuresCards : MonoBehaviour
     {
         // check if current player triggered this card
          if (player != _player) return;
+         if(!checkForCard) return;
          // get random card from cards list
          _selectedCard = cards[Random.Range(0, cards.Length)];
          
@@ -60,9 +67,15 @@ public class AdventuresCards : MonoBehaviour
     {
          // trigger card now, and send which player triggered it.
          _selectedCard.TriggerCard(_player);
-         // set UI to false
+        checkForCard = false;
+         _selectedCard.OnCardCompleted += EndTurn;
         cardsUI.SetActive(false);
-        GameManager.Instance.TurnEnded(_player);
+   
     }
- 
+
+    private void EndTurn(Player obj)
+    {
+        GameManager.Instance.TurnEnded(obj);
+        _selectedCard.OnCardCompleted -= EndTurn;
+    }
 }

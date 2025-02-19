@@ -13,7 +13,13 @@ public abstract class Card :ScriptableObject
     public Sprite CardImage;
     public string NameText;
 
- 
+    public event Action<Player> OnCardCompleted;
+
+    protected void CompleteCard(Player player)
+    {
+        OnCardCompleted?.Invoke(player);
+    }
+    
     public abstract void TriggerCard(Player player);
     
 }

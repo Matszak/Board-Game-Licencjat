@@ -9,11 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d68d7aa31db27f546806aaaaf8fe84be, type: 3}
-  m_Name: MoveCard
+  m_Script: {fileID: 11500000, guid: 820486dfb4d38004ab11fabe3d1fddca, type: 3}
+  m_Name: MinusRollResults
   m_EditorClassIdentifier: 
   cardPrefab: {fileID: 0}
-  CardImage: {fileID: 21300000, guid: 8ca077226f29176479ee23a7ed03bd78, type: 3}
-  NameText: MoveCard
-  DescriptionText: This Card add two moves for player
-  movePlayerBy: 2
+  CardImage: {fileID: 0}
+  NameText: 
+  DescriptionText: 
+  movePlayerBack: 0

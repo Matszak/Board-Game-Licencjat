@@ -12,6 +12,7 @@ public class AdventuresCards : MonoBehaviour
     
     [SerializeField] private Image cardImage;
     [SerializeField] private TextMeshProUGUI cardText;
+    [SerializeField] private TextMeshProUGUI descriptionText;
     
     [SerializeField] private Card[] cards;
     private Player _player;
@@ -58,6 +59,7 @@ public class AdventuresCards : MonoBehaviour
          // assing stuff from card to ui, name of card and image 
          cardImage.sprite = _selectedCard.CardImage;
          cardText.text = _selectedCard.NameText;
+         descriptionText.text = _selectedCard.DescriptionText;
          
          // when everything set show UI
          cardsUI.SetActive(true);

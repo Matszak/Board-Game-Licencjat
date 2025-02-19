@@ -33,8 +33,7 @@ public class PlayerController : MonoBehaviour
         {
             GameManager.Instance.TurnEnded(_player);
         }
-
-         
+        
         GameManager.Instance.CardTriggered(_player);
          
     }

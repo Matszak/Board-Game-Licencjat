@@ -7,19 +7,23 @@ using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 [CreateAssetMenu(fileName = "Card", menuName = "Card", order = 1)]
-public abstract class Card :ScriptableObject 
+public class Card :ScriptableObject 
 {
     public GameObject cardPrefab;
     public Sprite CardImage;
     public string NameText;
-
+    public string DescriptionText;
+    
     public event Action<Player> OnCardCompleted;
 
     protected void CompleteCard(Player player)
     {
         OnCardCompleted?.Invoke(player);
     }
-    
-    public abstract void TriggerCard(Player player);
+
+    public virtual void TriggerCard(Player player)
+    {
+        
+    }
     
 }

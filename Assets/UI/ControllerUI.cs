@@ -17,7 +17,7 @@ public class ControllerUI : MonoBehaviour
     private Player _player;
     
     
-    private void Start()
+    private void OnEnable()
     {
         GameManager.Instance.TurnStarted += OnUIUpdated;
         GameManager.Instance.OnTurnEnded += EndTurn;

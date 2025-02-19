@@ -17,7 +17,7 @@ public class CameraController : MonoBehaviour
     }
 
 
-    private void Start()
+    private void OnEnable()
     {
         GameManager.Instance.TurnStarted += OnCameraFollowed;
     }

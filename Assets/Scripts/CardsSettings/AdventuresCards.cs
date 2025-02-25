@@ -50,6 +50,7 @@ public class AdventuresCards : MonoBehaviour
 
     private void TriggerCard(Player player)
     {
+   
         // check if current player triggered this card
          if (player != _player) return;
          if(!checkForCard) return;
@@ -63,7 +64,7 @@ public class AdventuresCards : MonoBehaviour
          
          // when everything set show UI
          cardsUI.SetActive(true);
-    }
+        }
 
     public void OnButtonClick()
     {

@@ -11,10 +11,11 @@ using UnityEngine.Serialization;
 public class PlayerController : MonoBehaviour
 {
  
- 
+    public Dice dice;
     private PlayerMovement _playerMovement;
     private AdventureCardsChecker _adventureCardsChecker;
     [SerializeField] private DiceRoll diceRoll;
+ 
 
     private Player _player;
 
@@ -33,9 +34,10 @@ public class PlayerController : MonoBehaviour
         {
             GameManager.Instance.TurnEnded(_player);
         }
+
         
         GameManager.Instance.CardTriggered(_player);
-         
+          
     }
 
     private void Awake()
@@ -49,7 +51,7 @@ public class PlayerController : MonoBehaviour
         if (data.Player.PlayerObject == gameObject)
         {
             _player = data.Player;
-            diceRoll.RequestDiceRoll(data.Player);
+            diceRoll.RequestDiceRoll(_player, new DiceRoll.DiceRollConfig { diceType = dice,numberOfDices = 1});
             
         }
     }

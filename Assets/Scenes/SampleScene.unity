@@ -1188,6 +1188,7 @@ MonoBehaviour:
   descriptionText: {fileID: 200420200}
   cards:
   - {fileID: 11400000, guid: 191256f9ec747274092c389a284f9c62, type: 2}
+  - {fileID: 11400000, guid: 54f845757f9d2964ca61d196a4ed6bbb, type: 2}
 --- !u!114 &391613480
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2859,7 +2860,7 @@ Transform:
   m_GameObject: {fileID: 1264495011}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 382.5496, y: 346.5696, z: -0.81787634}
+  m_LocalPosition: {x: 0, y: 22.16, z: 20.77}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3442,6 +3443,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bfb4daeb01e670419ffe362d849be10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dice: {fileID: 1684071363223577600, guid: c771e9eac9d4d3c4391e956dbae66284, type: 3}
   diceRoll: {fileID: 1264495013}
 --- !u!114 &1859548637
 MonoBehaviour:
@@ -3761,6 +3763,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bfb4daeb01e670419ffe362d849be10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dice: {fileID: 1684071363223577600, guid: c771e9eac9d4d3c4391e956dbae66284, type: 3}
   diceRoll: {fileID: 1264495013}
 --- !u!114 &1894247904
 MonoBehaviour:

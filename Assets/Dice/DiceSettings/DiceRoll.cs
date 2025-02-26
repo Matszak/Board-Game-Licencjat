@@ -19,6 +19,7 @@ public class DiceRoll : MonoBehaviour
 
     public void RequestDiceRoll(Player player)
     {
+        rollResult = 0;
         _player = player;
         uiButtonPrefab.SetActive(true);
     }

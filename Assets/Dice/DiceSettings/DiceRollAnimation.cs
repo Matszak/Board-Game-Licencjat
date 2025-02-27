@@ -6,6 +6,11 @@ using UnityEngine.UI;
 
 public class DiceRollAnimation : MonoBehaviour
 {
+     public GameObject diceRollIcon;
+
+     private Player _player;
+
+  
     private static readonly int[] ResultsDiceAnimation = new[]
     {
         Animator.StringToHash("LandOn1"),
@@ -17,21 +22,22 @@ public class DiceRollAnimation : MonoBehaviour
     };
  
      [SerializeField] private Animator animator;
- 
- 
-    
-    void Start()
-    {
-        DiceRoll.DiceRolled += PlayAnimation;
- 
-    }
 
-    private void PlayAnimation(int diceRollResult, Player player)
+
+ 
+    public void PlayAnimation(int diceRollResult, Player player)
     {
-  
+ 
+        diceRollIcon.SetActive(true);
          animator.SetTrigger(ResultsDiceAnimation[diceRollResult - 1]);
-    
+        
     }
 
- 
+    public float GetAnimationDuration(int diceRollResult)
+    {
+        // Assuming that all animations have the same length, but you can get it from the Animator for each result
+        AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(0);
+        return stateInfo.length;
+    }
+
 }

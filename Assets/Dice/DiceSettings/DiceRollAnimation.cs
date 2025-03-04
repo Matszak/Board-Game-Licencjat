@@ -46,8 +46,9 @@ public class DiceRollAnimation : MonoBehaviour
         return stateInfo.length;
     }
 
-    private void OnDisable()
+    private void OnDestroy()
     {
+        if (_player == null) return;
         _player.PlayerObject.GetComponent<PlayerMovement>().OnEndMovePlayerMove -= DisableAnimation;
     }
 

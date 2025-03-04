@@ -52,12 +52,12 @@ public class GameManager : MonoBehaviour
     [ContextMenu("Next Turn")]
     public void NextTurn()  
     {
-        currentTurn++;
         currentPlayer++;
         
         if (currentPlayer >= _players.Count)
         {
             currentPlayer = 0;
+            currentTurn++;
         }
         
         TurnStarted?.Invoke(new TurnStatedData{Turn = currentTurn, Player = _players[currentPlayer]});

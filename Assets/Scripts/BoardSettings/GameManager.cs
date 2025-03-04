@@ -5,9 +5,10 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    
     public static GameManager Instance { get; private set; }
 
-    [SerializeField] private List<Player> _players = new List<Player>();
+    [SerializeField] public List<Player> _players = new List<Player>();
     
     public int currentPlayer = 0;
 
@@ -23,6 +24,7 @@ public class GameManager : MonoBehaviour
         else
         {
             Instance = this;
+            DontDestroyOnLoad(gameObject);
         }
     }
 
@@ -73,6 +75,12 @@ public class GameManager : MonoBehaviour
 [Serializable]
 public class Player
 {
+    public Player(string playerName, GameObject playerPrefab)
+    {
+        Name = playerName;
+        PlayerObject = playerPrefab;
+    }
+    
     public string Name;
     public GameObject PlayerObject;
     public int TileIndex;

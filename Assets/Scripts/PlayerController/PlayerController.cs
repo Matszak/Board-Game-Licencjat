@@ -51,7 +51,7 @@ public class PlayerController : MonoBehaviour
         if (data.Player.PlayerObject == gameObject)
         {
             _player = data.Player;
-            diceRoll.RequestDiceRoll(_player, new DiceRoll.DiceRollConfig { diceType = dice,numberOfDices = 1});
+            diceRoll.RequestDiceRoll(_player);
             
         }
     }

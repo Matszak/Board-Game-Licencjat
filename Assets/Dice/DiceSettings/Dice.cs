@@ -2,19 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Dice  : MonoBehaviour
+public class Dice   
 {
-    public int numberOfSides;
+    private int _numberOfSides;
     public GameObject dicePrefab;
-    public bool isRollComplete { get; private set; }
+ 
     public Dice(int numberOfSides)
     {
-        this.numberOfSides = numberOfSides;
+        _numberOfSides = numberOfSides;
     }
 
     public int RollDice()
     {
-        isRollComplete = true;
-        return Random.Range(1, numberOfSides + 1);
+        return Random.Range(1, _numberOfSides + 1);
     }
 }

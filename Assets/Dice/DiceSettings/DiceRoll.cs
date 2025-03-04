@@ -15,12 +15,16 @@ public class DiceRoll : MonoBehaviour
     private Player _player;
      
     public static event Action<int, Player> DiceRolled;
-    private DiceRollAnimation _diceRollAnimation;
+     private DiceRollAnimation _diceRollAnimation;
  
-    public void Start()
+    public void Awake()
     {
-        _diceRollAnimation = GetComponent<DiceRollAnimation>();
-        
+      _diceRollAnimation = GetComponent<DiceRollAnimation>();
+    }
+
+    private void Start()
+    {
+        _diceRollAnimation.diceRollIcon.SetActive(false);
     }
     
     public void RequestDiceRoll(Player player)
@@ -28,14 +32,12 @@ public class DiceRoll : MonoBehaviour
         rollResult = 0;
         _player = player;
         uiButtonPrefab.SetActive(true);
-        _diceRollAnimation.diceRollIcon.SetActive(true);
-        
     }
-
-
+    
     public void OnButtonClick()
     {
         Dice dice = new Dice(6);
+        _diceRollAnimation.diceRollIcon.SetActive(true);
         RollDices(dice, 1) ;
     }
 
@@ -49,14 +51,11 @@ public class DiceRoll : MonoBehaviour
         _diceRollAnimation.PlayAnimation(rollResult,_player);
         StartCoroutine(WaitForAnimationToFinish(rollResult, _player));
         uiButtonPrefab.SetActive(false);
-        
- 
-        
     } 
     
     private IEnumerator WaitForAnimationToFinish(int diceRollResult, Player player)
     {
-        // Get the animation duration (assuming all animations have the same duration)
+        // Get the animation duration (assuming all animations have the same time duration)
         float animationDuration = _diceRollAnimation.GetAnimationDuration(diceRollResult);
 
         // Wait for the duration of the animation

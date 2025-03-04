@@ -17028,6 +17028,18 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1264495016 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7259216660905473783, guid: 0fad5be161ad6394e8155d3a48579ee5,
+    type: 3}
+  m_PrefabInstance: {fileID: 5713222025149805607}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1264495011}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: adc027266f67f774dbc6d721b64e6baf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &1266895534 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: f64ae661fde89de47b57087f2032340e,
@@ -29518,6 +29530,11 @@ PrefabInstance:
       propertyPath: uiButtonPrefab
       value: 
       objectReference: {fileID: 182944338}
+    - target: {fileID: 5182841880739233955, guid: 0fad5be161ad6394e8155d3a48579ee5,
+        type: 3}
+      propertyPath: _diceRollAnimation
+      value: 
+      objectReference: {fileID: 1264495016}
     - target: {fileID: 7259216660905473783, guid: 0fad5be161ad6394e8155d3a48579ee5,
         type: 3}
       propertyPath: animator

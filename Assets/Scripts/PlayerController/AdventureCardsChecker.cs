@@ -9,7 +9,7 @@ public class AdventureCardsChecker : MonoBehaviour
      {
           if (player.PlayerObject != gameObject) return false;
 
-          if (!Physics.Raycast(player.PlayerObject.transform.position, Vector3.down, out var hit, Mathf.Infinity)) return false;
+          if (!Physics.Raycast(player.PlayerObject.transform.position, Vector3.down  * 4, out var hit, Mathf.Infinity)) return false;
           if (!hit.collider.gameObject.GetComponent<AdventureTile>()) return false;
           adventureTile = hit.collider.gameObject.GetComponent<AdventureTile>();
           return true;

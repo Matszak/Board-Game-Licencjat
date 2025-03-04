@@ -15,18 +15,15 @@ public class DiceRoll : MonoBehaviour
     private Player _player;
      
     public static event Action<int, Player> DiceRolled;
+ 
+    
      private DiceRollAnimation _diceRollAnimation;
  
     public void Awake()
     {
       _diceRollAnimation = GetComponent<DiceRollAnimation>();
     }
-
-    private void Start()
-    {
-        _diceRollAnimation.diceRollIcon.SetActive(false);
-    }
-    
+ 
     public void RequestDiceRoll(Player player)
     {
         rollResult = 0;
@@ -37,7 +34,6 @@ public class DiceRoll : MonoBehaviour
     public void OnButtonClick()
     {
         Dice dice = new Dice(6);
-        _diceRollAnimation.diceRollIcon.SetActive(true);
         RollDices(dice, 1) ;
     }
 
@@ -63,7 +59,6 @@ public class DiceRoll : MonoBehaviour
 
         // After the animation finishes, invoke the DiceRolled event and 
         // hide image that is showing rolling dice
-        _diceRollAnimation.diceRollIcon.SetActive(false);
         DiceRolled?.Invoke(diceRollResult, player);
     }
 }

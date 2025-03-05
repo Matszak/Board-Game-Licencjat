@@ -8,13 +8,12 @@ public class GameManager : MonoBehaviour
     
     public static GameManager Instance { get; private set; }
 
-    [SerializeField] public List<Player> _players = new List<Player>();
-    
+    public List<Player> players;
+    [SerializeField] PlayerListObject playerListObject;
     public int currentPlayer = 0;
-
     private int currentTurn = 0;
     private int avaialblePlayerIndex;
-    
+    [SerializeField] private List<GameObject> playerSpawnPoint = new List<GameObject>();
     private void Awake()
     {
         if (Instance != null && Instance != this )
@@ -24,26 +23,30 @@ public class GameManager : MonoBehaviour
         else
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject);
+            DontDestroyOnLoad(this);
+        
         }
     }
 
     public void Start()
     {
-        TurnStarted?.Invoke(new TurnStatedData{Turn = currentTurn, Player = _players[currentPlayer]});
+        players = playerListObject.players; 
+        for (int i = 0; i < players.Count; i++)
+        {
+            Instantiate(players[i].PlayerObject,playerSpawnPoint[i].transform.position,Quaternion.identity);
+        }
+        
+        TurnStarted?.Invoke(new TurnStatedData{Turn = currentTurn, Player = players[currentPlayer]});
         
     }
 
     public event Action<TurnStatedData> TurnStarted;
     public event Action<Player> OnCardTriggered;
-    
     public event Action<Player> OnTurnEnded;
-
-
+    
     public void TurnEnded(Player player)
     {
         OnTurnEnded?.Invoke(player);
-         
     }
     
     public void CardTriggered(Player player)
@@ -56,13 +59,13 @@ public class GameManager : MonoBehaviour
     {
         currentPlayer++;
         
-        if (currentPlayer >= _players.Count)
+        if (currentPlayer >= players.Count)
         {
             currentPlayer = 0;
             currentTurn++;
         }
         
-        TurnStarted?.Invoke(new TurnStatedData{Turn = currentTurn, Player = _players[currentPlayer]});
+        TurnStarted?.Invoke(new TurnStatedData{Turn = currentTurn, Player = players[currentPlayer]});
     }
     
     public class TurnStatedData
@@ -72,7 +75,7 @@ public class GameManager : MonoBehaviour
     }
 }
 
-[Serializable]
+[System.Serializable]
 public class Player
 {
     public Player(string playerName, GameObject playerPrefab)

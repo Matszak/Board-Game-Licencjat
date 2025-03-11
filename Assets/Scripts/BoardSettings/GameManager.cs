@@ -33,7 +33,7 @@ public class GameManager : MonoBehaviour
     }
 
     public event Action<TurnStatedData> TurnStarted;
-    public event Action<Player> OnCardTriggered;
+    public event Action<Player, AdventureTile> OnCardTriggered;
     
     public event Action<Player> OnTurnEnded;
 
@@ -44,9 +44,9 @@ public class GameManager : MonoBehaviour
          
     }
     
-    public void CardTriggered(Player player)
+    public void CardTriggered(Player player, AdventureTile adventureTile)
     {   
-        OnCardTriggered?.Invoke(player);
+        OnCardTriggered?.Invoke(player, adventureTile);
     }
     
     [ContextMenu("Next Turn")]

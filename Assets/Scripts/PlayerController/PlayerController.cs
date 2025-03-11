@@ -35,8 +35,8 @@ public class PlayerController : MonoBehaviour
             GameManager.Instance.TurnEnded(_player);
         }
 
-        
-        GameManager.Instance.CardTriggered(_player);
+        AdventureTile adventureTile = _adventureCardsChecker.GetTile(_player);
+        GameManager.Instance.CardTriggered(_player,adventureTile);
           
     }
 

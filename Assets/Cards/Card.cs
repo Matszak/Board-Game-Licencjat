@@ -7,7 +7,7 @@ using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 [CreateAssetMenu(fileName = "Card", menuName = "Card", order = 1)]
-public class Card :ScriptableObject 
+public abstract class Card :ScriptableObject 
 {
     public GameObject cardPrefab;
     public Sprite CardImage;
@@ -21,9 +21,7 @@ public class Card :ScriptableObject
         OnCardCompleted?.Invoke(player);
     }
 
-    public virtual void TriggerCard(Player player)
-    {
-        
-    }
-    
+    public abstract void TriggerCard(Player player);
+
+
 }

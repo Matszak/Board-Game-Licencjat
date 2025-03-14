@@ -9,7 +9,7 @@ public class AdventureTile : MonoBehaviour
 {
     
   
-    public virtual void TileAction()
+    public  void TileAction()
     {
         transform.DORotate(new Vector3(0, 0, 180), 0.5f, RotateMode.Fast).SetEase(Ease.Linear);
         Debug.Log("3");

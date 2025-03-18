@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c7d90b4517b4c2789e08354d9147caa, type: 3}
   m_Name: EmptyPickUpCard
   m_EditorClassIdentifier: 
-  cardPrefab: {fileID: 0}
+  cardPrefab: {fileID: 1075834351943545949, guid: fdae8ae7916ab4640960a54d4348860c,
+    type: 3}
   CardImage: {fileID: 0}
-  NameText: 
-  DescriptionText: 
+  NameText: w
+  DescriptionText: a

@@ -5304,11 +5304,15 @@ MonoBehaviour:
   - Name: Wojtek
     PlayerObject: {fileID: 1894247897}
     TileIndex: 0
-    playerCards: []
+    playerCards:
+    - {fileID: 11400000, guid: 38eff80352d7e5f4189356aff089d1c0, type: 2}
   - Name: Mateusz
     PlayerObject: {fileID: 1859548631}
     TileIndex: 0
-    playerCards: []
+    playerCards:
+    - {fileID: 11400000, guid: 38eff80352d7e5f4189356aff089d1c0, type: 2}
+    - {fileID: 11400000, guid: 38eff80352d7e5f4189356aff089d1c0, type: 2}
+    - {fileID: 11400000, guid: 38eff80352d7e5f4189356aff089d1c0, type: 2}
   currentPlayer: 0
 --- !u!114 &391613479
 MonoBehaviour:
@@ -5348,6 +5352,8 @@ MonoBehaviour:
   currentTurnText: {fileID: 286101708}
   currentPlayerText: {fileID: 1383650477}
   nextTurnButton: {fileID: 771544058}
+  playerCards: {fileID: 726392631}
+  _cards: []
 --- !u!4 &392803129 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: f64ae661fde89de47b57087f2032340e,
@@ -10506,6 +10512,41 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 612098265}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &726392631
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 726392632}
+  m_Layer: 5
+  m_Name: PlayerDeck
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &726392632
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 726392631}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 2.7375, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1159308312}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: -171.6}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1001 &730396482
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -15856,6 +15897,7 @@ RectTransform:
   - {fileID: 286101707}
   - {fileID: 771544059}
   - {fileID: 32164499}
+  - {fileID: 726392632}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}

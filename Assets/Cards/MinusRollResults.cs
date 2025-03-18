@@ -6,8 +6,7 @@ using UnityEngine;
 public class MinusRollResults : Card
 {
     public int movePlayerBack;
-
-
+ 
     public override void TriggerCard(Player player)
     {
         player.PlayerObject.TryGetComponent(out PlayerMovement playerMovement);

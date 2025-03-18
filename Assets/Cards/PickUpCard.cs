@@ -7,7 +7,7 @@ namespace Cards
     {
         public override void TriggerCard(Player player)
         {
-            throw new System.NotImplementedException();
+           
         }
     }
 }

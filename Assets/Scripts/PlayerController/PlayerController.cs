@@ -27,6 +27,8 @@ public class PlayerController : MonoBehaviour
         
     }
 
+    
+
     private void CheckIfOnCard(Player player)
     {
         if(player != _player) return;

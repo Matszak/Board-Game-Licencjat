@@ -5,10 +5,9 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    
     public static GameManager Instance { get; private set; }
 
-    [SerializeField] public List<Player> _players = new List<Player>();
+    [SerializeField] private List<Player> _players = new List<Player>();
     
     public int currentPlayer = 0;
 
@@ -24,7 +23,6 @@ public class GameManager : MonoBehaviour
         else
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject);
         }
     }
 
@@ -35,7 +33,7 @@ public class GameManager : MonoBehaviour
     }
 
     public event Action<TurnStatedData> TurnStarted;
-    public event Action<Player> OnCardTriggered;
+    public event Action<Player, AdventureTile> OnCardTriggered;
     
     public event Action<Player> OnTurnEnded;
 
@@ -46,9 +44,9 @@ public class GameManager : MonoBehaviour
          
     }
     
-    public void CardTriggered(Player player)
+    public void CardTriggered(Player player, AdventureTile adventureTile)
     {   
-        OnCardTriggered?.Invoke(player);
+        OnCardTriggered?.Invoke(player, adventureTile);
     }
     
     [ContextMenu("Next Turn")]
@@ -72,17 +70,4 @@ public class GameManager : MonoBehaviour
     }
 }
 
-[Serializable]
-public class Player
-{
-    public Player(string playerName, GameObject playerPrefab)
-    {
-        Name = playerName;
-        PlayerObject = playerPrefab;
-    }
-    
-    public string Name;
-    public GameObject PlayerObject;
-    public int TileIndex;
  
-}  

@@ -1,6 +1,8 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Cards;
+using CardsAndTilesScripts.adventureTiles;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -15,6 +17,8 @@ public class AdventuresCards : MonoBehaviour
     [SerializeField] private TextMeshProUGUI descriptionText;
     
     [SerializeField] private Card[] cards;
+    [SerializeField] private Card[] bonusCards;
+    [SerializeField] private Card[] disadvantageCards;
     private Player _player;
    
     private Card _selectedCard;
@@ -48,14 +52,28 @@ public class AdventuresCards : MonoBehaviour
         GameManager.Instance.OnCardTriggered -= TriggerCard;
     }
 
-    private void TriggerCard(Player player)
+    private void TriggerCard(Player player, AdventureTile adventureTile)
     {
    
         // check if current player triggered this card
          if (player != _player) return;
          if(!checkForCard) return;
-         // get random card from cards list
-         _selectedCard = cards[Random.Range(0, cards.Length)];
+   
+         switch (adventureTile)
+         {
+             case BonusTile:
+                 _selectedCard = bonusCards[Random.Range(0, bonusCards.Length)];
+                 break;
+             case DisadvantageTile:
+                 _selectedCard = disadvantageCards[Random.Range(0, disadvantageCards.Length)];
+                 break;
+             case PickUpTile pickUpTile:
+                 _selectedCard = pickUpTile.pickUpCard;
+                 break;
+             default:
+                 _selectedCard = cards[Random.Range(0, cards.Length)];
+                 break;
+         }
          
          // assing stuff from card to ui, name of card and image 
          cardImage.sprite = _selectedCard.CardImage;
@@ -68,11 +86,21 @@ public class AdventuresCards : MonoBehaviour
 
     public void OnButtonClick()
     {
-         // trigger card now, and send which player triggered it.
-         _selectedCard.TriggerCard(_player);
-        checkForCard = false;
-         _selectedCard.OnCardCompleted += EndTurn;
-        cardsUI.SetActive(false);
+ 
+         if (_selectedCard is PickUpCard)
+         {
+             _player.playerCards.Add(_selectedCard);
+             checkForCard = false;
+             cardsUI.SetActive(false);
+             EndTurn(_player);
+         }
+         else
+         {
+            _selectedCard.TriggerCard(_player);
+             checkForCard = false;
+             _selectedCard.OnCardCompleted += EndTurn;
+            cardsUI.SetActive(false);
+         }
    
     }
 

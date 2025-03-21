@@ -7,10 +7,10 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
 
-    [SerializeField] private List<Player> _players = new List<Player>();
+    [SerializeField] public List<Player> _players = new List<Player>();
     
     public int currentPlayer = 0;
-
+    public Player currentPlayerObj;
     private int currentTurn = 0;
     private int avaialblePlayerIndex;
     
@@ -34,15 +34,15 @@ public class GameManager : MonoBehaviour
 
     public event Action<TurnStatedData> TurnStarted;
     public event Action<Player, AdventureTile> OnCardTriggered;
-    
     public event Action<Player> OnTurnEnded;
-
-
+    
     public void TurnEnded(Player player)
     {
         OnTurnEnded?.Invoke(player);
          
     }
+
+ 
     
     public void CardTriggered(Player player, AdventureTile adventureTile)
     {   
@@ -60,7 +60,8 @@ public class GameManager : MonoBehaviour
             currentTurn++;
         }
         
-        TurnStarted?.Invoke(new TurnStatedData{Turn = currentTurn, Player = _players[currentPlayer]});
+        currentPlayerObj = _players[currentPlayer];
+        TurnStarted?.Invoke(new TurnStatedData{Turn = currentTurn, Player = currentPlayerObj});
     }
     
     public class TurnStatedData

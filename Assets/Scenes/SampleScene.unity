@@ -5306,14 +5306,20 @@ MonoBehaviour:
     TileIndex: 0
     playerCards:
     - {fileID: 11400000, guid: 38eff80352d7e5f4189356aff089d1c0, type: 2}
+    - {fileID: 11400000, guid: 4e51e00a6e530f942ba96bea9aa0c32e, type: 2}
   - Name: Mateusz
     PlayerObject: {fileID: 1859548631}
     TileIndex: 0
     playerCards:
     - {fileID: 11400000, guid: 38eff80352d7e5f4189356aff089d1c0, type: 2}
     - {fileID: 11400000, guid: 38eff80352d7e5f4189356aff089d1c0, type: 2}
-    - {fileID: 11400000, guid: 38eff80352d7e5f4189356aff089d1c0, type: 2}
+    - {fileID: 11400000, guid: 4e51e00a6e530f942ba96bea9aa0c32e, type: 2}
   currentPlayer: 0
+  currentPlayerObj:
+    Name: 
+    PlayerObject: {fileID: 0}
+    TileIndex: 0
+    playerCards: []
 --- !u!114 &391613479
 MonoBehaviour:
   m_ObjectHideFlags: 0

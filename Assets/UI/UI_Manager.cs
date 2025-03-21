@@ -14,16 +14,11 @@ public class UI_Manager : MonoBehaviour
     
     private int _numberOfPlayers;
 
-
-    private void NewPlayer()
-    {
-        Player one = new Player("Mateusz", onePlayer);
-        GameManager.Instance._players.Add(one);
-    }
+ 
     
     public void ButtonOne()
     {
-        NewPlayer();
+ 
         onePlayer.SetActive(true);
         _numberOfPlayers = 1;
         SceneManager.LoadScene(1);

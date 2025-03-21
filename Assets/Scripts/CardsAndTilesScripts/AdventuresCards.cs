@@ -76,9 +76,9 @@ public class AdventuresCards : MonoBehaviour
          }
          
          // assing stuff from card to ui, name of card and image 
-         cardImage.sprite = _selectedCard.CardImage;
-         cardText.text = _selectedCard.NameText;
-         descriptionText.text = _selectedCard.DescriptionText;
+         cardImage.sprite = _selectedCard.cardImage;
+         cardText.text = _selectedCard.nameText;
+         descriptionText.text = _selectedCard.descriptionText;
          
          // when everything set show UI
          cardsUI.SetActive(true);

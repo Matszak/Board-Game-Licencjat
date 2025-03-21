@@ -12,9 +12,9 @@ public abstract class Card :ScriptableObject
 {
      
     public GameObject cardPrefab;
-    public Sprite CardImage;
-    public string NameText;
-    public string DescriptionText;
+    [FormerlySerializedAs("CardImage")] public Sprite cardImage;
+    [FormerlySerializedAs("NameText")] public string nameText;
+    [FormerlySerializedAs("DescriptionText")] public string descriptionText;
     
     public event Action<Player> OnCardCompleted;
 

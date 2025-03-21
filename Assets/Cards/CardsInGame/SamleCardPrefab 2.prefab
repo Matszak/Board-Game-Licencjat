@@ -145,7 +145,7 @@ GameObject:
   - component: {fileID: 5835050870979628135}
   - component: {fileID: 4857068991017752199}
   - component: {fileID: 5090130294678666534}
-  - component: {fileID: -6185629764017295547}
+  - component: {fileID: 3031323594769853414}
   m_Layer: 5
   m_Name: SamleCardPrefab 2
   m_TagString: Untagged
@@ -214,7 +214,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &-6185629764017295547
+--- !u!114 &3031323594769853414
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -223,10 +223,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1075834351943545949}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4a64c909e1409d841b9346a4a2afdaef, type: 3}
+  m_Script: {fileID: 11500000, guid: 7f86aca48a5335343a5e857f6f633e94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pickUpCard: {fileID: 0}
+  card: {fileID: 0}
 --- !u!1 &4943103944771905568
 GameObject:
   m_ObjectHideFlags: 0
@@ -691,7 +691,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: -6185629764017295547}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: CardUsage, Assembly-CSharp
         m_MethodName: OnCardUseButton
         m_Mode: 1

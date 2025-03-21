@@ -73,7 +73,11 @@ public class ControllerUI : MonoBehaviour
                     playerCards.transform.position.y,
                     playerCards.transform.position.z)
                 , Quaternion.identity, playerCards.transform));
-             _cards[i].GameObject().name = player.playerCards[i].NameText;
+             _cards[i].GameObject().name = player.playerCards[i].nameText;
+             if (_cards[i].TryGetComponent(out UICardUsage cardUsage))
+             {
+                 cardUsage.SetCard(player.playerCards[i]);
+             }
         }
       
     }

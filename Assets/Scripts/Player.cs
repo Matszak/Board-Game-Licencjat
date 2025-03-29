@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [Serializable]
-public class Player
+public class Player  
 {
     public string Name;
     public GameObject PlayerObject;

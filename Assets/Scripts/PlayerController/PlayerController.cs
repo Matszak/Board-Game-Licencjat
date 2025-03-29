@@ -14,10 +14,11 @@ public class PlayerController : MonoBehaviour
     public Dice dice;
     private PlayerMovement _playerMovement;
     private AdventureCardsChecker _adventureCardsChecker;
+    private PlayerSelector playerSelector;
     [SerializeField] private DiceRoll diceRoll;
  
 
-    private Player _player;
+    public Player _player;
 
     private void OnEnable()
     {
@@ -27,7 +28,10 @@ public class PlayerController : MonoBehaviour
         
     }
 
-    
+    private void Start()
+    {
+        playerSelector.isActive = true;
+    }
 
     private void CheckIfOnCard(Player player)
     {
@@ -46,6 +50,7 @@ public class PlayerController : MonoBehaviour
     {
         _playerMovement = GetComponent<PlayerMovement>();
         _adventureCardsChecker = GetComponent<AdventureCardsChecker>();
+        playerSelector = GetComponent<PlayerSelector>();
     }
     
     private void OnTurnStarted(GameManager.TurnStatedData data)

@@ -76,7 +76,8 @@ public class ControllerUI : MonoBehaviour
              _cards[i].GameObject().name = player.playerCards[i].nameText;
              if (_cards[i].TryGetComponent(out UICardUsage cardUsage))
              {
-                 cardUsage.SetCard(player.playerCards[i]);
+                 cardUsage.SetCard(player.playerCards[i], player);
+                 
              }
         }
       

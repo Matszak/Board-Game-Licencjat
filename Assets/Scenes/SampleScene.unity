@@ -5301,23 +5301,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _players:
-  - Name: Wojtek
-    PlayerObject: {fileID: 1894247897}
-    TileIndex: 0
-    playerCards:
-    - {fileID: 11400000, guid: 38eff80352d7e5f4189356aff089d1c0, type: 2}
-  - Name: Mateusz
-    PlayerObject: {fileID: 1859548631}
-    TileIndex: 0
-    playerCards:
-    - {fileID: 11400000, guid: 38eff80352d7e5f4189356aff089d1c0, type: 2}
-    - {fileID: 11400000, guid: 38eff80352d7e5f4189356aff089d1c0, type: 2}
+  - {fileID: 1894247907}
+  - {fileID: 1859548640}
   currentPlayer: 0
-  currentPlayerObj:
-    Name: 
-    PlayerObject: {fileID: 0}
-    TileIndex: 0
-    playerCards: []
+  currentPlayerObj: {fileID: 0}
 --- !u!114 &391613479
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24486,17 +24473,17 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 72b2e9114c0d3274bbf203b61f826042,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -14.54
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 72b2e9114c0d3274bbf203b61f826042,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.9722223
+      value: -1.97
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 72b2e9114c0d3274bbf203b61f826042,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 1.46
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 72b2e9114c0d3274bbf203b61f826042,
         type: 3}
@@ -24567,6 +24554,8 @@ GameObject:
   - component: {fileID: 1859548636}
   - component: {fileID: 1859548637}
   - component: {fileID: 1859548638}
+  - component: {fileID: 1859548639}
+  - component: {fileID: 1859548640}
   m_Layer: 0
   m_Name: Player2
   m_TagString: Untagged
@@ -24792,6 +24781,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c30538848154b724f93681a1b63f5b08, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1859548639
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1859548631}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c543795018f34f6fa658425f0aae4db7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1859548640
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1859548631}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e692da7c077418788f32aab0b1fa71a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: 
+  PlayerObject: {fileID: 0}
+  TileIndex: 0
+  playerCards: []
 --- !u!1001 &1859603765
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -25429,6 +25446,8 @@ GameObject:
   - component: {fileID: 1894247904}
   - component: {fileID: 1894247903}
   - component: {fileID: 1894247905}
+  - component: {fileID: 1894247906}
+  - component: {fileID: 1894247907}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -25445,7 +25464,7 @@ Transform:
   m_GameObject: {fileID: 1894247897}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.57, y: 2.15, z: -1.73}
+  m_LocalPosition: {x: -4.65, y: 2.15, z: 10.02}
   m_LocalScale: {x: 1.8107, y: 2.1535, z: 1.7237}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -25680,6 +25699,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c30538848154b724f93681a1b63f5b08, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1894247906
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1894247897}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c543795018f34f6fa658425f0aae4db7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1894247907
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1894247897}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e692da7c077418788f32aab0b1fa71a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: 
+  PlayerObject: {fileID: 1894247897}
+  TileIndex: 0
+  playerCards: []
 --- !u!1 &1897506958 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: f64ae661fde89de47b57087f2032340e,
@@ -26416,7 +26463,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 7a266740c11652b4b970225b7b831b0f,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.75
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7a266740c11652b4b970225b7b831b0f,
         type: 3}

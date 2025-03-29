@@ -8,6 +8,8 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance { get; private set; }
 
     [SerializeField] public List<Player> _players = new List<Player>();
+ 
+    
     
     public int currentPlayer = 0;
     public Player currentPlayerObj;
@@ -39,7 +41,6 @@ public class GameManager : MonoBehaviour
     public void TurnEnded(Player player)
     {
         OnTurnEnded?.Invoke(player);
-         
     }
 
  
@@ -69,6 +70,9 @@ public class GameManager : MonoBehaviour
         public int Turn;
         public Player Player;
     }
+
+ 
+     
 }
 
  

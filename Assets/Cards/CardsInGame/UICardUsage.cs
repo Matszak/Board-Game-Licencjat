@@ -34,4 +34,9 @@ public class UICardUsage : MonoBehaviour,IPointerEnterHandler, IPointerExitHandl
         _player.playerCards.Remove(_card);
         Destroy(this.gameObject);
     }
+
+    public void CardUsed()
+    {
+        Destroy(this.gameObject);
+    }
 }

@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 820486dfb4d38004ab11fabe3d1fddca, type: 3}
   m_Name: MinusRollResults
   m_EditorClassIdentifier: 
-  cardPrefab: {fileID: 0}
-  CardImage: {fileID: 0}
-  NameText: Minus Roll
-  DescriptionText: 
+  cardPrefab: {fileID: 1075834351943545949, guid: 7392d011aea06b946a33dd18eb24b885,
+    type: 3}
+  cardImage: {fileID: 0}
+  nameText: Minus Roll
+  descriptionText: 
   movePlayerBack: 2

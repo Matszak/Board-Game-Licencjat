@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Cards;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -36,6 +37,8 @@ public class GameManager : MonoBehaviour
 
     public event Action<TurnStatedData> TurnStarted;
     public event Action<Player, AdventureTile> OnCardTriggered;
+    public event Action<Player> OnSelectedCardOn;
+    public event Action<PlayerController> OnCardPlayerSelected;
     public event Action<Player> OnTurnEnded;
     
     public void TurnEnded(Player player)
@@ -43,6 +46,14 @@ public class GameManager : MonoBehaviour
         OnTurnEnded?.Invoke(player);
     }
 
+    public void PlayerIsSelected(PlayerController playerController)
+    {
+        OnCardPlayerSelected?.Invoke(playerController);
+    }
+    public void InvokeSelection(Player player)
+    {
+        OnSelectedCardOn?.Invoke(player);
+    }
  
     
     public void CardTriggered(Player player, AdventureTile adventureTile)

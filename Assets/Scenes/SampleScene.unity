@@ -4172,7 +4172,6 @@ GameObject:
   - component: {fileID: 330585545}
   - component: {fileID: 330585544}
   - component: {fileID: 330585547}
-  - component: {fileID: 330585549}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -4247,13 +4246,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 330585543}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: 0.3653196, y: -0, z: -0, w: 0.93088216}
+  m_LocalPosition: {x: -18.33, y: 26.72, z: -28.8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 54.731, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 42.855, y: 0, z: 0}
 --- !u!114 &330585547
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4298,40 +4297,6 @@ MonoBehaviour:
     m_MipBias: 0
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
---- !u!114 &330585549
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 330585543}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 72ece51f2901e7445ab60da3685d6b5f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_ShowDebugText: 0
-  m_ShowCameraFrustum: 1
-  m_IgnoreTimeScale: 0
-  m_WorldUpOverride: {fileID: 0}
-  m_UpdateMethod: 2
-  m_BlendUpdateMethod: 1
-  m_DefaultBlend:
-    m_Style: 1
-    m_Time: 2
-    m_CustomCurve:
-      serializedVersion: 2
-      m_Curve: []
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-  m_CustomBlends: {fileID: 0}
-  m_CameraCutEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_CameraActivatedEvent:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!1001 &331709806
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5301,10 +5266,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _players:
-  - {fileID: 1894247907}
-  - {fileID: 1859548640}
+  - Name: Wojtek
+    PlayerObject: {fileID: 1894247897}
+    TileIndex: 0
+    playerCards:
+    - {fileID: 11400000, guid: e29f3676356feca40898fd174362be76, type: 2}
+  - Name: a
+    PlayerObject: {fileID: 1859548631}
+    TileIndex: 0
+    playerCards: []
   currentPlayer: 0
-  currentPlayerObj: {fileID: 0}
+  currentPlayerObj:
+    Name: 
+    PlayerObject: {fileID: 0}
+    TileIndex: 0
+    playerCards: []
 --- !u!114 &391613479
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24473,17 +24449,17 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 72b2e9114c0d3274bbf203b61f826042,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -14.54
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 72b2e9114c0d3274bbf203b61f826042,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.97
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 72b2e9114c0d3274bbf203b61f826042,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 1.46
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 72b2e9114c0d3274bbf203b61f826042,
         type: 3}
@@ -24579,13 +24555,13 @@ CapsuleCollider:
     m_Bits: 0
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
-  m_ProvidesContacts: 0
+  m_ProvidesContacts: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5000001
+  m_Radius: 1.14
   m_Height: 2
   m_Direction: 1
-  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
+  m_Center: {x: -0.06, y: 0, z: -0.00000008940697}
 --- !u!4 &1859548635
 Transform:
   m_ObjectHideFlags: 0
@@ -24595,7 +24571,7 @@ Transform:
   m_GameObject: {fileID: 1859548631}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.7, y: 1.94, z: -1.29}
+  m_LocalPosition: {x: -29.9, y: 1.94, z: 2.7}
   m_LocalScale: {x: 3, y: 1.8, z: 3}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -24616,6 +24592,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   diceRoll: {fileID: 1264495013}
+  _player:
+    Name: 
+    PlayerObject: {fileID: 0}
+    TileIndex: 0
+    playerCards: []
 --- !u!114 &1859548637
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24793,22 +24774,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c543795018f34f6fa658425f0aae4db7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1859548640
-MonoBehaviour:
+  isActive: 0
+--- !u!54 &1859548640
+Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1859548631}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5e692da7c077418788f32aab0b1fa71a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Name: 
-  PlayerObject: {fileID: 0}
-  TileIndex: 0
-  playerCards: []
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 0
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1001 &1859603765
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -25447,7 +25440,6 @@ GameObject:
   - component: {fileID: 1894247903}
   - component: {fileID: 1894247905}
   - component: {fileID: 1894247906}
-  - component: {fileID: 1894247907}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -25517,7 +25509,7 @@ Rigidbody:
   m_ImplicitCom: 0
   m_ImplicitTensor: 0
   m_UseGravity: 0
-  m_IsKinematic: 1
+  m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -25534,6 +25526,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   diceRoll: {fileID: 1264495013}
+  _player:
+    Name: 
+    PlayerObject: {fileID: 0}
+    TileIndex: 0
+    playerCards: []
 --- !u!114 &1894247904
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25711,22 +25708,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c543795018f34f6fa658425f0aae4db7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1894247907
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1894247897}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5e692da7c077418788f32aab0b1fa71a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Name: 
-  PlayerObject: {fileID: 1894247897}
-  TileIndex: 0
-  playerCards: []
+  isActive: 0
 --- !u!1 &1897506958 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: f64ae661fde89de47b57087f2032340e,

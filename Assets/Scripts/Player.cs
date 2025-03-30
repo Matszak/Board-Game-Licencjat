@@ -5,6 +5,7 @@ using UnityEngine;
 [Serializable]
 public class Player  
 {
+    
     public string Name;
     public GameObject PlayerObject;
     public int TileIndex;

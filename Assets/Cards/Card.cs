@@ -24,5 +24,6 @@ public abstract class Card :ScriptableObject
     }
 
     public abstract void TriggerCard(Player player);
+    
  
 }

@@ -6,20 +6,20 @@ namespace Cards.CardsInGame
     public class ChangePlaces : PickUpCard
     {
         
-        private void ApplyEffect(PlayerController obj)
-        {
-            Debug.Log($"{obj._player.Name} has been selected");
-            obj.GetComponent<PlayerMovement>().MovePlayer(3,obj._player);
-        }
 
         public override void TriggerCard(Player player)
         {
            
             GameManager.Instance.OnCardPlayerSelected += ApplyEffect;
-            Debug.Log($"Card picked up by {player.Name}");
             GameManager.Instance.InvokeSelection(player);
         }
 
+        private void ApplyEffect(PlayerController obj)
+        {
+            GameManager.Instance.OnCardPlayerSelected -= ApplyEffect;
+        }
+        
+        
         public void OnDisable()
         {
             GameManager.Instance.OnCardPlayerSelected -= ApplyEffect;

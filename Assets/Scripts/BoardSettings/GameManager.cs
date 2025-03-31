@@ -27,17 +27,27 @@ public class GameManager : MonoBehaviour
         {
             Instance = this;
         }
+
+       
     }
 
     public void Start()
     {
+        foreach (var player in _players)
+        {
+            PlayerController controller = player.PlayerObject.GetComponent<PlayerController>();
+            if (controller != null)
+            {
+                controller.SetPlayer(player);  // Ensure correct player assignment
+            }
+        }
         TurnStarted?.Invoke(new TurnStatedData{Turn = currentTurn, Player = _players[currentPlayer]});
         
     }
 
     public event Action<TurnStatedData> TurnStarted;
     public event Action<Player, AdventureTile> OnCardTriggered;
-    public event Action<Player> OnSelectedCardOn;
+    public event Action<Player> OnInvokeSelection;
     public event Action<PlayerController> OnCardPlayerSelected;
     public event Action<Player> OnTurnEnded;
     
@@ -52,7 +62,7 @@ public class GameManager : MonoBehaviour
     }
     public void InvokeSelection(Player player)
     {
-        OnSelectedCardOn?.Invoke(player);
+        OnInvokeSelection?.Invoke(player);
     }
  
     

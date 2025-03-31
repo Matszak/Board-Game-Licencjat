@@ -18,7 +18,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private DiceRoll diceRoll;
  
 
-    public Player _player;
+    public Player Player { get; private set; } 
 
     private void OnEnable()
     {
@@ -32,14 +32,14 @@ public class PlayerController : MonoBehaviour
 
     private void CheckIfOnCard(Player player)
     {
-        if(player != _player) return;
-        if (!_adventureCardsChecker.CheckIfStayOnCard(_player))
+        if(player != Player) return;
+        if (!_adventureCardsChecker.CheckIfStayOnCard(Player))
         {
-            GameManager.Instance.TurnEnded(_player);
+            GameManager.Instance.TurnEnded(Player);
         }
 
-        AdventureTile adventureTile = _adventureCardsChecker.GetTile(_player);
-        GameManager.Instance.CardTriggered(_player,adventureTile);
+        AdventureTile adventureTile = _adventureCardsChecker.GetTile(Player);
+        GameManager.Instance.CardTriggered(Player,adventureTile);
           
     }
 
@@ -53,18 +53,15 @@ public class PlayerController : MonoBehaviour
     
     private void OnTurnStarted(GameManager.TurnStatedData data)
     {
-        if (data.Player.PlayerObject == gameObject)
-        {
-            _player = data.Player;
-            diceRoll.RequestDiceRoll(_player);
-            
-        }
+        if (data.Player != Player) return;
+        diceRoll.RequestDiceRoll(Player);
+     
     }
     
     private void OnDiceRolled(int rollResult, Player player)
     {
-         
-        _playerMovement.MovePlayer(rollResult, player);
+        if (player != Player) return;
+        _playerMovement.MovePlayer(rollResult, Player);
     }
 
     private void OnDestroy()
@@ -73,7 +70,11 @@ public class PlayerController : MonoBehaviour
         DiceRoll.DiceRolled -= OnDiceRolled;
         _playerMovement.OnEndMovePlayerMove -= CheckIfOnCard;
     }
-    
+
+    public void SetPlayer(Player player)
+    {
+        Player = player;
+    }
 
 }
 

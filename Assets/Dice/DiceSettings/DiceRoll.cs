@@ -51,6 +51,7 @@ public class DiceRoll : MonoBehaviour
     
     private IEnumerator WaitForAnimationToFinish(int diceRollResult, Player player)
     {
+        
         // Get the animation duration (assuming all animations have the same time duration)
         float animationDuration = _diceRollAnimation.GetAnimationDuration(diceRollResult);
 

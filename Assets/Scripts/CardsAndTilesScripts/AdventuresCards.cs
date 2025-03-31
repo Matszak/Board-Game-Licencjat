@@ -70,6 +70,9 @@ public class AdventuresCards : MonoBehaviour
              case PickUpTile pickUpTile:
                  _selectedCard = pickUpTile.pickUpCard;
                  break;
+             case BattleTile battleTile:
+                 _selectedCard = battleTile.enemyCard;
+                 break;
              default:
                  _selectedCard = cards[Random.Range(0, cards.Length)];
                  break;

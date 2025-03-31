@@ -6,11 +6,13 @@ using UnityEngine;
 public class MinusRollResults : Card
 {
     public int movePlayerBack;
- 
-    public override void TriggerCard(Player player)
+     
+    
+    public override void TriggerCard(Player currentPlayer)
     {
-        player.PlayerObject.TryGetComponent(out PlayerMovement playerMovement);
-        playerMovement.MovePlayerBack(movePlayerBack, player);
+         
+        currentPlayer.PlayerObject.TryGetComponent(out PlayerMovement playerMovement);
+        playerMovement.MovePlayerBack(movePlayerBack, currentPlayer);
         playerMovement.OnEndMovePlayerMove += CompleteCard;
 
     }

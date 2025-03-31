@@ -6,16 +6,23 @@ namespace Cards.CardsInGame
     public class ChangePlaces : PickUpCard
     {
         
-
-        public override void TriggerCard(Player player)
+      
+        
+        private Player _currentPlayer;
+        public override void TriggerCard(Player currentPlayer)
         {
-           
+            _currentPlayer = currentPlayer;
             GameManager.Instance.OnCardPlayerSelected += ApplyEffect;
-            GameManager.Instance.InvokeSelection(player);
+            GameManager.Instance.InvokeSelection(currentPlayer);
         }
 
-        private void ApplyEffect(PlayerController obj)
+        private void ApplyEffect(Player  selectedPlayer)
         {
+            var tempPosition = _currentPlayer.PlayerObject.transform.position;
+            
+            _currentPlayer.PlayerObject.transform.position = selectedPlayer.PlayerObject.transform.position;
+            selectedPlayer.PlayerObject.transform.position = tempPosition;
+            
             GameManager.Instance.OnCardPlayerSelected -= ApplyEffect;
         }
         

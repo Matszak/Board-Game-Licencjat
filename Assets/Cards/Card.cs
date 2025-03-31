@@ -23,7 +23,7 @@ public abstract class Card :ScriptableObject
         OnCardCompleted?.Invoke(player);
     }
 
-    public abstract void TriggerCard(Player player);
+    public abstract void TriggerCard(Player currentPlayer);
     
  
 }

@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using CardsAndTilesScripts.adventureTiles;
 using DG.Tweening;
 using UnityEngine;
 
@@ -44,14 +45,26 @@ public class PlayerMovement : MonoBehaviour
         Sequence sequence = DOTween.Sequence();
         
         for (int i = player.TileIndex; i <= targetTileIndex; i++)
-        {
+        { 
+            
             Vector3 movePosition = new Vector3(
                 tiles[i].position.x,
                 player.PlayerObject.transform.position.y,
                 tiles[i].position.z);
-
+            
             sequence.Append(player.PlayerObject.transform.DOJump(movePosition, 6f, 1, 0.5f).SetEase(Ease.OutQuad));
+            
+            sequence.AppendCallback(() =>
+            {
+                if (IsEnemyOnTile(player.PlayerObject.transform.position))  
+                {
+                    OnEndMovePlayerMove?.Invoke(player);
+                    sequence.Kill();  
+                }
+            });
         }
+        
+   
 
         sequence.OnComplete(() =>
         {
@@ -62,4 +75,19 @@ public class PlayerMovement : MonoBehaviour
         sequence.Play();
  
     }
+    
+    private bool IsEnemyOnTile(Vector3 playerPosition)
+    {
+        RaycastHit hit;
+       
+        if (Physics.Raycast(playerPosition,Vector3.down, out hit, Mathf.Infinity)) // Adjust max distance if needed
+        {
+            if (hit.collider.GetComponent<BattleTile>())  
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+    
 }

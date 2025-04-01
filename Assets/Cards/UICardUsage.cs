@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using DG.Tweening;
 
-public class UICardUsage : MonoBehaviour,IPointerEnterHandler, IPointerExitHandler
+public class UICardUsage : MonoBehaviour,IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
 {
 
     private Card _card;

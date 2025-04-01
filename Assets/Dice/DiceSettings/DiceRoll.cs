@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using DefaultNamespace;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -13,15 +14,17 @@ public class DiceRoll : MonoBehaviour
  
     public int rollResult;
     private Player _player;
-     
-    public static event Action<int, Player> DiceRolled;
- 
+    private Enemy _enemy;
+    
+    public static event Action<int, Player> OnPlayerRolled;
+    public static event Action<int, Enemy> OnEnemyRolled;
     
      private DiceRollAnimation _diceRollAnimation;
  
     public void Awake()
     {
       _diceRollAnimation = GetComponent<DiceRollAnimation>();
+      _player = null;
     }
  
     public void RequestDiceRoll(Player player)
@@ -29,6 +32,14 @@ public class DiceRoll : MonoBehaviour
         rollResult = 0;
         _player = player;
         uiButtonPrefab.SetActive(true);
+    }
+
+    public void EnemyDiceRoll(Enemy enemy)
+    {
+        _enemy = enemy;
+        rollResult = 0;
+        Dice dice = new Dice(6);
+        RollDices(dice,1);
     }
     
     public void OnButtonClick()
@@ -38,28 +49,38 @@ public class DiceRoll : MonoBehaviour
     }
 
     private void RollDices(Dice typeOfDice,int numberOfDices)
-    {
+    { 
         for (int i = 0; i < numberOfDices; i++)
         {
            rollResult += typeOfDice.RollDice();
         }
         // only works with 6 sides dice right now.
-        _diceRollAnimation.PlayAnimation(rollResult,_player);
-        StartCoroutine(WaitForAnimationToFinish(rollResult, _player));
+        if (_player != null)
+        {
+            _diceRollAnimation.PlayAnimation(rollResult,_player);
+            StartCoroutine(WaitForAnimationToFinish(rollResult, _player));
+            _player = null;
+        }
+        if (_enemy != null)
+        {
+            _diceRollAnimation.PlayAnimation(rollResult, _enemy);
+            StartCoroutine(WaitForAnimationToFinish(rollResult, _enemy));
+            _enemy = null;
+        }   
         uiButtonPrefab.SetActive(false);
-    } 
-    
+    }
+
     private IEnumerator WaitForAnimationToFinish(int diceRollResult, Player player)
     {
-        
-        // Get the animation duration (assuming all animations have the same time duration)
         float animationDuration = _diceRollAnimation.GetAnimationDuration(diceRollResult);
-
-        // Wait for the duration of the animation
         yield return new WaitForSeconds(animationDuration + animationDelay);
-
-        // After the animation finishes, invoke the DiceRolled event and 
-        // hide image that is showing rolling dice
-        DiceRolled?.Invoke(diceRollResult, player);
+        OnPlayerRolled?.Invoke(diceRollResult, player);
     }
+    private IEnumerator WaitForAnimationToFinish(int diceRollResult,Enemy enemy)
+    {
+        float animationDuration = _diceRollAnimation.GetAnimationDuration(diceRollResult);
+        yield return new WaitForSeconds(animationDuration + animationDelay);
+        OnEnemyRolled?.Invoke(diceRollResult, enemy);
+    }
+   
 }

@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Cards;
+using DefaultNamespace;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -44,10 +45,14 @@ public class GameManager : MonoBehaviour
     }
 
     public event Action<TurnStatedData> TurnStarted;
+    public event Action<Player> OnTurnEnded;
+    
     public event Action<Player, AdventureTile> OnCardTriggered;
+    
     public event Action<Player> OnInvokeSelection;
     public event Action<Player> OnCardPlayerSelected;
-    public event Action<Player> OnTurnEnded;
+    
+    public event Action<Player, Enemy> OnFightStarted;
     
     public void TurnEnded(Player player)
     {
@@ -63,7 +68,11 @@ public class GameManager : MonoBehaviour
     {
         OnInvokeSelection?.Invoke(player);
     }
- 
+
+    public void StartFight(Player player, Enemy enemy)
+    {
+        OnFightStarted?.Invoke(player, enemy);
+    }
     
     public void CardTriggered(Player player, AdventureTile adventureTile)
     {   
@@ -90,9 +99,8 @@ public class GameManager : MonoBehaviour
         public int Turn;
         public Player Player;
     }
-
  
-     
+ 
 }
 
  

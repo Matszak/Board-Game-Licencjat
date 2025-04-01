@@ -5,8 +5,7 @@ using UnityEngine;
 public class Dice   
 {
     private int _numberOfSides;
-    public GameObject dicePrefab;
- 
+
     public Dice(int numberOfSides)
     {
         _numberOfSides = numberOfSides;

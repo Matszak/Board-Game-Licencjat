@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using DefaultNamespace;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -8,6 +10,16 @@ public class DiceRollAnimation : MonoBehaviour
 {
      public GameObject diceRollIcon;
      private Player _player;
+
+     public void OnEnable()
+     {
+         GameManager.Instance.TurnStarted += InstanceOnTurnStarted;
+     }
+
+     private void InstanceOnTurnStarted(GameManager.TurnStatedData obj)
+     {
+         _player = obj.Player;
+     }
 
      public void Start()
      {
@@ -27,12 +39,26 @@ public class DiceRollAnimation : MonoBehaviour
  
     public void PlayAnimation(int diceRollResult, Player player)
     {
-        _player = player;
+        if(_player != player) return;
         _player.PlayerObject.GetComponent<PlayerMovement>().OnEndMovePlayerMove += DisableAnimation;
         diceRollIcon.SetActive(true);
         animator.SetTrigger(ResultsDiceAnimation[diceRollResult - 1]);
         
     }
+    
+    public void PlayAnimation(int diceRollResult, Enemy enemy)
+    {
+        FightSystem.endFight += DisableAnimationFight;
+        diceRollIcon.SetActive(true);
+        animator.SetTrigger(ResultsDiceAnimation[diceRollResult - 1]);
+        
+    }
+
+    private void DisableAnimationFight()
+    {
+        diceRollIcon.SetActive(false);
+    }
+
 
     private void DisableAnimation(Player obj)
     {

@@ -60,6 +60,7 @@ public class UICardUsage : MonoBehaviour,IPointerEnterHandler, IPointerExitHandl
         Debug.Log($"Mouse clicked the card: {_card.nameText}");
         _card.TriggerCard(_player);
         _player.playerCards.Remove(_card);
+        DOTween.Kill(_card);
         Destroy(this.gameObject);
     }
     

@@ -54,10 +54,12 @@ public class PlayerMovement : MonoBehaviour
                 tiles[i].position.z);
             sequence.Append(player.PlayerObject.transform.DOJump(movePosition, 6f, 1, 0.5f).SetEase(Ease.OutQuad));
 
+            int currentTileIndex = i;
             sequence.AppendCallback(() =>
             {
                 if (IsEnemyOnTile(player.PlayerObject.transform.position))
                 {
+                    player.TileIndex = currentTileIndex;
                     OnEndMovePlayerMove?.Invoke(player);
                     sequence.Kill();
                 }

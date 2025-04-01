@@ -33,6 +33,7 @@ public class FightSystem : MonoBehaviour
     private void OnPlayerRolled(int e,Player player)
     {
         if(_currentPlayer != player) return;
+        if(_currentPlayer.PlayerObject.GetComponent<PlayerController>().playerState != PlayerState.Fighting) return;
          playerValue = e;
          diceRoll.EnemyDiceRoll(_enemy);
     }
@@ -54,9 +55,10 @@ public class FightSystem : MonoBehaviour
 
     private void EndFight()
     {
+        endFight?.Invoke();
         if(_currentPlayer != _player) return;
         Debug.Log($"playerRolled {playerValue}, enemyRolled {enemyValue}");
-        endFight?.Invoke();
+         
         Debug.Log($"endFight {endFight} for {_currentPlayer}, {_player}");
         if (playerValue > enemyValue)
         {

@@ -12,11 +12,11 @@ namespace Cards
             Debug.Log($"{obj.Player.Name} has been selected");
         }
 
-        public override void TriggerCard(Player player)
+        public override void TriggerCard(Player currentPlayer)
         {
            
-            Debug.Log($"Card picked up by {player.Name}");
-            GameManager.Instance.InvokeSelection(player);
+            Debug.Log($"Card picked up by {currentPlayer.Name}");
+            GameManager.Instance.InvokeSelection(currentPlayer);
    
         }
  

@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using CardsAndTilesScripts.adventureTiles;
 using DG.Tweening;
 using TMPro;
 using Unity.VisualScripting;
@@ -39,6 +40,8 @@ public class PlayerController : MonoBehaviour
         }
 
         AdventureTile adventureTile = _adventureCardsChecker.GetTile(Player);
+     
+        
         GameManager.Instance.CardTriggered(Player,adventureTile);
           
     }

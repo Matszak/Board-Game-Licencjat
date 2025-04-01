@@ -6,10 +6,10 @@ using UnityEngine;
 public class MoveCard : Card
 {
     public int movePlayerBy;
-    public override void TriggerCard(Player player)
+    public override void TriggerCard(Player currentPlayer)
     {
-        player.PlayerObject.TryGetComponent(out PlayerMovement playerMovement);
-        playerMovement.MovePlayer(movePlayerBy, player);
+        currentPlayer.PlayerObject.TryGetComponent(out PlayerMovement playerMovement);
+        playerMovement.MovePlayer(movePlayerBy, currentPlayer);
         playerMovement.OnEndMovePlayerMove += CompleteCard;
     }
 }

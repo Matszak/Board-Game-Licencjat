@@ -6,20 +6,23 @@ using UnityEngine;
 public class PlayerSelector : MonoBehaviour
 {
     public bool isActive;
+    private Player _selectedPlayer;
     
     private void OnEnable()
     {
-        GameManager.Instance.OnInvokeSelection += InstanceOnOnSelectedCardOn;
+        GameManager.Instance.OnInvokeSelection += TurnOnSelection;
         GameManager.Instance.OnCardPlayerSelected += TurnSelectionOff;
     }
     
-    private void TurnSelectionOff(PlayerController obj)
+    private void TurnSelectionOff(Player  selectedPlayer)
     {
+        _selectedPlayer = selectedPlayer;
         isActive = false;
     }
     
-    private void InstanceOnOnSelectedCardOn(Player player)
+    private void TurnOnSelection(Player player)
     {
+       
         isActive = true;
     }
 
@@ -28,7 +31,7 @@ public class PlayerSelector : MonoBehaviour
         if (!gameObject.TryGetComponent(out PlayerController player) || !isActive) return;
         
         Debug.Log($"Clicked on: {player.Player.Name}");
-        GameManager.Instance.PlayerIsSelected(player);
+        GameManager.Instance.PlayerIsSelected(player.Player);
     }
 
     private void OnMouseOver()

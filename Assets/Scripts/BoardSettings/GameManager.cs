@@ -32,6 +32,7 @@ public class GameManager : MonoBehaviour
 
     public void Start()
     {
+        int numberOfPlayers = PlayerPrefs.GetInt("NumberOfPlayers", 1);
         foreach (var player in _players)
         {
             PlayerController controller = player.PlayerObject.GetComponent<PlayerController>();

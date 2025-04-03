@@ -18,28 +18,23 @@ public class UI_Manager : MonoBehaviour
     
     public void ButtonOne()
     {
- 
-        onePlayer.SetActive(true);
-        _numberOfPlayers = 1;
+        PlayerPrefs.SetInt("NumberOfPlayers", 1);
         SceneManager.LoadScene(1);
     }
 
     public void ButtonTwo()
     {
-        twoPlayers.SetActive(true);
-        _numberOfPlayers = 2;
+        PlayerPrefs.SetInt("NumberOfPlayers", 2);
         SceneManager.LoadScene(1);
     }
 
     public void ButtonThree()
     {
-        threePlayers.SetActive(true);
         SceneManager.LoadScene(1);
     }
 
     public void ButtonFour()
     {
-        fourPlayers.SetActive(true);
         SceneManager.LoadScene(1);
     }
 }

@@ -57,7 +57,7 @@ public class PlayerMovement : MonoBehaviour
             int currentTileIndex = i;
             sequence.AppendCallback(() =>
             {
-                if (IsEnemyOnTile(player.PlayerObject.transform.position))
+                if (IsEnemyOnTile(player.PlayerObject.transform.position) && player.PlayerObject.GetComponent<PlayerController>().playerState != PlayerState.Fighting)
                 {
                     player.TileIndex = currentTileIndex;
                     OnEndMovePlayerMove?.Invoke(player);

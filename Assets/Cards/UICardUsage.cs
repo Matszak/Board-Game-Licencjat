@@ -40,7 +40,6 @@ public class UICardUsage : MonoBehaviour,IPointerEnterHandler, IPointerExitHandl
         {
             transform.DOMove(new Vector2(_originalPosition.x, _originalPosition.y + 100f), 0.5f, true);
         }
-        Debug.Log($"Mouse is over the card: {_card.nameText}");
     }
 
     // This method is called when the mouse exits the UI element
@@ -51,8 +50,6 @@ public class UICardUsage : MonoBehaviour,IPointerEnterHandler, IPointerExitHandl
         {
             transform.DOMove(_originalPosition, 0.5f, true);
         }
-
-        Debug.Log($"Mouse exited the card: {_card.nameText}");
     }
 
     public void OnPointerClick(PointerEventData eventData)

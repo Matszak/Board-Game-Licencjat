@@ -9,7 +9,7 @@ public class FightSystem : MonoBehaviour
     [SerializeField] private DiceRoll diceRoll;
     private int playerValue;
     private int enemyValue;
-    public static event Action endFight;
+    public static event Action<bool, Player> endFight;
     public static event Action<Player> fightStarted;
     private Enemy _enemy;
     private Player _player;
@@ -55,21 +55,34 @@ public class FightSystem : MonoBehaviour
 
     private void EndFight()
     {
-        endFight?.Invoke();
+         
         if(_currentPlayer != _player) return;
         Debug.Log($"playerRolled {playerValue}, enemyRolled {enemyValue}");
          
         Debug.Log($"endFight {endFight} for {_currentPlayer}, {_player}");
-        if (playerValue > enemyValue)
+        if (playerValue > enemyValue + 100000)
         {
-            _player.PlayerObject.GetComponent<PlayerMovement>().MovePlayer(1, _player);
-            GameManager.Instance.NextTurn();
+            var playerMovement = _player.PlayerObject.GetComponent<PlayerMovement>();
+            playerMovement.MovePlayer(playerValue - enemyValue, _player);
+            playerMovement.OnEndMovePlayerMove += OnOnEndMovePlayerMove;
+
+            void OnOnEndMovePlayerMove(Player obj)
+            {
+                StartCoroutine(DelayedEndFight(0.5f,true));
+            }
         }
         else
         {
-            GameManager.Instance.NextTurn();
+            StartCoroutine(DelayedEndFight(0.5f,false));
         }
+        
     }
 
+    private IEnumerator DelayedEndFight(float delay, bool win)
+    {
+        yield return new WaitForSeconds(delay);
+        endFight?.Invoke(win,_player);
+        
+    }
  
 }

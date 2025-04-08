@@ -84,12 +84,14 @@ public class GameManager : MonoBehaviour
     {
         currentPlayer++;
         
+ 
         if (currentPlayer >= _players.Count)
         {
             currentPlayer = 0;
             currentTurn++;
+            
         }
-        
+ 
         currentPlayerObj = _players[currentPlayer];
         TurnStarted?.Invoke(new TurnStatedData{Turn = currentTurn, Player = currentPlayerObj});
     }

@@ -7,6 +7,8 @@ namespace Cards.EnemyCards
     public class OrcCard :Card
     {
         public Enemy enemy;
+        
+        
         public override void TriggerCard(Player currentPlayer)
         {
             GameManager.Instance.StartFight(currentPlayer, enemy);

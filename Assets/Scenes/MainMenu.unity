@@ -2510,9 +2510,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d5c07268545add4f98cdf0202085a45, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayerPrefab: []
-  PlayerSpawnPoints: []
   playersList: []
+  playerPrefab: {fileID: 4234774977942278220, guid: f2061494615d54849bc58c0aecabf609,
+    type: 3}
 --- !u!4 &2113321078
 Transform:
   m_ObjectHideFlags: 0

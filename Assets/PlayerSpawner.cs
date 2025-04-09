@@ -4,13 +4,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerSpawner : MonoBehaviour
-{
-    public GameObject[] PlayerPrefab;
-    public Transform[] PlayerSpawnPoints;
-    
+{ 
     public List<Player> playersList = new List<Player>();
-
-
+    
+    public GameObject playerPrefab;
     private void Awake()
     {
         DontDestroyOnLoad(this.gameObject);
@@ -27,6 +24,7 @@ public class PlayerSpawner : MonoBehaviour
         {
             Player player = new();
             player.Name = $"Player{i}";
+            player.PlayerObject = playerPrefab;
             playersList.Add(player);
         }
     }

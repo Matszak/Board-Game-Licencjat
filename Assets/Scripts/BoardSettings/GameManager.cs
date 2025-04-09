@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Cards;
 using DefaultNamespace;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -11,12 +12,15 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] public List<Player> _players = new List<Player>();
  
+    public Transform spawnPoint;
     
     
     public int currentPlayer = 0;
     public Player currentPlayerObj;
     private int currentTurn = 0;
     private int avaialblePlayerIndex;
+    
+    public PlayerSpawner playerSpawner;
     
     private void Awake()
     {
@@ -27,6 +31,14 @@ public class GameManager : MonoBehaviour
         else
         {
             Instance = this;
+        }
+        
+        playerSpawner = FindObjectOfType<PlayerSpawner>();
+        _players = playerSpawner.playersList;
+        foreach (var player in _players)
+        {
+            GameObject gameObject = Instantiate(player.PlayerObject, spawnPoint.position, Quaternion.identity);
+            gameObject.GetComponent<PlayerController>().GetComponent<PlayerMovement>().tiles[i];
         }
     }
 

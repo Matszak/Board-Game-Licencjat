@@ -60,7 +60,7 @@ public class FightSystem : MonoBehaviour
         Debug.Log($"playerRolled {playerValue}, enemyRolled {enemyValue}");
          
         Debug.Log($"endFight {endFight} for {_currentPlayer}, {_player}");
-        if (playerValue > enemyValue + 100000)
+        if (playerValue > enemyValue)
         {
             var playerMovement = _player.PlayerObject.GetComponent<PlayerMovement>();
             playerMovement.MovePlayer(playerValue - enemyValue, _player);

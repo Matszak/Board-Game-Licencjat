@@ -9,12 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 820486dfb4d38004ab11fabe3d1fddca, type: 3}
-  m_Name: Ememy
+  m_Script: {fileID: 11500000, guid: 4ac9ec710a7640c59a4b3d6e736d8d79, type: 3}
+  m_Name: Orc
   m_EditorClassIdentifier: 
-  cardPrefab: {fileID: 1075834351943545949, guid: fdae8ae7916ab4640960a54d4348860c,
-    type: 3}
+  cardPrefab: {fileID: 0}
   cardImage: {fileID: 0}
   nameText: 
   descriptionText: 
-  movePlayerBack: 0
+  enemy:
+    enemyName: 
+    damage: 0

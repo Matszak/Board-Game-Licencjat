@@ -91,6 +91,10 @@ public class PlayerController : MonoBehaviour
     private void OnTurnStarted(GameManager.TurnStatedData data)
     {
         if (data.Player != Player) return;
+        if (playerState == PlayerState.Fighting)
+        {
+            data.Player.currentEnemyCard.TriggerCard(data.Player);
+        }
         diceRoll.RequestDiceRoll(Player);
      
     }

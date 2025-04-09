@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Cards;
+using Cards.EnemyCards;
 using CardsAndTilesScripts.adventureTiles;
 using TMPro;
 using UnityEngine;
@@ -97,6 +98,12 @@ public class AdventuresCards : MonoBehaviour
              cardsUI.SetActive(false);
              EndTurn(_player);
          }
+         else if (_selectedCard is EnemyCard)
+         {
+             _player.currentEnemyCard = _selectedCard;
+             cardsUI.SetActive(false);
+             _selectedCard.TriggerCard(_player);
+         }
          else
          {
             _selectedCard.TriggerCard(_player);
@@ -104,6 +111,7 @@ public class AdventuresCards : MonoBehaviour
              _selectedCard.OnCardCompleted += EndTurn;
             cardsUI.SetActive(false);
          }
+         
    
     }
 

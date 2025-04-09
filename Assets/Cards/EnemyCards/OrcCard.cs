@@ -4,7 +4,7 @@ using UnityEngine;
 namespace Cards.EnemyCards
 {
     [CreateAssetMenu(fileName = "Orc", menuName = "Card/PickupCards/Enemies/Orc")]
-    public class OrcCard :Card
+    public class EnemyCard :Card
     {
         public Enemy enemy;
         

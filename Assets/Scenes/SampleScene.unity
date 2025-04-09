@@ -5518,11 +5518,13 @@ MonoBehaviour:
     playerCards:
     - {fileID: 11400000, guid: e29f3676356feca40898fd174362be76, type: 2}
     - {fileID: 11400000, guid: 54f845757f9d2964ca61d196a4ed6bbb, type: 2}
+    currentEnemyCard: {fileID: 0}
   - Name: Mateusz
     PlayerObject: {fileID: 1859548631}
     TileIndex: 0
     playerCards:
     - {fileID: 11400000, guid: 191256f9ec747274092c389a284f9c62, type: 2}
+    currentEnemyCard: {fileID: 0}
   tileParent: {fileID: 183938755}
   spawnPoint: {fileID: 845909045}
   currentPlayer: 0
@@ -5531,6 +5533,7 @@ MonoBehaviour:
     PlayerObject: {fileID: 0}
     TileIndex: 0
     playerCards: []
+    currentEnemyCard: {fileID: 0}
   playerSpawner: {fileID: 0}
 --- !u!114 &391613479
 MonoBehaviour:
@@ -14013,10 +14016,6 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 1143442760}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: f64ae661fde89de47b57087f2032340e,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1143442766}
   m_SourcePrefab: {fileID: 100100000, guid: f64ae661fde89de47b57087f2032340e, type: 3}
 --- !u!4 &993038794 stripped
 Transform:
@@ -16061,19 +16060,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.17824896, y: 0.19415772, z: 0.015521905}
   m_Center: {x: 0.000003341774, y: 0.00000047654962, z: 0.007761327}
---- !u!114 &1143442766
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1143442756}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9bfdd3397ca345319e494a8ac5dad526, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enemyCard: {fileID: 11400000, guid: 38eff80352d7e5f4189356aff089d1c0, type: 2}
 --- !u!1 &1146892759
 GameObject:
   m_ObjectHideFlags: 0

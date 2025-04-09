@@ -10,7 +10,7 @@ using UnityEngine.UI;
 public class ControllerUI : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI currentTurnText;
-    
+    [SerializeField] private TextMeshProUGUI nextTurnText;
     [SerializeField] private TextMeshProUGUI currentPlayerText;
     
     [SerializeField] private GameObject nextTurnButton;
@@ -54,6 +54,11 @@ public class ControllerUI : MonoBehaviour
     {
         GameManager.Instance.NextTurn();
         nextTurnButton.SetActive(false);
+    }
+
+    public void NextTurnButtonNameChange(string message)
+    { 
+        nextTurnText.text = message;
     }
 
     private void LoadCards(Player player)

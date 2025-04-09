@@ -29,6 +29,7 @@ public class PlayerController : MonoBehaviour
 
     private void OnEnable()
     {
+        FightSystem.endFight += FightSystemOnendFight;
         playerState = PlayerState.Walking;
         GameManager.Instance.OnFightStarted += ChangeStateToFight;
         GameManager.Instance.TurnStarted += OnTurnStarted;
@@ -36,6 +37,24 @@ public class PlayerController : MonoBehaviour
         _playerMovement.OnEndMovePlayerMove += CheckIfOnCard;
  
 
+    }
+
+    private void FightSystemOnendFight(bool win, Player fightingPlayer)
+    {
+        if(Player != fightingPlayer) return;
+        Debug.Log(win);
+        if (win)
+        {
+            playerState = PlayerState.Walking;
+            GameManager.Instance.TurnEnded(Player);
+        }
+        else
+        {
+            playerState = PlayerState.Fighting;
+            GameManager.Instance.TurnEnded(Player);
+        }
+        
+        
     }
 
     private void ChangeStateToFight(Player player, Enemy enemy)
@@ -74,7 +93,10 @@ public class PlayerController : MonoBehaviour
     private void OnTurnStarted(GameManager.TurnStatedData data)
     {
         if (data.Player != Player) return;
-        playerState = PlayerState.Walking;
+        if (playerState == PlayerState.Fighting)
+        {
+            data.Player.currentEnemyCard.TriggerCard(data.Player);
+        }
         diceRoll.RequestDiceRoll(Player);
      
     }

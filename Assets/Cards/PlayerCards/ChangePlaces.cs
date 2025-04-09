@@ -34,12 +34,7 @@ namespace Cards.CardsInGame
             GameManager.Instance.OnCardPlayerSelected -= ApplyEffect;
             GameManager.Instance.TurnEnded(_currentPlayer);
         }
-        
-        
-        public void OnDisable()
-        {
-            GameManager.Instance.OnCardPlayerSelected -= ApplyEffect;
-        }
+ 
         public void OnDestroy()
         {
             GameManager.Instance.OnCardPlayerSelected -= ApplyEffect;

@@ -5568,6 +5568,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentTurnText: {fileID: 286101708}
+  nextTurnText: {fileID: 1816822222}
   currentPlayerText: {fileID: 1383650477}
   nextTurnButton: {fileID: 771544058}
   playerCards: {fileID: 726392631}

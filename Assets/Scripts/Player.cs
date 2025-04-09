@@ -10,4 +10,5 @@ public class Player
     public GameObject PlayerObject;
     public int TileIndex;
     public List<Card> playerCards = new List<Card>();
+    public Card currentEnemyCard;
 }

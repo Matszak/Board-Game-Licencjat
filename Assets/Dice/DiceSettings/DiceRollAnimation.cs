@@ -54,7 +54,7 @@ public class DiceRollAnimation : MonoBehaviour
         
     }
 
-    private void DisableAnimationFight()
+    private void DisableAnimationFight(bool win, Player player)
     {
         diceRollIcon.SetActive(false);
     }

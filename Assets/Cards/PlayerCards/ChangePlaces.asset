@@ -15,5 +15,5 @@ MonoBehaviour:
   cardPrefab: {fileID: 1075834351943545949, guid: fdae8ae7916ab4640960a54d4348860c,
     type: 3}
   cardImage: {fileID: 0}
-  nameText: 
-  descriptionText: 
+  nameText: a
+  descriptionText: a

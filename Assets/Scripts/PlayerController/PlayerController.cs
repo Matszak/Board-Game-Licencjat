@@ -34,7 +34,8 @@ public class PlayerController : MonoBehaviour
         GameManager.Instance.TurnStarted += OnTurnStarted;
         DiceRoll.OnPlayerRolled += OnOnPlayerRolled;
         _playerMovement.OnEndMovePlayerMove += CheckIfOnCard;
-        
+ 
+
     }
 
     private void ChangeStateToFight(Player player, Enemy enemy)
@@ -63,6 +64,7 @@ public class PlayerController : MonoBehaviour
 
     private void Awake()
     {
+        diceRoll = FindObjectOfType<DiceRoll>();
         _playerMovement = GetComponent<PlayerMovement>();
         _adventureCardsChecker = GetComponent<AdventureCardsChecker>();
         _playerSelector = GetComponent<PlayerSelector>();

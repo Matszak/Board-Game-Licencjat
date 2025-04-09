@@ -253,6 +253,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   diceRoll: {fileID: 0}
+  playerState: 0
 --- !u!114 &8190275629857643380
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -5523,6 +5523,7 @@ MonoBehaviour:
     TileIndex: 0
     playerCards:
     - {fileID: 11400000, guid: 191256f9ec747274092c389a284f9c62, type: 2}
+  tileParent: {fileID: 183938755}
   spawnPoint: {fileID: 845909045}
   currentPlayer: 0
   currentPlayerObj:

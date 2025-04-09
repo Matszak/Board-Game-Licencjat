@@ -10,8 +10,9 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
 
-    [SerializeField] public List<Player> _players = new List<Player>();
- 
+    [SerializeField] public List<Player> _players;
+
+    [SerializeField] private GameObject tileParent;
     public Transform spawnPoint;
     
     
@@ -33,26 +34,36 @@ public class GameManager : MonoBehaviour
             Instance = this;
         }
         
-        playerSpawner = FindObjectOfType<PlayerSpawner>();
-        _players = playerSpawner.playersList;
-        foreach (var player in _players)
-        {
-            GameObject gameObject = Instantiate(player.PlayerObject, spawnPoint.position, Quaternion.identity);
-            gameObject.GetComponent<PlayerController>().GetComponent<PlayerMovement>().tiles[i];
-        }
+   
     }
 
     public void Start()
     {
-        int numberOfPlayers = PlayerPrefs.GetInt("NumberOfPlayers", 1);
-        foreach (var player in _players)
+        
+        
+        playerSpawner = FindObjectOfType<PlayerSpawner>();
+        _players = playerSpawner.playersList;
+        for (int i = 0; i < _players.Count; i++)
         {
-            PlayerController controller = player.PlayerObject.GetComponent<PlayerController>();
+        
+            GameObject gameObject = Instantiate(_players[i].PlayerObject, spawnPoint.position, Quaternion.identity);
+            _players[i].PlayerObject = gameObject;
+            PlayerController controller =  _players[i].PlayerObject.GetComponent<PlayerController>();
             if (controller != null)
             {
-                controller.SetPlayer(player);  // Ensure correct player assignment
+                controller.SetPlayer(_players[i]);  // Ensure correct player assignment
+            }
+    
+    
+            int count = tileParent.transform.childCount;
+            gameObject.GetComponent<PlayerMovement>().tiles = new Transform[count];
+            for (int j= 0; j < count; j++)
+            {
+                GameObject tileObject = tileParent.transform.GetChild(j).gameObject;
+                gameObject.GetComponent<PlayerMovement>().tiles[j] = tileObject.transform;
             }
         }
+ 
         TurnStarted?.Invoke(new TurnStatedData{Turn = currentTurn, Player = _players[currentPlayer]});
         
     }

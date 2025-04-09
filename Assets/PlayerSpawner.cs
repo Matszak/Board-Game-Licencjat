@@ -8,19 +8,26 @@ public class PlayerSpawner : MonoBehaviour
     public GameObject[] PlayerPrefab;
     public Transform[] PlayerSpawnPoints;
     
-    public List<Player> playersList;
-    
+    public List<Player> playersList = new List<Player>();
+
+
+    private void Awake()
+    {
+        DontDestroyOnLoad(this.gameObject);
+    }
+
     private void Start()
     {
-        playersList = new List<Player>();
         
-        int numberOfPlayers = PlayerPrefs.GetInt("NumberOfPlayers", 1);
+    }
 
-        for (int i = 0; i < numberOfPlayers; i++)
+    public void SpawnPlayer(int playerNumber)
+    {
+        for (int i = 0; i < playerNumber; i++)
         {
-            GameObject player = Instantiate(PlayerPrefab[i], PlayerSpawnPoints[i].position, Quaternion.identity);
-            playersList.Add(player.GetComponent<Player>());
+            Player player = new();
+            player.Name = $"Player{i}";
+            playersList.Add(player);
         }
-        GameManager.Instance._players = playersList;
     }
 }

@@ -6,25 +6,17 @@ using UnityEngine.SceneManagement;
 
 public class UI_Manager : MonoBehaviour
 {
-    [SerializeField] private GameObject onePlayer;
-    [SerializeField] private GameObject twoPlayers;
-    [SerializeField] private GameObject threePlayers;
-    [SerializeField] private GameObject fourPlayers;
-    
-    
-    private int _numberOfPlayers;
-
- 
+    [SerializeField] PlayerSpawner playerSpawner;
     
     public void ButtonOne()
     {
-        PlayerPrefs.SetInt("NumberOfPlayers", 1);
+        playerSpawner.SpawnPlayer(1);
         SceneManager.LoadScene(1);
     }
 
     public void ButtonTwo()
     {
-        PlayerPrefs.SetInt("NumberOfPlayers", 2);
+        playerSpawner.SpawnPlayer(2);
         SceneManager.LoadScene(1);
     }
 
@@ -35,6 +27,7 @@ public class UI_Manager : MonoBehaviour
 
     public void ButtonFour()
     {
+        playerSpawner.SpawnPlayer(4);
         SceneManager.LoadScene(1);
     }
 }

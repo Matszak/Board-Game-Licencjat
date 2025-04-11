@@ -8,6 +8,30 @@ public class UI_Manager : MonoBehaviour
 {
     [SerializeField] PlayerSpawner playerSpawner;
     
+    public GameObject mainMenuPanel;
+    public GameObject playerMenuPanel;
+    public GameObject settingsPanel;
+    public GameObject creditsPanel;
+
+    public void StartGame()
+    {
+        playerMenuPanel.SetActive(true);
+        settingsPanel.SetActive(false);
+        creditsPanel.SetActive(false);
+    }
+
+    public void settingsButton()
+    {
+        settingsPanel.SetActive(true);
+        creditsPanel.SetActive(false);
+        playerMenuPanel.SetActive(false);
+    }
+
+    public void QuitGame()
+    {
+        Application.Quit();
+    }
+    
     public void ButtonOne()
     {
         playerSpawner.SpawnPlayer(1);

@@ -5527,6 +5527,7 @@ MonoBehaviour:
     currentEnemyCard: {fileID: 0}
   tileParent: {fileID: 183938755}
   spawnPoint: {fileID: 845909045}
+  diceRoll: {fileID: 1264495013}
   currentPlayer: 0
   currentPlayerObj:
     Name: 
@@ -5588,7 +5589,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa6945ecf81c98343ab0091e0be7ead8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  diceRoll: {fileID: 1264495013}
 --- !u!4 &392803129 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: f64ae661fde89de47b57087f2032340e,

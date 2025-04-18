@@ -1,7 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using DefaultNamespace;
+using Cards.EnemyCards;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -10,36 +10,37 @@ using UnityEngine.UI;
 public class DiceRoll : MonoBehaviour
 {   
     [SerializeField] private float animationDelay = 0.5f;
-    [SerializeField] private  GameObject  uiButtonPrefab;
- 
+    [FormerlySerializedAs("uiButtonPrefab")] [SerializeField] private  GameObject  RollDicesButton;
     public int rollResult;
+    
     private Player _player;
-    private Enemy _enemy;
+    private EnemyCard _enemyCard;
     
-    public static event Action<int, Player> OnPlayerRolled;
-    public static event Action<int, Enemy> OnEnemyRolled;
+    private DiceRollAnimation _diceRollAnimation;
+    public static event Action<int> OnDiceRolled;
+
+    public bool diceRolled;
     
-     private DiceRollAnimation _diceRollAnimation;
- 
     public void Awake()
     {
       _diceRollAnimation = GetComponent<DiceRollAnimation>();
-      _player = null;
     }
  
-    public void RequestDiceRoll(Player player)
+    public void RequestDiceRoll(bool isEnemy)
     {
-        rollResult = 0;
-        _player = player;
-        uiButtonPrefab.SetActive(true);
-    }
-
-    public void EnemyDiceRoll(Enemy enemy)
-    {
-        _enemy = enemy;
-        rollResult = 0;
+        diceRolled = false;
+        // no need for creating dices and dices number because there is always one 6d dice
         Dice dice = new Dice(6);
-        RollDices(dice,1);
+        if (!isEnemy)
+        {
+            rollResult = 0;
+           RollDicesButton.SetActive(true);
+           
+        }
+        else
+        {
+            RollDices(dice,1);
+        }
     }
     
     public void OnButtonClick()
@@ -54,33 +55,13 @@ public class DiceRoll : MonoBehaviour
         {
            rollResult += typeOfDice.RollDice();
         }
-        // only works with 6 sides dice right now.
-        if (_player != null)
-        {
-            _diceRollAnimation.PlayAnimation(rollResult,_player);
-            StartCoroutine(WaitForAnimationToFinish(rollResult, _player));
-            _player = null;
-        }
-        if (_enemy != null)
-        {
-            _diceRollAnimation.PlayAnimation(rollResult, _enemy);
-            StartCoroutine(WaitForAnimationToFinish(rollResult, _enemy));
-            _enemy = null;
-        }   
-        uiButtonPrefab.SetActive(false);
+        RollDicesButton.SetActive(false);
     }
 
-    private IEnumerator WaitForAnimationToFinish(int diceRollResult, Player player)
-    {
-        float animationDuration = _diceRollAnimation.GetAnimationDuration(diceRollResult);
-        yield return new WaitForSeconds(animationDuration + animationDelay);
-        OnPlayerRolled?.Invoke(diceRollResult, player);
-    }
-    private IEnumerator WaitForAnimationToFinish(int diceRollResult,Enemy enemy)
-    {
-        float animationDuration = _diceRollAnimation.GetAnimationDuration(diceRollResult);
-        yield return new WaitForSeconds(animationDuration + animationDelay);
-        OnEnemyRolled?.Invoke(diceRollResult, enemy);
-    }
-   
+    //private IEnumerator WaitForAnimationToFinish(int diceRollResult)
+    //{
+    //    float animationDuration = _diceRollAnimation.GetAnimationDuration(diceRollResult);
+    //    yield return new WaitForSeconds(animationDuration + animationDelay);
+    //    OnDiceRolled?.Invoke(diceRollResult);
+    //}
 }

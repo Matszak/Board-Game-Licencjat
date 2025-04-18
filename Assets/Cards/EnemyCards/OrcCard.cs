@@ -1,17 +1,16 @@
-using DefaultNamespace;
 using UnityEngine;
 
 namespace Cards.EnemyCards
 {
-    [CreateAssetMenu(fileName = "Orc", menuName = "Card/PickupCards/Enemies/Orc")]
+    [CreateAssetMenu(fileName = "EnemyCard", menuName = "Card/EnemyCard")]
     public class EnemyCard :Card
     {
-        public Enemy enemy;
+        public EnemyBehaviour enemyBehaviour;
         
         
         public override void TriggerCard(Player currentPlayer)
         {
-            GameManager.Instance.StartFight(currentPlayer, enemy);
+            GameManager.Instance.StartFight(currentPlayer, this);
         }
     }
 }

@@ -1,7 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using DefaultNamespace;
+using Cards.EnemyCards;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -9,17 +9,6 @@ using UnityEngine.UI;
 public class DiceRollAnimation : MonoBehaviour
 {
      public GameObject diceRollIcon;
-     private Player _player;
-
-     public void OnEnable()
-     {
-         GameManager.Instance.TurnStarted += InstanceOnTurnStarted;
-     }
-
-     private void InstanceOnTurnStarted(GameManager.TurnStatedData obj)
-     {
-         _player = obj.Player;
-     }
 
      public void Start()
      {
@@ -37,52 +26,21 @@ public class DiceRollAnimation : MonoBehaviour
  
      [SerializeField] private Animator animator;
  
-    public void PlayAnimation(int diceRollResult, Player player)
+    public void PlayAnimation(int diceRollResult)
     {
-        if(_player != player) return;
-        _player.PlayerObject.GetComponent<PlayerMovement>().OnEndMovePlayerMove += DisableAnimation;
         diceRollIcon.SetActive(true);
         animator.SetTrigger(ResultsDiceAnimation[diceRollResult - 1]);
-        
     }
     
-    public void PlayAnimation(int diceRollResult, Enemy enemy)
-    {
-        FightSystem.endFight += DisableAnimationFight;
-        diceRollIcon.SetActive(true);
-        animator.SetTrigger(ResultsDiceAnimation[diceRollResult - 1]);
-        
-    }
-
-    private void DisableAnimationFight(bool win, Player player)
-    {
-        diceRollIcon.SetActive(false);
-    }
-
-
-    private void DisableAnimation(Player obj)
+    private void DisableAnimation()
     {
         diceRollIcon.SetActive(false);
     }
 
     public float GetAnimationDuration(int diceRollResult)
     {
-        // Assuming that all animations have the same length (time), but you can get it from the Animator for each result
+        // Assuming that all animations have the same length (time)
         AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(0);
         return stateInfo.length;
     }
-
-    private void OnDestroy()
-    {
-        if (_player == null) return;
-        _player.PlayerObject.GetComponent<PlayerMovement>().OnEndMovePlayerMove -= DisableAnimation;
-    }
-
-    private void OnDisable()
-    {
-        if (_player == null) return;
-        _player.PlayerObject.GetComponent<PlayerMovement>().OnEndMovePlayerMove -= DisableAnimation;
-    }   
-   
-
 }

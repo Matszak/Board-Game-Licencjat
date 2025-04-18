@@ -12,10 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ac9ec710a7640c59a4b3d6e736d8d79, type: 3}
   m_Name: Orc
   m_EditorClassIdentifier: 
-  cardPrefab: {fileID: 0}
+  cardPrefab: {fileID: 1075834351943545949, guid: fdae8ae7916ab4640960a54d4348860c,
+    type: 3}
   cardImage: {fileID: 0}
   nameText: 
   descriptionText: 
-  enemy:
-    enemyName: 
-    damage: 0
+  enemyBehaviour: {fileID: 11400000, guid: bbd76b0f33409f947a3e09bdf017972b, type: 2}

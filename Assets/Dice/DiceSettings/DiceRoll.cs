@@ -29,7 +29,7 @@ public class DiceRoll : MonoBehaviour
  
     public void RequestDiceRoll(Player player)
     {
-        rollResult = 0;
+        rollResult = 2;
         _player = player;
         uiButtonPrefab.SetActive(true);
     }
@@ -44,7 +44,7 @@ public class DiceRoll : MonoBehaviour
     
     public void OnButtonClick()
     {
-        Dice dice = new Dice(6);
+        Dice dice = new Dice(2);
         RollDices(dice, 1) ;
     }
 

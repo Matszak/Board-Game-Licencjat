@@ -88,9 +88,9 @@ CapsuleCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5000001
-  m_Height: 2
+  m_Height: 2.1767883
   m_Direction: 1
-  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
+  m_Center: {x: 0.00000003973643, y: -2.0089436, z: -0.00000007947286}
 --- !u!114 &1183136986268017192
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -104,6 +104,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   diceRoll: {fileID: 0}
+  playerState: 0
 --- !u!114 &5963489600834784595
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -257,6 +258,9 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  playerLayer:
+    serializedVersion: 2
+    m_Bits: 128
 --- !u!114 &7284904067047875535
 MonoBehaviour:
   m_ObjectHideFlags: 0

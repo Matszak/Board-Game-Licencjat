@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 4693992111582609959}
   - component: {fileID: 5312665996492989908}
   - component: {fileID: 1856399492855179173}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Player 1
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -57,10 +57,10 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5000001
-  m_Height: 2
+  m_Radius: 0.8684136
+  m_Height: 2.1228828
   m_Direction: 1
-  m_Center: {x: 0.000000059604645, y: -0.36, z: -0.00000008940697}
+  m_Center: {x: -0.01, y: 0.3314418, z: -0.0000001383179}
 --- !u!54 &6706486208987051163
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -241,6 +241,9 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  playerLayer:
+    serializedVersion: 2
+    m_Bits: 128
 --- !u!114 &4693992111582609959
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -306,7 +309,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 7a266740c11652b4b970225b7b831b0f,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -0.006
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7a266740c11652b4b970225b7b831b0f,
         type: 3}
@@ -372,6 +375,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: pawn_yellow
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 7a266740c11652b4b970225b7b831b0f,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

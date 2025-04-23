@@ -13,12 +13,11 @@ using UnityEngine.Serialization;
 public enum PlayerState
 {
     Walking,
-    Fighting,
+    Fighting
 }
 
 public class PlayerController : MonoBehaviour
 {
- 
     private PlayerMovement _playerMovement;
     private AdventureCardsChecker _adventureCardsChecker;
     private PlayerSelector _playerSelector;
@@ -97,13 +96,21 @@ public class PlayerController : MonoBehaviour
 
     public void MovePlayer(Player player)
     {
-       _playerMovement.MovePlayer(player);
+       diceRoll.RequestDiceRoll(false, result =>
+       {
+           _playerMovement.MovePlayer(result, player);
+       });
     }
 
     private void OnDestroy()
     {
         GameManager.Instance.TurnStarted -= OnTurnStarted;
         _playerMovement.OnEndMovePlayerMove -= CheckIfOnCard;
+    }
+
+    public int Attack(int rollResult)
+    {
+        return rollResult;
     }
 
     public void SetPlayer(Player player)

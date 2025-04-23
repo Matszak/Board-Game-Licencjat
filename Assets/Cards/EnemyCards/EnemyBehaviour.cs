@@ -3,26 +3,15 @@ using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Cards.EnemyCards
-{
-      [CreateAssetMenu(fileName = "EnemyCard", menuName = "Behaviours/Enemy/TwoDices")]
-    public class EnemyBehaviour : ScriptableObject
+{   
+    public abstract class EnemyBehaviour : ScriptableObject
     {
-        
-        // Tutaj np tylko dane?
-        // Enemy ma np 2 kosci
-        // 1hp
-        
-        
-     
-        public int currentValue;
-        public void OnEnable()
-        {
-         
-        }
+        private Action<int> EnemyAttacked;
 
-        public void EnemyAttack()
-        {
-            GameManager.Instance.diceRoll.RequestDiceRoll(true);       
-        }
+        private int damageResult;
+
+      
+        public abstract void EnemyAttack(Action<int> callback);
+        
     }
 }

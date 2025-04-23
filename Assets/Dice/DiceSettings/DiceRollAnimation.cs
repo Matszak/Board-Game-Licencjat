@@ -9,6 +9,7 @@ using UnityEngine.UI;
 public class DiceRollAnimation : MonoBehaviour
 {
      public GameObject diceRollIcon;
+     private Action _onDiceAnimationEnded;
 
      public void Start()
      {
@@ -26,10 +27,20 @@ public class DiceRollAnimation : MonoBehaviour
  
      [SerializeField] private Animator animator;
  
-    public void PlayAnimation(int diceRollResult)
+    public void PlayAnimation(int diceRollResult, Action callback)
     {
         diceRollIcon.SetActive(true);
         animator.SetTrigger(ResultsDiceAnimation[diceRollResult - 1]);
+        StartCoroutine(WaitForAnimationToFinish(diceRollResult, callback));
+    }
+    
+    private IEnumerator WaitForAnimationToFinish(int diceRollResult, Action callback)
+    { 
+        _onDiceAnimationEnded = callback;
+        float animationDuration = GetAnimationDuration(diceRollResult);
+        yield return new WaitForSeconds(animationDuration + 3f);
+        DisableAnimation();
+        callback?.Invoke();
     }
     
     private void DisableAnimation()

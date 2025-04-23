@@ -9,59 +9,54 @@ using UnityEngine.UI;
 
 public class DiceRoll : MonoBehaviour
 {   
-    [SerializeField] private float animationDelay = 0.5f;
+ 
     [FormerlySerializedAs("uiButtonPrefab")] [SerializeField] private  GameObject  RollDicesButton;
-    public int rollResult;
-    
     private Player _player;
     private EnemyCard _enemyCard;
-    
     private DiceRollAnimation _diceRollAnimation;
-    public static event Action<int> OnDiceRolled;
-
-    public bool diceRolled;
+    private int _rollResult;
+ 
+    private Action<int> _onDiceRolled;
     
     public void Awake()
     {
       _diceRollAnimation = GetComponent<DiceRollAnimation>();
     }
  
-    public void RequestDiceRoll(bool isEnemy)
+    public void RequestDiceRoll(bool isEnemy, Action<int> callback)
     {
-        diceRolled = false;
+        _onDiceRolled = callback;
         // no need for creating dices and dices number because there is always one 6d dice
         Dice dice = new Dice(6);
         if (!isEnemy)
         {
-            rollResult = 0;
-           RollDicesButton.SetActive(true);
-           
+            RollDicesButton.SetActive(true);
         }
         else
         {
-            RollDices(dice,1);
+            RollDices(dice,1, _onDiceRolled);
         }
     }
     
     public void OnButtonClick()
     {
         Dice dice = new Dice(6);
-        RollDices(dice, 1) ;
+        RollDices(dice, 1, _onDiceRolled) ;
+        
     }
 
-    private void RollDices(Dice typeOfDice,int numberOfDices)
-    { 
+    private void RollDices(Dice typeOfDice,int numberOfDices, Action<int> callback = null)
+    {
+        _onDiceRolled = callback;
+        _rollResult = 0;
         for (int i = 0; i < numberOfDices; i++)
         {
-           rollResult += typeOfDice.RollDice();
+           _rollResult += typeOfDice.RollDice();
         }
         RollDicesButton.SetActive(false);
+        _diceRollAnimation.PlayAnimation(_rollResult, () => 
+            _onDiceRolled?.Invoke(_rollResult));
     }
-
-    //private IEnumerator WaitForAnimationToFinish(int diceRollResult)
-    //{
-    //    float animationDuration = _diceRollAnimation.GetAnimationDuration(diceRollResult);
-    //    yield return new WaitForSeconds(animationDuration + animationDelay);
-    //    OnDiceRolled?.Invoke(diceRollResult);
-    //}
+    
+    
 }

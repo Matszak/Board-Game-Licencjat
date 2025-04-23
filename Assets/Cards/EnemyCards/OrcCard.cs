@@ -7,7 +7,6 @@ namespace Cards.EnemyCards
     {
         public EnemyBehaviour enemyBehaviour;
         
-        
         public override void TriggerCard(Player currentPlayer)
         {
             GameManager.Instance.StartFight(currentPlayer, this);

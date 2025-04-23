@@ -60,12 +60,12 @@ public class PlayerMovement : MonoBehaviour
 
             for (int j = 0; j < playerOnTile.Length; j++)
             {
-               // Rigidbody rb = playerOnTile[j].GetComponent<Rigidbody>();
-                //rb.isKinematic = true;
-                Vector3 offset = movePosition + Vector3.right * 100f * j;
-                playerOnTile[j].transform.position = offset;
-                //rb.isKinematic = false;
-                Debug.Log("Wykryto graczy: " + playerOnTile.Length);
+                    Rigidbody rb = playerOnTile[j].GetComponent<Rigidbody>();
+                    rb.isKinematic = true;
+                    Vector3 offset = movePosition + Vector3.right * 100f * j;
+                    playerOnTile[j].transform.position = offset;
+                    rb.isKinematic = false;
+                    Debug.Log("Wykryto graczy: " + playerOnTile.Length);
             }
             
             sequence.Append(player.PlayerObject.transform.DOJump(movePosition, 6f, 1, 0.5f).SetEase(Ease.OutQuad));

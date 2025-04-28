@@ -1,10 +1,9 @@
 using System;
-using Unity.VisualScripting;
 using UnityEngine;
 
-namespace Cards.EnemyCards
+namespace Enemy.Behaviours.Scripts
 {   
-    public abstract class EnemyBehaviour : ScriptableObject
+    public abstract class EnemyAttackBehaviour : ScriptableObject
     {
         private Action<int> EnemyAttacked;
 

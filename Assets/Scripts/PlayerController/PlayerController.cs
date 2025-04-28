@@ -27,20 +27,26 @@ public class PlayerController : MonoBehaviour
 
     private void OnEnable()
     {
-        FightSystem.endFight += FightSystemOnendFight;
+        FightSystem.EndEnemyFight += OnFightEnded;
         playerState = PlayerState.Walking;
         GameManager.Instance.OnFightStarted += ChangeStateToFight;
         GameManager.Instance.TurnStarted += OnTurnStarted;
         _playerMovement.OnEndMovePlayerMove += CheckIfOnCard;
+        GameManager.Instance.OnWinGame += OnPlayerWin;
     }
 
-    private void FightSystemOnendFight(bool win, Player fightingPlayer)
+    private void OnPlayerWin(Player obj)
     {
-        if(Player != fightingPlayer) return;
-        Debug.Log(win);
+        FightSystem.EndEnemyFight -= OnFightEnded;
+    }
+
+    private void OnFightEnded(bool win, Player fightingPlayer, EnemyCard enemyCard)
+    {
+        if(Player != fightingPlayer || enemyCard is BossCard) return;
+        Debug.Log($"player {fightingPlayer}, {win}");
         if (win)
         {
-            playerState = PlayerState.Walking;
+            enemyCard.enemyDefeatedBehaviour.EnemyDefeated(fightingPlayer);
             GameManager.Instance.TurnEnded(Player);
         }
         else

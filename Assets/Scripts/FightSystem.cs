@@ -7,7 +7,7 @@ using UnityEngine;
 public class FightSystem : MonoBehaviour
 {
  
-    public static event Action<bool, Player> endFight;
+    public static event Action<bool, Player, EnemyCard> EndEnemyFight;
     public static event Action<Player> fightStarted;
     [SerializeField] EnemyCard _enemy;
     private Player _player;
@@ -40,51 +40,33 @@ public class FightSystem : MonoBehaviour
         GameManager.Instance.diceRoll.RequestDiceRoll(false, i =>
         {
             _playerAttackValue = player.PlayerObject.GetComponent<PlayerController>().Attack(i);
-            Debug.Log(_playerAttackValue);
             EnemyAttack(_enemy);
         });
-
     }
 
     private void EnemyAttack(EnemyCard enemy)
     {
         
-         enemy.enemyBehaviour.EnemyAttack(attackValue =>
-        {
+         enemy.enemyAttackAttackBehaviour.EnemyAttack(attackValue =>
+        { 
             _enemyAttackValue = attackValue;
-            Debug.Log(attackValue);
             EndFight();
         });
     }
 
     private void EndFight()
     {
-    
         Debug.Log($"playerRolled {_playerAttackValue}, enemyRolled {_enemyAttackValue}");
-        Debug.Log($"endFight {endFight} for {_currentPlayer}, {_player}");
+        Debug.Log($"endFight {EndEnemyFight} for {_currentPlayer}, {_player}");
+        bool endFightState = _playerAttackValue > _enemyAttackValue;
         
-        if (_playerAttackValue > _enemyAttackValue)
-        {
-            var playerMovement = _currentPlayer.PlayerObject.GetComponent<PlayerMovement>();
-            playerMovement.MovePlayer(_playerAttackValue - _enemyAttackValue, _currentPlayer);
-            playerMovement.OnEndMovePlayerMove += OnOnEndMovePlayerMove;
-
-            void OnOnEndMovePlayerMove(Player obj)
-            {
-                StartCoroutine(DelayedEndFight(0.5f,true));
-            }
-        }
-        else
-        {
-            StartCoroutine(DelayedEndFight(0.5f,false));
-        }
-        
+        StartCoroutine(DelayedEndFight(0.5f, endFightState));
     }
 
     private IEnumerator DelayedEndFight(float delay, bool win)
     {
         yield return new WaitForSeconds(delay);
-        endFight?.Invoke(win,_currentPlayer);
+        EndEnemyFight?.Invoke(win,_currentPlayer, _enemy);
         
     }
  

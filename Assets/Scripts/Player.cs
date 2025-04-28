@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Cards.EnemyCards;
 using UnityEngine;
 
 [Serializable]
@@ -10,5 +11,5 @@ public class Player
     public GameObject PlayerObject;
     public int TileIndex;
     public List<Card> playerCards = new List<Card>();
-    public Card currentEnemyCard;
+    public EnemyCard currentEnemyCard;
 }

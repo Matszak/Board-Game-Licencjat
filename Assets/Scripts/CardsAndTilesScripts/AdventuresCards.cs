@@ -21,6 +21,13 @@ public class AdventuresCards : MonoBehaviour
     [SerializeField] private Card[] bonusCards;
     [SerializeField] private Card[] disadvantageCards;
     private Player _player;
+    
+    public static event Action<Card> BonusTileTriggered;
+    public static event Action<Card> DisadvantageTileTriggered;
+    public static event Action<Card> PickUpTileTriggered;
+    public static event Action<Card> BattleTileTriggered;
+    public static event Action<Card> RandomTileTriggered;
+    public static event Action<Card> BossTileTriggered;  
    
     private Card _selectedCard;
     private bool checkForCard = false;
@@ -55,54 +62,56 @@ public class AdventuresCards : MonoBehaviour
 
     private void TriggerCard(Player player, AdventureTile adventureTile)
     {
-   
-        // check if current player triggered this card
          if (player != _player) return;
          if(!checkForCard) return;
-   
          switch (adventureTile)
          {
              case BonusTile:
                  _selectedCard = bonusCards[Random.Range(0, bonusCards.Length)];
+             
                  break;
              case DisadvantageTile:
                  _selectedCard = disadvantageCards[Random.Range(0, disadvantageCards.Length)];
+                 DisadvantageTileTriggered?.Invoke(_selectedCard);
                  break;
              case PickUpTile pickUpTile:
                  _selectedCard = pickUpTile.pickUpCard;
+                 PickUpTileTriggered?.Invoke(_selectedCard);
                  break;
              case BattleTile battleTile:
                  _selectedCard = battleTile.enemyCard;
+                 BattleTileTriggered?.Invoke(_selectedCard);
+                 break; 
+             case BossFightTile bossTile:
+                 _selectedCard = bossTile.bossFightCard;
+                 BossTileTriggered?.Invoke(_selectedCard);
                  break;
              default:
                  _selectedCard = cards[Random.Range(0, cards.Length)];
+                 RandomTileTriggered?.Invoke(_selectedCard);
                  break;
          }
-         
-         // assing stuff from card to ui, name of card and image 
          cardImage.sprite = _selectedCard.cardImage;
          cardText.text = _selectedCard.nameText;
          descriptionText.text = _selectedCard.descriptionText;
-         
-         // when everything set show UI
+        
          cardsUI.SetActive(true);
         }
 
     public void OnButtonClick()
     {
- 
          if (_selectedCard is PickUpCard)
          {
              _player.playerCards.Add(_selectedCard);
-             checkForCard = false;
+             checkForCard = false;  
              cardsUI.SetActive(false);
              EndTurn(_player);
          }
-         else if (_selectedCard is EnemyCard)
+         else if (_selectedCard is EnemyCard card)
          {
-             _player.currentEnemyCard = _selectedCard;
+             _player.currentEnemyCard = card;
              cardsUI.SetActive(false);
-             _selectedCard.TriggerCard(_player);
+             card.TriggerCard(_player);
          }
          else
          {
@@ -111,8 +120,6 @@ public class AdventuresCards : MonoBehaviour
              _selectedCard.OnCardCompleted += EndTurn;
             cardsUI.SetActive(false);
          }
-         
-   
     }
 
     private void EndTurn(Player obj)

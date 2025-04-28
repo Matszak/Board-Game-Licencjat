@@ -25,8 +25,19 @@ public class ControllerUI : MonoBehaviour
     {
         GameManager.Instance.TurnStarted += OnUIUpdated;
         GameManager.Instance.OnTurnEnded += EndTurn;
-        
+        GameManager.Instance.OnWinGame += WinnerUi;
         nextTurnButton.SetActive(false);
+    }
+
+    private void OnPickupTile(Card obj)
+    {
+        throw new NotImplementedException();
+    }
+
+    private void WinnerUi(Player obj)
+    {
+        Debug.Log($"winner: {obj}");
+        
     }
 
     private void OnUIUpdated(GameManager.TurnStatedData obj)
@@ -47,11 +58,13 @@ public class ControllerUI : MonoBehaviour
     void EndTurn(Player player)
     {
         if (player != _player) return;
+        LoadCards(_player);
         nextTurnButton.SetActive(true);
     }
 
     public void OnButtonClicked()
     {
+     
         GameManager.Instance.NextTurn();
         nextTurnButton.SetActive(false);
     }

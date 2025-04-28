@@ -1,10 +1,11 @@
 using System;
+using Enemy.Behaviours.Scripts;
 using UnityEngine;
 
 namespace Cards.EnemyCards
 {
     [CreateAssetMenu(fileName = "TwoDicesEnemyBehaviour", menuName = "Behaviours/Enemy/TwoDices")]
-    public class TwoDices : EnemyBehaviour
+    public class TwoDices : EnemyAttackBehaviour
     {
         public override void EnemyAttack(Action<int> callback)
         {

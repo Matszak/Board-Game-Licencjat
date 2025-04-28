@@ -79,11 +79,17 @@ public class GameManager : MonoBehaviour
     
     public event Action<Player, EnemyCard> OnFightStarted;
     public event Action<Player, EnemyCard> OnEnemyAttacksEnded;
-    
+
+    public event Action<Player> OnWinGame; 
     
     public void TurnEnded(Player player)
     {
         OnTurnEnded?.Invoke(player);
+    }
+
+    public void WinGame(Player player)
+    {
+        OnWinGame?.Invoke(player);
     }
 
     public void PlayerIsSelected(Player  selectedPlayer)

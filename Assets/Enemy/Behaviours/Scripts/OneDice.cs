@@ -1,9 +1,10 @@
 using System;
+using Cards.EnemyCards;
 using UnityEngine;
 
-namespace Cards.EnemyCards
+namespace Enemy.Behaviours.Scripts
 {    [CreateAssetMenu(fileName = "OneDice", menuName = "Behaviours/Enemy/OneDice")]
-    public class OneDice : EnemyBehaviour
+    public class OneDice : EnemyAttackBehaviour
     {
         public override void EnemyAttack(Action<int> callback)
         {

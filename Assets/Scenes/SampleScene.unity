@@ -5528,6 +5528,7 @@ MonoBehaviour:
     currentEnemyCard: {fileID: 0}
   tileParent: {fileID: 183938755}
   spawnPoint: {fileID: 845909045}
+  diceRoll: {fileID: 1264495013}
   currentPlayer: 0
   currentPlayerObj:
     Name: 
@@ -5589,7 +5590,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa6945ecf81c98343ab0091e0be7ead8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  diceRoll: {fileID: 1264495013}
+  _enemy: {fileID: 0}
 --- !u!4 &392803129 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: f64ae661fde89de47b57087f2032340e,
@@ -6675,7 +6676,7 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: f64ae661fde89de47b57087f2032340e,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1897506971}
+      addedObject: {fileID: 1897506963}
   m_SourcePrefab: {fileID: 100100000, guid: f64ae661fde89de47b57087f2032340e, type: 3}
 --- !u!4 &470051170 stripped
 Transform:
@@ -7869,6 +7870,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.19052209, y: 0.164997, z: 0.0075851413}
   m_Center: {x: 0.00000035778024, y: 0.0000004469641, z: 0.003793005}
+--- !u!114 &520484021
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 162285124}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 703b903d7d0d4034a70065882cf210fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bossFightCard: {fileID: 11400000, guid: ac71e15ba1244a24a9e6eee197984323, type: 2}
 --- !u!1001 &521840312
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14203,6 +14217,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.17824896, y: 0.19415772, z: 0.015521905}
   m_Center: {x: 0.000003073553, y: 0.00000017852639, z: 0.0077613494}
+--- !u!114 &979273990
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 229680372}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 703b903d7d0d4034a70065882cf210fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bossFightCard: {fileID: 11400000, guid: ac71e15ba1244a24a9e6eee197984323, type: 2}
 --- !u!4 &984281884 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: f64ae661fde89de47b57087f2032340e,
@@ -14330,7 +14357,7 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: f64ae661fde89de47b57087f2032340e,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1917576198}
+      addedObject: {fileID: 1917576196}
   m_SourcePrefab: {fileID: 100100000, guid: f64ae661fde89de47b57087f2032340e, type: 3}
 --- !u!1001 &990639168
 PrefabInstance:
@@ -22163,6 +22190,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 520484020}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: fbcda7dc756f1f24e8b1792b78eca20b,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 520484021}
   m_SourcePrefab: {fileID: 100100000, guid: fbcda7dc756f1f24e8b1792b78eca20b, type: 3}
 --- !u!1001 &1583480877
 PrefabInstance:
@@ -27222,7 +27253,7 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.17824896, y: 0.19415772, z: 0.015521905}
   m_Center: {x: 0.0000031331576, y: 0.00000023813104, z: 0.0077612973}
---- !u!114 &1897506971
+--- !u!114 &1897506963
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -27231,10 +27262,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1897506958}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a8ae2d6cbc564697a48ca25bb397a154, type: 3}
+  m_Script: {fileID: 11500000, guid: 703b903d7d0d4034a70065882cf210fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pickUpCard: {fileID: 11400000, guid: 38eff80352d7e5f4189356aff089d1c0, type: 2}
+  bossFightCard: {fileID: 11400000, guid: ac71e15ba1244a24a9e6eee197984323, type: 2}
 --- !u!1001 &1904622253
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -27603,7 +27634,7 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.17824896, y: 0.19415772, z: 0.015521905}
   m_Center: {x: 0.000003073553, y: 0.00000014872407, z: 0.0077614537}
---- !u!114 &1917576198
+--- !u!114 &1917576196
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -27612,10 +27643,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1047370854}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a8ae2d6cbc564697a48ca25bb397a154, type: 3}
+  m_Script: {fileID: 11500000, guid: 703b903d7d0d4034a70065882cf210fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pickUpCard: {fileID: 11400000, guid: 38eff80352d7e5f4189356aff089d1c0, type: 2}
+  bossFightCard: {fileID: 11400000, guid: ac71e15ba1244a24a9e6eee197984323, type: 2}
 --- !u!1001 &1917930166
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -29137,6 +29168,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 979273989}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: f64ae661fde89de47b57087f2032340e,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 979273990}
   m_SourcePrefab: {fileID: 100100000, guid: f64ae661fde89de47b57087f2032340e, type: 3}
 --- !u!4 &2028454254 stripped
 Transform:

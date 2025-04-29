@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Cards.EnemyCards;
 using CardsAndTilesScripts.adventureTiles;
 using DG.Tweening;
 using Unity.VisualScripting;
@@ -20,6 +21,7 @@ public class PlayerMovement : MonoBehaviour
 
    public void MovePlayerBack(int steps, Player player)
    {
+       _player = player;
        int targetTileIndex = Math.Max(player.TileIndex - steps, 0);
         
        Sequence sequence = DOTween.Sequence();
@@ -45,6 +47,7 @@ public class PlayerMovement : MonoBehaviour
    
     public void MovePlayer(int steps, Player player)
     {
+        _player = player;
         int targetTileIndex = Math.Min(player.TileIndex + steps, tiles.Length - 1);
         
         Sequence sequence = DOTween.Sequence();
@@ -98,7 +101,7 @@ public class PlayerMovement : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(playerPosition, Vector3.down, out hit, Mathf.Infinity))
         {
-            if (hit.collider.GetComponent<BattleTile>())
+            if (hit.collider.GetComponent<BattleTile>() && _player.PlayerObject.gameObject.GetComponent<PlayerController>().playerState != PlayerState.Fighting)
             {
                 return true;
             }

@@ -1,8 +1,8 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Cards.EnemyCards;
 using CardsAndTilesScripts.adventureTiles;
-using DefaultNamespace;
 using DG.Tweening;
 using TMPro;
 using Unity.VisualScripting;
@@ -13,13 +13,11 @@ using UnityEngine.Serialization;
 public enum PlayerState
 {
     Walking,
-    Fighting,
+    Fighting
 }
 
 public class PlayerController : MonoBehaviour
 {
- 
-    public Dice dice;
     private PlayerMovement _playerMovement;
     private AdventureCardsChecker _adventureCardsChecker;
     private PlayerSelector _playerSelector;
@@ -29,23 +27,26 @@ public class PlayerController : MonoBehaviour
 
     private void OnEnable()
     {
-        FightSystem.endFight += FightSystemOnendFight;
+        FightSystem.EndEnemyFight += OnFightEnded;
         playerState = PlayerState.Walking;
         GameManager.Instance.OnFightStarted += ChangeStateToFight;
         GameManager.Instance.TurnStarted += OnTurnStarted;
-        DiceRoll.OnPlayerRolled += OnOnPlayerRolled;
         _playerMovement.OnEndMovePlayerMove += CheckIfOnCard;
- 
-
+        GameManager.Instance.OnWinGame += OnPlayerWin;
     }
 
-    private void FightSystemOnendFight(bool win, Player fightingPlayer)
+    private void OnPlayerWin(Player obj)
     {
-        if(Player != fightingPlayer) return;
-        Debug.Log(win);
+        FightSystem.EndEnemyFight -= OnFightEnded;
+    }
+
+    private void OnFightEnded(bool win, Player fightingPlayer, EnemyCard enemyCard)
+    {
+        if(Player != fightingPlayer || enemyCard is BossCard) return;
+        Debug.Log($"player {fightingPlayer}, {win}");
         if (win)
         {
-            playerState = PlayerState.Walking;
+            enemyCard.enemyDefeatedBehaviour.EnemyDefeated(fightingPlayer);
             GameManager.Instance.TurnEnded(Player);
         }
         else
@@ -53,11 +54,9 @@ public class PlayerController : MonoBehaviour
             playerState = PlayerState.Fighting;
             GameManager.Instance.TurnEnded(Player);
         }
-        
-        
     }
 
-    private void ChangeStateToFight(Player player, Enemy enemy)
+    private void ChangeStateToFight(Player player, EnemyCard enemyCard)
     {
         if(player != Player) return;
        playerState = PlayerState.Fighting;
@@ -75,10 +74,7 @@ public class PlayerController : MonoBehaviour
         }
 
         AdventureTile adventureTile = _adventureCardsChecker.GetTile(Player);
-     
-        
         GameManager.Instance.CardTriggered(Player,adventureTile);
-          
     }
 
     private void Awake()
@@ -88,37 +84,44 @@ public class PlayerController : MonoBehaviour
         _adventureCardsChecker = GetComponent<AdventureCardsChecker>();
         _playerSelector = GetComponent<PlayerSelector>();
     }
- 
     
     private void OnTurnStarted(GameManager.TurnStatedData data)
     {
         if (data.Player != Player) return;
-        if (playerState == PlayerState.Fighting)
+        
+        switch (playerState)
         {
-            data.Player.currentEnemyCard.TriggerCard(data.Player);
+            case PlayerState.Fighting:
+                data.Player.currentEnemyCard.TriggerCard(data.Player);
+                break;
+            case PlayerState.Walking:
+                MovePlayer(data.Player);
+                break;
         }
-        diceRoll.RequestDiceRoll(Player);
-     
     }
-    
-    private void OnOnPlayerRolled(int rollResult, Player player)
+
+    public void MovePlayer(Player player)
     {
-        if (player != Player) return;
-        if(playerState == PlayerState.Fighting) return;
-        _playerMovement.MovePlayer(rollResult, Player);
+       diceRoll.RequestDiceRoll(false, result =>
+       {
+           _playerMovement.MovePlayer(result, player);
+       });
     }
 
     private void OnDestroy()
     {
         GameManager.Instance.TurnStarted -= OnTurnStarted;
-        DiceRoll.OnPlayerRolled -= OnOnPlayerRolled;
         _playerMovement.OnEndMovePlayerMove -= CheckIfOnCard;
+    }
+
+    public int Attack(int rollResult)
+    {
+        return rollResult;
     }
 
     public void SetPlayer(Player player)
     {
         Player = player;
     }
-
 }
 

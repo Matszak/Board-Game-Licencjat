@@ -58,13 +58,9 @@ public class UICardUsage : MonoBehaviour,IPointerEnterHandler, IPointerExitHandl
         _card.TriggerCard(_player);
         _player.playerCards.Remove(_card);
         DOTween.Kill(_card);
-        Destroy(this.gameObject);
+        Destroy(gameObject, 0.2f);
     }
     
 
-    
-    public void CardUsed()
-    {
-        Destroy(this.gameObject);
-    }
+      
 }

@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Cards;
 using Cards.EnemyCards;
 
@@ -21,7 +22,8 @@ public class GameManager : MonoBehaviour
     public Player currentPlayerObj;
     private int currentTurn = 0;
     private int avaialblePlayerIndex;
-    
+    public List<Player> _playersRank { get; private set; }
+
     public PlayerSpawner playerSpawner;
     
     private void Awake()
@@ -38,12 +40,21 @@ public class GameManager : MonoBehaviour
    
     }
 
+    private void Update()
+    {
+        {
+            _playersRank = _playersRank.OrderByDescending(p => p.TileIndex).ToList();
+            
+        }
+         
+    }
+    
+    
     public void Start()
     {
-        
-        
         playerSpawner = FindObjectOfType<PlayerSpawner>();
         _players = playerSpawner.playersList;
+        _playersRank = _players;
         for (int i = 0; i < _players.Count; i++)
         {
         
@@ -118,10 +129,24 @@ public class GameManager : MonoBehaviour
         OnCardTriggered?.Invoke(player, adventureTile);
     }
     
-    [ContextMenu("Next Turn")]
-    public void NextTurn()  
+    [ContextMenu("Next Turn (No Bonus)")]
+    public void NextTurnNoBonus()
     {
-        currentPlayer++;
+        NextTurn(false);
+    }
+    
+    [ContextMenu("Next Turn (Bonus turn)")]
+    public void NextTurnBonus()
+    {
+        NextTurn(true);
+    }
+    
+    public void NextTurn(bool bonusTurn)  
+    {
+        if (!bonusTurn)
+        {
+            currentPlayer++;
+        }
         
  
         if (currentPlayer >= _players.Count)

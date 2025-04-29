@@ -36,7 +36,7 @@ public class ControllerUI : MonoBehaviour
 
     private void WinnerUi(Player obj)
     {
-        Debug.Log($"winner: {obj}");
+        Debug.Log($"winner: {obj.Name}");
         currentTurnText.text = $"Winner: {obj}";
         
     }
@@ -66,7 +66,7 @@ public class ControllerUI : MonoBehaviour
     public void OnButtonClicked()
     {
      
-        GameManager.Instance.NextTurn();
+        GameManager.Instance.NextTurn(false);
         nextTurnButton.SetActive(false);
     }
 

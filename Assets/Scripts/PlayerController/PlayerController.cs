@@ -32,14 +32,9 @@ public class PlayerController : MonoBehaviour
         GameManager.Instance.OnFightStarted += ChangeStateToFight;
         GameManager.Instance.TurnStarted += OnTurnStarted;
         _playerMovement.OnEndMovePlayerMove += CheckIfOnCard;
-        GameManager.Instance.OnWinGame += OnPlayerWin;
+ 
     }
-
-    private void OnPlayerWin(Player obj)
-    {
-        FightSystem.EndEnemyFight -= OnFightEnded;
-    }
-
+ 
     private void OnFightEnded(bool win, Player fightingPlayer, EnemyCard enemyCard)
     {
         if(Player != fightingPlayer || enemyCard is BossCard) return;
@@ -72,9 +67,13 @@ public class PlayerController : MonoBehaviour
         {
             GameManager.Instance.TurnEnded(Player);
         }
+        else
+        {
+            AdventureTile adventureTile = _adventureCardsChecker.GetTile(Player);
+            GameManager.Instance.CardTriggered(Player,adventureTile);
+            
+        }
 
-        AdventureTile adventureTile = _adventureCardsChecker.GetTile(Player);
-        GameManager.Instance.CardTriggered(Player,adventureTile);
     }
 
     private void Awake()
@@ -108,7 +107,7 @@ public class PlayerController : MonoBehaviour
        });
     }
 
-    private void OnDestroy()
+    private void OnDisable()
     {
         GameManager.Instance.TurnStarted -= OnTurnStarted;
         _playerMovement.OnEndMovePlayerMove -= CheckIfOnCard;

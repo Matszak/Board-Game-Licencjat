@@ -82,10 +82,6 @@ public class AdventuresCards : MonoBehaviour
                  _selectedCard = battleTile.enemyCard;
                  BattleTileTriggered?.Invoke(_selectedCard);
                  break; 
-             case BossFightTile bossTile:
-                 _selectedCard = bossTile.bossFightCard;
-                 BossTileTriggered?.Invoke(_selectedCard);
-                 break;
              default:
                  _selectedCard = cards[Random.Range(0, cards.Length)];
                  RandomTileTriggered?.Invoke(_selectedCard);

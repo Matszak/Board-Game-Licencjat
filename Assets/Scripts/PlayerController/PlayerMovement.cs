@@ -18,6 +18,7 @@ public class PlayerMovement : MonoBehaviour
     public event Action<Player> OnEndMovePlayerMove;
    // private int dicePenalty = 0;
    
+   public Player _player;
 
    public void MovePlayerBack(int steps, Player player)
    {

@@ -37,6 +37,7 @@ public class ControllerUI : MonoBehaviour
     private void WinnerUi(Player obj)
     {
         Debug.Log($"winner: {obj}");
+        currentTurnText.text = $"Winner: {obj}";
         
     }
 

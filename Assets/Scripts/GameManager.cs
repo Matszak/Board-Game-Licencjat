@@ -157,13 +157,17 @@ public class GameManager : MonoBehaviour
         }
  
         currentPlayerObj = _players[currentPlayer];
-        TurnStarted?.Invoke(new TurnStatedData{Turn = currentTurn, Player = currentPlayerObj});
+        TurnStarted?.Invoke(new TurnStatedData
+        {
+            Turn = currentTurn, Player = currentPlayerObj, BonusTurn = bonusTurn
+        });
     }
     
     public class TurnStatedData
     {
         public int Turn;
         public Player Player;
+        public bool BonusTurn;
     }
  
  

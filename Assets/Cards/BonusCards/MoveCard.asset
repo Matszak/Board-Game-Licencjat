@@ -16,5 +16,5 @@ MonoBehaviour:
     type: 3}
   cardImage: {fileID: 21300000, guid: 8ca077226f29176479ee23a7ed03bd78, type: 3}
   nameText: MoveCard
-  descriptionText: 
+  descriptionText: MoveForward by 2
   movePlayerBy: 2

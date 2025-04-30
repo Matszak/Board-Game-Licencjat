@@ -16,5 +16,5 @@ MonoBehaviour:
     type: 3}
   cardImage: {fileID: 0}
   nameText: Minus Roll
-  descriptionText: 
+  descriptionText: MoveBack by 2
   movePlayerBack: 2

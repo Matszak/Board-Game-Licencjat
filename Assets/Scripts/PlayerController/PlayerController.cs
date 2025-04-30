@@ -23,8 +23,10 @@ public class PlayerController : MonoBehaviour
     private PlayerSelector _playerSelector;
     [SerializeField] private DiceRoll diceRoll;
     public PlayerState playerState;
-    public Player Player { get; private set; } 
-
+    public Player Player { get; private set; }
+    
+    
+    
     private void OnEnable()
     {
         FightSystem.EndEnemyFight += OnFightEnded;

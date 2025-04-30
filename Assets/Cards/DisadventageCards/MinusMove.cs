@@ -2,8 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "MinusRollResults", menuName = "Card/MinusRoll", order = 2)]
-public class MinusRollResults : Card
+[CreateAssetMenu(fileName = "MinusMove", menuName = "Card/Disadventage/MinusMove")]
+public class MinusMove : Card
 {
     public int movePlayerBack;
      

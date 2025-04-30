@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89764dc2129c4ba5a050838294beb31d, type: 3}
   m_Name: PlayerInFrontBack
   m_EditorClassIdentifier: 
-  cardPrefab: {fileID: 1075834351943545949, guid: 7392d011aea06b946a33dd18eb24b885,
+  cardPrefab: {fileID: 1075834351943545949, guid: 230d6bd8fd908934894f7886f8e50b54,
     type: 3}
-  cardImage: {fileID: 0}
+  cardImage: {fileID: 21300000, guid: d941e5f0743e6f44c8b68cea4ff76084, type: 3}
   nameText: InFrontBack
   descriptionText: 
-  stepsBack: 3
+  stepsBack: 2

@@ -29,9 +29,10 @@ namespace Cards.CardsInGame
             }
             
             Player playerInFront = _playersRanking.Where(n => n.TileIndex > minTreshold).OrderBy(n => n.TileIndex).FirstOrDefault();
-            
+
+            if (playerInFront == null) return;
             playerInFront.PlayerObject.GetComponent<PlayerMovement>().MovePlayerBack(stepsBack, playerInFront);
-            
+
             Debug.Log(playerInFront.Name);
         }
  

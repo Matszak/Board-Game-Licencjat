@@ -9,11 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: af69294283df43aab7f51f0854d37953, type: 3}
-  m_Name: BonusTurn
+  m_Script: {fileID: 11500000, guid: fb052b1d1edc453f84177f92b1f1ae8f, type: 3}
+  m_Name: MinusMoveRoll
   m_EditorClassIdentifier: 
-  cardPrefab: {fileID: 1075834351943545949, guid: 7392d011aea06b946a33dd18eb24b885,
-    type: 3}
-  cardImage: {fileID: 21300000, guid: fadd0e6678a53b640a5f7aa64fcdbc83, type: 3}
+  cardPrefab: {fileID: 0}
+  cardImage: {fileID: 21300000, guid: 4ca9ee12796954f4d858cdb511605c31, type: 3}
   nameText: 
   descriptionText: 

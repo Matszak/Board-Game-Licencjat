@@ -63,7 +63,7 @@ public class AdventuresCards : MonoBehaviour
     private void TriggerCard(Player player, AdventureTile adventureTile)
     {
          if (player != _player) return;
-         if(!checkForCard) return;
+     
          switch (adventureTile)
          {
              case BonusTile:

@@ -34,7 +34,7 @@ public class PlayerMovement : MonoBehaviour
                player.PlayerObject.transform.position.y,
                tiles[i].position.z);
 
-           sequence.Append(player.PlayerObject.transform.DOJump(movePosition, 6f, 1, 0.5f).SetEase(Ease.OutQuad));
+           sequence.Append(player.PlayerObject.transform.DOJump(movePosition, 6f, 1, 0.5f).SetEase(Ease.InQuad));
        }
 
        sequence.OnComplete(() =>
@@ -72,7 +72,7 @@ public class PlayerMovement : MonoBehaviour
                     Debug.Log("Wykryto graczy: " + playerOnTile.Length);
             }
             
-            sequence.Append(player.PlayerObject.transform.DOJump(movePosition, 6f, 1, 0.5f).SetEase(Ease.OutQuad));
+            sequence.Append(player.PlayerObject.transform.DOJump(movePosition, 6f, 0, 0.5f).SetEase(Ease.OutSine));
 
             int currentTileIndex = i;
             sequence.AppendCallback(() =>

@@ -581,7 +581,6 @@ Transform:
   m_LocalScale: {x: 3, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 940776521}
   - {fileID: 401940429}
   m_Father: {fileID: 2064939421}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -7226,9 +7225,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: a70aea1866d557344bf6264fcf4ccf72, type: 2}
-  m_sharedMaterial: {fileID: 3493118698482586819, guid: a70aea1866d557344bf6264fcf4ccf72,
-    type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -9970,10 +9968,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c09e76bfebd76e3499147c22b197305c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cardsUI: {fileID: 0}
-  cardImage: {fileID: 0}
-  cardText: {fileID: 0}
-  descriptionText: {fileID: 0}
+  cardsUI: {fileID: 1532603954}
+  cardImage: {fileID: 428158197}
+  cardText: {fileID: 1776648064}
+  descriptionText: {fileID: 630207574}
   cards: []
   bonusCards: []
   disadvantageCards: []
@@ -9992,8 +9990,8 @@ MonoBehaviour:
   currentTurnText: {fileID: 555293252}
   nextTurnText: {fileID: 2065936952}
   currentPlayerText: {fileID: 2128487757}
-  nextTurnButton: {fileID: 0}
-  playerCards: {fileID: 0}
+  nextTurnButton: {fileID: 1117652994}
+  playerCards: {fileID: 2136184557}
   _cards: []
 --- !u!114 &766044893
 MonoBehaviour:
@@ -10018,7 +10016,7 @@ MonoBehaviour:
     TileIndex: 0
     playerCards: []
     currentEnemyCard: {fileID: 0}
-  tileParent: {fileID: 0}
+  tileParent: {fileID: 1036249065}
   spawnPoint: {fileID: 456081202}
   diceRoll: {fileID: 1332564162}
   currentPlayer: 0
@@ -11956,42 +11954,42 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 30061066}
+    m_TransformParent: {fileID: 1036249066}
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 78b3cd16ee407dc4ca02560f242e6768,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 1.0006208
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 78b3cd16ee407dc4ca02560f242e6768,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 1.4986056
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 78b3cd16ee407dc4ca02560f242e6768,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 1.5000002
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 78b3cd16ee407dc4ca02560f242e6768,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.37
+      value: 4.5465775
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 78b3cd16ee407dc4ca02560f242e6768,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.36
+      value: 0.9376039
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 78b3cd16ee407dc4ca02560f242e6768,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.0998
+      value: 2.4104052
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 78b3cd16ee407dc4ca02560f242e6768,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.99976724
+      value: -0.9530042
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 78b3cd16ee407dc4ca02560f242e6768,
         type: 3}
@@ -12006,7 +12004,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 78b3cd16ee407dc4ca02560f242e6768,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.021575421
+      value: -0.30295724
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 78b3cd16ee407dc4ca02560f242e6768,
         type: 3}
@@ -13283,6 +13281,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 940776521}
   - {fileID: 877420722}
   - {fileID: 1007703100}
   - {fileID: 731630826}
@@ -14739,7 +14738,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 766044892}
         m_TargetAssemblyTypeName: ControllerUI, Assembly-CSharp
         m_MethodName: OnButtonClicked
         m_Mode: 1
@@ -14903,7 +14902,7 @@ GameObject:
   - component: {fileID: 1140808384}
   - component: {fileID: 1140808383}
   m_Layer: 5
-  m_Name: Image
+  m_Name: DiceRollImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -16735,9 +16734,8 @@ MonoBehaviour:
 
 '
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: a70aea1866d557344bf6264fcf4ccf72, type: 2}
-  m_sharedMaterial: {fileID: 3493118698482586819, guid: a70aea1866d557344bf6264fcf4ccf72,
-    type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -18064,16 +18062,21 @@ PrefabInstance:
       propertyPath: uiButtonPrefab
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 5182841880739233955, guid: 0fad5be161ad6394e8155d3a48579ee5,
+        type: 3}
+      propertyPath: RollDicesButton
+      value: 
+      objectReference: {fileID: 1809008819}
     - target: {fileID: 7259216660905473783, guid: 0fad5be161ad6394e8155d3a48579ee5,
         type: 3}
       propertyPath: animator
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1140808383}
     - target: {fileID: 7259216660905473783, guid: 0fad5be161ad6394e8155d3a48579ee5,
         type: 3}
       propertyPath: diceRollIcon
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1140808381}
     - target: {fileID: 8104824188453684054, guid: 0fad5be161ad6394e8155d3a48579ee5,
         type: 3}
       propertyPath: m_Name
@@ -23811,7 +23814,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1332564162}
         m_TargetAssemblyTypeName: DiceRoll, Assembly-CSharp
         m_MethodName: OnButtonClick
         m_Mode: 1
@@ -27554,9 +27557,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: a70aea1866d557344bf6264fcf4ccf72, type: 2}
-  m_sharedMaterial: {fileID: 3493118698482586819, guid: a70aea1866d557344bf6264fcf4ccf72,
-    type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

@@ -10,8 +10,11 @@ EditorBuildSettings:
     guid: d1c1dce4fdf3f4c4aac074a424d06f93
   - enabled: 1
     path: Assets/Scenes/SampleScene.unity
+    guid: 3f82c2133dcd15548b4889efbeb60686
+  - enabled: 0
+    path: Assets/Scenes/OldMap.unity
     guid: 99c9720ab356a0642a771bea13969a05
   - enabled: 1
-    path: Assets/Scenes/WorldSetup.unity
-    guid: 3f82c2133dcd15548b4889efbeb60686
+    path: Assets/Scenes/LoadingScreen.unity
+    guid: 0746793b2378be94797579f7c2226731
   m_configObjects: {}

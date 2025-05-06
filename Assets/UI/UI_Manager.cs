@@ -8,26 +8,69 @@ public class UI_Manager : MonoBehaviour
 {
     [SerializeField] PlayerSpawner playerSpawner;
     
+    public GameObject mainMenuPanel;
+    public GameObject playerMenuPanel;
+    public GameObject settingsPanel;
+    public GameObject creditsPanel;
+    public GameObject close;
+
+    
+    
+    public void StartGame()
+    {
+        playerMenuPanel.SetActive(true);
+        settingsPanel.SetActive(false);
+        creditsPanel.SetActive(false);
+    }
+
+
+
+    public void settingsButton()
+    {
+        settingsPanel.SetActive(true);
+        creditsPanel.SetActive(false);
+        playerMenuPanel.SetActive(false);
+    }
+
+    public void QuitGame()
+    {
+        Application.Quit();
+    }
+
+    public void closeButton()
+    {
+        playerMenuPanel.SetActive(false);
+        creditsPanel.SetActive(false);
+        settingsPanel.SetActive(false);
+
+    }
+
+    
     public void ButtonOne()
     {
         playerSpawner.SpawnPlayer(1);
-        SceneManager.LoadScene(1);
+        LoadingSceneManager.sceneToLoad = "SampleScene";
+        SceneManager.LoadScene("LoadingScreen");
     }
 
     public void ButtonTwo()
     {
         playerSpawner.SpawnPlayer(2);
-        SceneManager.LoadScene(1);
+        LoadingSceneManager.sceneToLoad = "SampleScene";
+        SceneManager.LoadScene("LoadingScreen");
     }
 
     public void ButtonThree()
     {
-        SceneManager.LoadScene(1);
+        playerSpawner.SpawnPlayer(3);
+        LoadingSceneManager.sceneToLoad = "SampleScene";
+        SceneManager.LoadScene("LoadingScreen");
     }
 
     public void ButtonFour()
     {
         playerSpawner.SpawnPlayer(4);
-        SceneManager.LoadScene(1);
+        LoadingSceneManager.sceneToLoad = "SampleScene";
+        SceneManager.LoadScene("LoadingScreen");
     }
 }

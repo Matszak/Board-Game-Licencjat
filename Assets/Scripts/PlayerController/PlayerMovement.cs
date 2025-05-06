@@ -12,9 +12,13 @@ public class PlayerMovement : MonoBehaviour
 {
     [Header("Player Movement Controller")]
     public Transform[] tiles;
-    private Player _player;
+    
+    public LayerMask playerLayer;
+
     public event Action<Player> OnEndMovePlayerMove;
    // private int dicePenalty = 0;
+   
+   public Player _player;
 
    public void MovePlayerBack(int steps, Player player)
    {
@@ -55,6 +59,19 @@ public class PlayerMovement : MonoBehaviour
                 tiles[i].position.x,
                 player.PlayerObject.transform.position.y,
                 tiles[i].position.z);
+            
+            Collider[] playerOnTile = Physics.OverlapSphere(movePosition, 1f, playerLayer);
+
+            for (int j = 0; j < playerOnTile.Length; j++)
+            {
+                    Rigidbody rb = playerOnTile[j].GetComponent<Rigidbody>();
+                    rb.isKinematic = true;
+                    Vector3 offset = movePosition + Vector3.right * 100f * j;
+                    playerOnTile[j].transform.position = offset;
+                    rb.isKinematic = false;
+                    Debug.Log("Wykryto graczy: " + playerOnTile.Length);
+            }
+            
             sequence.Append(player.PlayerObject.transform.DOJump(movePosition, 6f, 1, 0.5f).SetEase(Ease.OutQuad));
 
             int currentTileIndex = i;

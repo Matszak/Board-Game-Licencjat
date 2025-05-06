@@ -56,10 +56,10 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5000001
-  m_Height: 2
+  m_Radius: 0.7840628
+  m_Height: 2.0093663
   m_Direction: 1
-  m_Center: {x: 0.000000059604645, y: -0.36, z: -0.00000008940697}
+  m_Center: {x: -0.005569727, y: -1.5635903, z: -0.0000001383179}
 --- !u!54 &4469250462762101496
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -240,6 +240,9 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  playerLayer:
+    serializedVersion: 2
+    m_Bits: 128
 --- !u!114 &1973843924963447209
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -36,8 +36,8 @@ public class PlayerSelector : MonoBehaviour
     private void OnMouseDown()
     {
         if (!gameObject.TryGetComponent(out PlayerController player) || !isActive) return;
-        Debug.Log($"Clicked on: {player.Player.Name}");
-        GameManager.Instance.PlayerIsSelected(player.Player);
+        Debug.Log($"Clicked on: {player.CurrentPlayer.Name}");
+        GameManager.Instance.PlayerIsSelected(player.CurrentPlayer);
         _renderer.material.color = _tempColor;
     }
 

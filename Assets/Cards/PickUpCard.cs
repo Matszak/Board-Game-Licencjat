@@ -9,7 +9,7 @@ namespace Cards
   
         private void ApplyEffect(PlayerController obj)
         {
-            Debug.Log($"{obj.Player.Name} has been selected");
+            Debug.Log($"{obj.CurrentPlayer.Name} has been selected");
         }
 
         public override void TriggerCard(Player currentPlayer)

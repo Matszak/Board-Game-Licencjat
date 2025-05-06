@@ -9,6 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 05493643604641338e32b363d6de8d60, type: 3}
-  m_Name: TwoDicesEnemyBehaviour
+  m_Script: {fileID: 11500000, guid: d7cb82a79b524f5dbbbab5a88db283a3, type: 3}
+  m_Name: OneDice
   m_EditorClassIdentifier: 

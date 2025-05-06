@@ -12,8 +12,10 @@ using UnityEngine.Serialization;
 
 public enum PlayerState
 {
+    None,
     Walking,
-    Fighting
+    Fighting,
+    Stunned,
 }
 
 public class PlayerController : MonoBehaviour
@@ -22,8 +24,11 @@ public class PlayerController : MonoBehaviour
     private AdventureCardsChecker _adventureCardsChecker;
     private PlayerSelector _playerSelector;
     [SerializeField] private DiceRoll diceRoll;
+    
     public PlayerState playerState;
-    public Player Player { get; private set; }
+ 
+    
+    public Player CurrentPlayer { get; private set; }
     
     
     
@@ -39,43 +44,55 @@ public class PlayerController : MonoBehaviour
  
     private void OnFightEnded(bool win, Player fightingPlayer, EnemyCard enemyCard)
     {
-        if(Player != fightingPlayer || enemyCard is BossCard) return;
+        if(CurrentPlayer != fightingPlayer || enemyCard is BossCard) return;
         Debug.Log($"player {fightingPlayer}, {win}");
+        
         if (win)
         {
             enemyCard.enemyDefeatedBehaviour.EnemyDefeated(fightingPlayer);
-            GameManager.Instance.TurnEnded(Player);
+          
+            GameManager.Instance.TurnEnded(CurrentPlayer);
         }
         else
         {
             playerState = PlayerState.Fighting;
-            GameManager.Instance.TurnEnded(Player);
+            GameManager.Instance.TurnEnded(CurrentPlayer);
         }
     }
 
     private void ChangeStateToFight(Player player, EnemyCard enemyCard)
     {
-        if(player != Player) return;
+        if(player != CurrentPlayer) return;
        playerState = PlayerState.Fighting;
     }
 
 
     private void CheckIfOnCard(Player player)
     {
-        if(player != Player) return;
+        if(player != CurrentPlayer) return;
+        if(playerState == PlayerState.Fighting) return;
         if(playerState == PlayerState.Fighting) return;
         
-        if (!_adventureCardsChecker.CheckIfStayOnCard(Player))
+        if (!_adventureCardsChecker.CheckIfStayOnCard(CurrentPlayer))
         {
-            GameManager.Instance.TurnEnded(Player);
+            GameManager.Instance.TurnEnded(CurrentPlayer);
         }
         else
         {
-            AdventureTile adventureTile = _adventureCardsChecker.GetTile(Player);
-            GameManager.Instance.CardTriggered(Player,adventureTile);
+            AdventureTile adventureTile = _adventureCardsChecker.GetTile(CurrentPlayer);
+            GameManager.Instance.CardTriggered(CurrentPlayer,adventureTile);
             
         }
 
+    }
+
+    [SerializeField] private int stunnedFor;
+    [ContextMenu("StunPlayer")]
+    public void StunPlayer(int numberOfTurns, Player player)
+    {
+        if(player != CurrentPlayer) return;
+        playerState = PlayerState.Stunned;
+        stunnedFor = numberOfTurns;
     }
 
     private void Awake()
@@ -88,7 +105,11 @@ public class PlayerController : MonoBehaviour
     
     private void OnTurnStarted(GameManager.TurnStatedData data)
     {
-        if (data.Player != Player) return;
+        if (data.Player != CurrentPlayer) return;
+        if (data.Player.currentEnemyCard != null && playerState != PlayerState.Stunned)
+        {
+            playerState = PlayerState.Walking;       
+        }
         
         switch (playerState)
         {
@@ -97,6 +118,18 @@ public class PlayerController : MonoBehaviour
                 break;
             case PlayerState.Walking:
                 MovePlayer(data.Player);
+                break;
+            case PlayerState.Stunned:
+                _playerMovement.MovePlayer(0,data.Player);
+                if (stunnedFor > 0)
+                {
+                    stunnedFor--;
+                }
+                else
+                {
+                    playerState = PlayerState.Walking;
+                }
+                //GameManager.Instance.TurnEnded(CurrentPlayer);
                 break;
         }
     }
@@ -122,7 +155,7 @@ public class PlayerController : MonoBehaviour
 
     public void SetPlayer(Player player)
     {
-        Player = player;
+        CurrentPlayer = player;
     }
 }
 

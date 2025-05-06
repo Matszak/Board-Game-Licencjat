@@ -1,0 +1,128 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1554249290734751482
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7358323150866126828}
+  - component: {fileID: 8505431705744023351}
+  - component: {fileID: 909963249781208910}
+  - component: {fileID: 1802388910944007450}
+  - component: {fileID: 3888712012641148687}
+  m_Layer: 0
+  m_Name: Game Controller
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7358323150866126828
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1554249290734751482}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -3.737001, y: 33.61221, z: -8.419818}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8505431705744023351
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1554249290734751482}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4066b67f8ec2db41a5129470d59802e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _players:
+  - Name: Wojtek
+    PlayerObject: {fileID: 0}
+    TileIndex: 0
+    playerCards:
+    - {fileID: 11400000, guid: e29f3676356feca40898fd174362be76, type: 2}
+    - {fileID: 11400000, guid: 54f845757f9d2964ca61d196a4ed6bbb, type: 2}
+    currentEnemyCard: {fileID: 0}
+  - Name: Mateusz
+    PlayerObject: {fileID: 0}
+    TileIndex: 0
+    playerCards:
+    - {fileID: 11400000, guid: 191256f9ec747274092c389a284f9c62, type: 2}
+    currentEnemyCard: {fileID: 0}
+  tileParent: {fileID: 0}
+  spawnPoint: {fileID: 0}
+  diceRoll: {fileID: 0}
+  currentPlayer: 0
+  currentPlayerObj:
+    Name: 
+    PlayerObject: {fileID: 0}
+    TileIndex: 0
+    playerCards: []
+    currentEnemyCard: {fileID: 0}
+  playerSpawner: {fileID: 0}
+--- !u!114 &909963249781208910
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1554249290734751482}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c09e76bfebd76e3499147c22b197305c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cardsUI: {fileID: 0}
+  cardImage: {fileID: 0}
+  cardText: {fileID: 0}
+  descriptionText: {fileID: 0}
+  cards:
+  - {fileID: 11400000, guid: 191256f9ec747274092c389a284f9c62, type: 2}
+  - {fileID: 11400000, guid: 54f845757f9d2964ca61d196a4ed6bbb, type: 2}
+  bonusCards:
+  - {fileID: 11400000, guid: 54f845757f9d2964ca61d196a4ed6bbb, type: 2}
+  disadvantageCards:
+  - {fileID: 11400000, guid: 191256f9ec747274092c389a284f9c62, type: 2}
+--- !u!114 &1802388910944007450
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1554249290734751482}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aaad82f35a4bc744c95f7f6efd73b9b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentTurnText: {fileID: 0}
+  nextTurnText: {fileID: 0}
+  currentPlayerText: {fileID: 0}
+  nextTurnButton: {fileID: 0}
+  playerCards: {fileID: 0}
+  _cards: []
+--- !u!114 &3888712012641148687
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1554249290734751482}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa6945ecf81c98343ab0091e0be7ead8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _enemy: {fileID: 0}

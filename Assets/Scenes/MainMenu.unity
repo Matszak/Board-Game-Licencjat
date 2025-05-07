@@ -3938,7 +3938,9 @@ MonoBehaviour:
   playersList: []
   playerPrefabs:
   - {fileID: 5338167064597384778, guid: d06a001b930dba441807ab96ec1ea2fb, type: 3}
-  - {fileID: 4234774977942278220, guid: 2480495e616c415458cc40914b5e9cd0, type: 3}
+  - {fileID: 5338167064597384778, guid: b77bb91c12e22d04aa78adf895210d71, type: 3}
+  - {fileID: 5338167064597384778, guid: 3639521cbf5147f49a8684108c890afd, type: 3}
+  - {fileID: 5338167064597384778, guid: 5878df9ae23358d42a30d871eaf0aca1, type: 3}
 --- !u!4 &2113321078
 Transform:
   m_ObjectHideFlags: 0
@@ -4074,7 +4076,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: -0.94750977, w: 0}
+  m_margin: {x: -26.665894, y: 0, z: -25.835754, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0

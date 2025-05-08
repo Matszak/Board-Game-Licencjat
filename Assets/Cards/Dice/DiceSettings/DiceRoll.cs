@@ -55,8 +55,6 @@ public class DiceRoll : MonoBehaviour
         RollDicesButton.SetActive(false);
         _diceRollAnimation.PlayAnimation(_rollResult, () => 
             _onDiceRolled?.Invoke(_rollResult));
-        
-        //DebugConsole.Log($"{_player.PlayerObject.name} rolled {_rollResult}");
     }
     
     

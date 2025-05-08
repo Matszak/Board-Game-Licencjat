@@ -6,6 +6,7 @@ using UnityEngine;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine.UI;
+using TMPro;
 
 public class ControllerUI : MonoBehaviour
 {
@@ -61,13 +62,14 @@ public class ControllerUI : MonoBehaviour
         if (player != _player) return;
         LoadCards(_player);
         nextTurnButton.SetActive(true);
+        DebugConsole.Log("<align=center><b>-- Turn Ended --</b></align>");
     }
 
     public void OnButtonClicked()
     {
-     
         GameManager.Instance.NextTurn(false);
         nextTurnButton.SetActive(false);
+        DebugConsole.Log("<align=center><b>-- New Turn --</b></align>");
     }
 
     public void NextTurnButtonNameChange(string message)

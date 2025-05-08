@@ -25,11 +25,11 @@ public class DebugConsole : MonoBehaviour
 
     public static void Log(string content)
     {
-        OnConsoleDisplay?.Invoke(content); //Uruchomienie metody
+        OnConsoleDisplay?.Invoke(content); // Wywoływanie klasy poprzez log
     }
 
     private void LogToConsole (string content)
     {
-        consoleText.text += "\n" + content; //Właściwe wpisywanie w console
+        consoleText.text += "\n" + content;  //wyświetlanie kontentu
     }
 }

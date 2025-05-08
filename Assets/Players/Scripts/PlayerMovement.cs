@@ -16,7 +16,6 @@ public class PlayerMovement : MonoBehaviour
     public LayerMask playerLayer;
 
     public event Action<Player> OnEndMovePlayerMove;
-   // private int dicePenalty = 0;
    
    public Player _player;
 
@@ -86,8 +85,6 @@ public class PlayerMovement : MonoBehaviour
             });
             
         }
-        DebugConsole.Log($"{player.PlayerObject.name} is moving on pool {targetTileIndex}");
-
         sequence.OnComplete(() =>
         {
             player.TileIndex = targetTileIndex;

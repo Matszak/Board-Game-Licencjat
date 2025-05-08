@@ -76,6 +76,10 @@ public class FightSystem : MonoBehaviour
         {
             DebugConsole.Log("Player Loses");
         }
+        else if (_playerAttackValue == _enemyAttackValue)
+        {
+            DebugConsole.Log("Draw");
+        }
     }
 
     private IEnumerator DelayedEndFight(float delay, bool win)

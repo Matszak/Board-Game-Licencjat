@@ -34,6 +34,7 @@ public class FightSystem : MonoBehaviour
         if(_currentPlayer != player ) return;
         _enemy = enemy;
         PlayerAttack(player);
+        DebugConsole.Log("Fight Started");
     }
 
     private void PlayerAttack(Player player)
@@ -53,8 +54,8 @@ public class FightSystem : MonoBehaviour
          enemy.enemyAttackAttackBehaviour.EnemyAttack(attackValue =>
         { 
             _enemyAttackValue = attackValue;
-            EndFight();
             DebugConsole.Log($"Enemy rolled {_enemyAttackValue}");
+            EndFight();
         });
         
     }
@@ -66,6 +67,15 @@ public class FightSystem : MonoBehaviour
         bool endFightState = _playerAttackValue > _enemyAttackValue;
         
         StartCoroutine(DelayedEndFight(0.5f, endFightState));
+        
+        if (_playerAttackValue > _enemyAttackValue)
+        {
+            DebugConsole.Log("Player Wins");
+        }
+        else if (_enemyAttackValue > _playerAttackValue)
+        {
+            DebugConsole.Log("Player Loses");
+        }
     }
 
     private IEnumerator DelayedEndFight(float delay, bool win)

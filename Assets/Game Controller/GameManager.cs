@@ -20,10 +20,11 @@ public class GameManager : MonoBehaviour
     
     public int currentPlayer = 0;
     public Player currentPlayerObj;
-    private int currentTurn = 0;
+    [SerializeField] private int currentTurn = 0;
     private int avaialblePlayerIndex;
     public List<Player> _playersRank { get; private set; }
-
+    [SerializeField] private PlayerState currentPlayerState;
+    
     public PlayerSpawner playerSpawner;
     
     private void Awake()
@@ -44,7 +45,7 @@ public class GameManager : MonoBehaviour
     {
         {
             _playersRank = _playersRank.OrderByDescending(p => p.TileIndex).ToList();
-            
+            currentPlayerState = currentPlayerObj.PlayerObject.GetComponent<PlayerController>().playerState;
         }
          
     }
@@ -155,8 +156,9 @@ public class GameManager : MonoBehaviour
             currentTurn++;
             
         }
- 
+    
         currentPlayerObj = _players[currentPlayer];
+       
         TurnStarted?.Invoke(new TurnStatedData
         {
             Turn = currentTurn, Player = currentPlayerObj, BonusTurn = bonusTurn

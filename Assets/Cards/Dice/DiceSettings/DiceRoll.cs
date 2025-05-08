@@ -21,6 +21,7 @@ public class DiceRoll : MonoBehaviour
     public void Awake()
     {
       _diceRollAnimation = GetComponent<DiceRollAnimation>();
+      RollDicesButton.SetActive(false);
     }
  
     public void RequestDiceRoll(bool isEnemy, Action<int> callback)

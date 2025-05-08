@@ -34,8 +34,8 @@ public class PlayerController : MonoBehaviour
     
     private void OnEnable()
     {
+        playerState = PlayerState.None;
         FightSystem.EndEnemyFight += OnFightEnded;
-        playerState = PlayerState.Walking;
         GameManager.Instance.OnFightStarted += ChangeStateToFight;
         GameManager.Instance.TurnStarted += OnTurnStarted;
         _playerMovement.OnEndMovePlayerMove += CheckIfOnCard;
@@ -50,7 +50,8 @@ public class PlayerController : MonoBehaviour
         if (win)
         {
             enemyCard.enemyDefeatedBehaviour.EnemyDefeated(fightingPlayer);
-          
+            playerState = PlayerState.None;
+            Destroy(enemyCard);
             GameManager.Instance.TurnEnded(CurrentPlayer);
         }
         else
@@ -70,7 +71,6 @@ public class PlayerController : MonoBehaviour
     private void CheckIfOnCard(Player player)
     {
         if(player != CurrentPlayer) return;
-        if(playerState == PlayerState.Fighting) return;
         if(playerState == PlayerState.Fighting) return;
         
         if (!_adventureCardsChecker.CheckIfStayOnCard(CurrentPlayer))
@@ -106,13 +106,19 @@ public class PlayerController : MonoBehaviour
     private void OnTurnStarted(GameManager.TurnStatedData data)
     {
         if (data.Player != CurrentPlayer) return;
-        if (data.Player.currentEnemyCard != null && playerState != PlayerState.Stunned)
+        if (data.Player.currentEnemyCard == null && playerState == PlayerState.None)
         {
             playerState = PlayerState.Walking;       
+        }
+        else 
+        {
+            data.Player.currentEnemyCard.TriggerCard(CurrentPlayer);
         }
         
         switch (playerState)
         {
+            case PlayerState.None:
+                break;
             case PlayerState.Fighting:
                 data.Player.currentEnemyCard.TriggerCard(data.Player);
                 break;
@@ -134,12 +140,17 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    
+    
+
     public void MovePlayer(Player player)
     {
-       diceRoll.RequestDiceRoll(false, result =>
-       {
-           _playerMovement.MovePlayer(result, player);
-       });
+        if (playerState == PlayerState.None) return;
+        
+        diceRoll.RequestDiceRoll(false, result =>
+        {
+            _playerMovement.MovePlayer(result, player);
+        });
     }
 
     private void OnDisable()

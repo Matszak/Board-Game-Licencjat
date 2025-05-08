@@ -84,8 +84,9 @@ public class PlayerMovement : MonoBehaviour
                     sequence.Kill();
                 }
             });
+            
         }
-        
+        DebugConsole.Log($"{player.PlayerObject.name} is moving on pool {targetTileIndex}");
 
         sequence.OnComplete(() =>
         {

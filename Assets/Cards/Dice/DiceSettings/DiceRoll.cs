@@ -11,7 +11,7 @@ public class DiceRoll : MonoBehaviour
 {   
  
     [FormerlySerializedAs("uiButtonPrefab")] [SerializeField] private  GameObject  RollDicesButton;
-    private Player _player;
+    [SerializeField] private Player _player;
     private EnemyCard _enemyCard;
     private DiceRollAnimation _diceRollAnimation;
     private int _rollResult;
@@ -42,7 +42,6 @@ public class DiceRoll : MonoBehaviour
     {
         Dice dice = new Dice(6);
         RollDices(dice, 1, _onDiceRolled) ;
-        
     }
 
     private void RollDices(Dice typeOfDice,int numberOfDices, Action<int> callback = null)
@@ -56,6 +55,8 @@ public class DiceRoll : MonoBehaviour
         RollDicesButton.SetActive(false);
         _diceRollAnimation.PlayAnimation(_rollResult, () => 
             _onDiceRolled?.Invoke(_rollResult));
+        
+        DebugConsole.Log($"{_player.PlayerObject.name} rolled {_rollResult}");
     }
     
     

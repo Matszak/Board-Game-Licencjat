@@ -6,6 +6,7 @@ using UnityEngine;
 
 public class FightSystem : MonoBehaviour
 {
+    
  
     public static event Action<bool, Player, EnemyCard> EndEnemyFight;
     public static event Action<Player> fightStarted;
@@ -41,7 +42,9 @@ public class FightSystem : MonoBehaviour
         {
             _playerAttackValue = player.PlayerObject.GetComponent<PlayerController>().Attack(i);
             EnemyAttack(_enemy);
+            DebugConsole.Log($"Player rolled {_playerAttackValue}");
         });
+        
     }
 
     private void EnemyAttack(EnemyCard enemy)
@@ -51,7 +54,9 @@ public class FightSystem : MonoBehaviour
         { 
             _enemyAttackValue = attackValue;
             EndFight();
+            DebugConsole.Log($"Enemy rolled {_enemyAttackValue}");
         });
+        
     }
 
     private void EndFight()

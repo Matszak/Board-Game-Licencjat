@@ -101,7 +101,7 @@ public class AdventuresCards : MonoBehaviour
              _player.playerCards.Add(_selectedCard);
              checkForCard = false;  
              cardsUI.SetActive(false);
-             EndTurn(_player);
+             _player.PlayerObject.GetComponent<PlayerController>().ChangePlayerState(PlayerState.None);
          }
          else if (_selectedCard is EnemyCard card)
          {

@@ -16,20 +16,19 @@ public enum PlayerState
     Walking,
     Fighting,
     Stunned,
+    EndTurn,
 }
 
 public class PlayerController : MonoBehaviour
 {
+    public Player CurrentPlayer { get; private set; }
+
     private PlayerMovement _playerMovement;
     private AdventureCardsChecker _adventureCardsChecker;
     private PlayerSelector _playerSelector;
     [SerializeField] private DiceRoll diceRoll;
     
     public PlayerState playerState;
- 
-    
-    public Player CurrentPlayer { get; private set; }
-    
     
     
     private void OnEnable()
@@ -39,20 +38,24 @@ public class PlayerController : MonoBehaviour
         GameManager.Instance.OnFightStarted += ChangeStateToFight;
         GameManager.Instance.TurnStarted += OnTurnStarted;
         _playerMovement.OnEndMovePlayerMove += CheckIfOnCard;
- 
     }
  
+    private void Awake()
+    {
+        diceRoll = FindObjectOfType<DiceRoll>();
+        _playerMovement = GetComponent<PlayerMovement>();
+        _adventureCardsChecker = GetComponent<AdventureCardsChecker>();
+        _playerSelector = GetComponent<PlayerSelector>();
+    }
     private void OnFightEnded(bool win, Player fightingPlayer, EnemyCard enemyCard)
     {
         if(CurrentPlayer != fightingPlayer || enemyCard is BossCard) return;
-        Debug.Log($"player {fightingPlayer}, {win}");
         
         if (win)
         {
             enemyCard.enemyDefeatedBehaviour.EnemyDefeated(fightingPlayer);
-            playerState = PlayerState.None;
             Destroy(enemyCard);
-            GameManager.Instance.TurnEnded(CurrentPlayer);
+            ChangePlayerState(CheckForPlayerState(CurrentPlayer));
         }
         else
         {
@@ -68,24 +71,52 @@ public class PlayerController : MonoBehaviour
     }
 
 
-    private void CheckIfOnCard(Player player)
+ 
+    
+    private void OnTurnStarted(GameManager.TurnStatedData data)
     {
-        if(player != CurrentPlayer) return;
-        if(playerState == PlayerState.Fighting) return;
+        if (data.Player != CurrentPlayer) return;
         
-        if (!_adventureCardsChecker.CheckIfStayOnCard(CurrentPlayer))
+        ChangePlayerState(CheckForPlayerState(CurrentPlayer));
+    }
+
+    public void ChangePlayerState(PlayerState playerState)
+    {
+        switch (playerState)
         {
-            GameManager.Instance.TurnEnded(CurrentPlayer);
+            case PlayerState.None:
+                CheckForPlayerState(CurrentPlayer);
+                break;
+            case PlayerState.Fighting:
+                TriggerCurrentEnemy();
+                break;
+            case PlayerState.Walking:
+                MovePlayer();
+                break;
+            case PlayerState.Stunned:
+                PlayerStun();
+                //GameManager.Instance.TurnEnded(CurrentPlayer);
+                break;
+            case PlayerState.EndTurn:
+                GameManager.Instance.TurnEnded(CurrentPlayer);
+                break;
+        }
+    }
+
+    public PlayerState CheckForPlayerState(Player player)
+    {
+  
+        if (_adventureCardsChecker.GetTile(CurrentPlayer) is BattleTile )
+        {
+                playerState = PlayerState.Fighting;
         }
         else
         {
-            AdventureTile adventureTile = _adventureCardsChecker.GetTile(CurrentPlayer);
-            GameManager.Instance.CardTriggered(CurrentPlayer,adventureTile);
-            
+            playerState = PlayerState.EndTurn;
         }
-
+        
+        return playerState;
     }
-
     [SerializeField] private int stunnedFor;
     [ContextMenu("StunPlayer")]
     public void StunPlayer(int numberOfTurns, Player player)
@@ -95,70 +126,34 @@ public class PlayerController : MonoBehaviour
         stunnedFor = numberOfTurns;
     }
 
-    private void Awake()
+    public void PlayerStun()
     {
-        diceRoll = FindObjectOfType<DiceRoll>();
-        _playerMovement = GetComponent<PlayerMovement>();
-        _adventureCardsChecker = GetComponent<AdventureCardsChecker>();
-        _playerSelector = GetComponent<PlayerSelector>();
-    }
-    
-    private void OnTurnStarted(GameManager.TurnStatedData data)
-    {
-        if (data.Player != CurrentPlayer) return;
-        if (data.Player.currentEnemyCard == null && playerState == PlayerState.None)
+        _playerMovement.MovePlayer(0, CurrentPlayer);
+        if (stunnedFor > 0)
         {
-            playerState = PlayerState.Walking;       
+            stunnedFor--;
         }
-        else 
+        else
         {
-            data.Player.currentEnemyCard.TriggerCard(CurrentPlayer);
-        }
-        
-        switch (playerState)
-        {
-            case PlayerState.None:
-                break;
-            case PlayerState.Fighting:
-                data.Player.currentEnemyCard.TriggerCard(data.Player);
-                break;
-            case PlayerState.Walking:
-                MovePlayer(data.Player);
-                break;
-            case PlayerState.Stunned:
-                _playerMovement.MovePlayer(0,data.Player);
-                if (stunnedFor > 0)
-                {
-                    stunnedFor--;
-                }
-                else
-                {
-                    playerState = PlayerState.Walking;
-                }
-                //GameManager.Instance.TurnEnded(CurrentPlayer);
-                break;
+            playerState = PlayerState.Walking;
         }
     }
 
+    public void TriggerCurrentEnemy()
+    {
+        CurrentPlayer.currentEnemyCard.TriggerCard(CurrentPlayer);
+    }
     
-    
-
-    public void MovePlayer(Player player)
+    public void MovePlayer()
     {
         if (playerState == PlayerState.None) return;
         
         diceRoll.RequestDiceRoll(false, result =>
         {
-            _playerMovement.MovePlayer(result, player);
+            _playerMovement.MovePlayer(result, CurrentPlayer);
         });
     }
-
-    private void OnDisable()
-    {
-        GameManager.Instance.TurnStarted -= OnTurnStarted;
-        _playerMovement.OnEndMovePlayerMove -= CheckIfOnCard;
-    }
-
+    
     public int Attack(int rollResult)
     {
         return rollResult;
@@ -168,5 +163,15 @@ public class PlayerController : MonoBehaviour
     {
         CurrentPlayer = player;
     }
+    
+    
+
+
+    private void OnDisable()
+    {
+        GameManager.Instance.TurnStarted -= OnTurnStarted;
+        _playerMovement.OnEndMovePlayerMove -= CheckIfOnCard;
+    }
+
 }
 

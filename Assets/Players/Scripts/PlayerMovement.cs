@@ -68,7 +68,6 @@ public class PlayerMovement : MonoBehaviour
                     Vector3 offset = movePosition + Vector3.right * 100f * j;
                     playerOnTile[j].transform.position = offset;
                     rb.isKinematic = false;
-                    Debug.Log("Wykryto graczy: " + playerOnTile.Length);
             }
             
             sequence.Append(player.PlayerObject.transform.DOJump(movePosition, 6f, 0, 0.5f).SetEase(Ease.OutSine));

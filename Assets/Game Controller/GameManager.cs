@@ -53,7 +53,8 @@ public class GameManager : MonoBehaviour
     
     public void Start()
     {
-        DebugConsole.OnConsoleDisplay?.Invoke("--Game Started--");
+        DebugConsole.LogCentered("== Game Started ==");
+        
         playerSpawner = FindObjectOfType<PlayerSpawner>();
         _players = playerSpawner.playersList;
         _playersRank = _players;
@@ -129,7 +130,6 @@ public class GameManager : MonoBehaviour
     public void CardTriggered(Player player, AdventureTile adventureTile)
     {   
         OnCardTriggered?.Invoke(player, adventureTile);
-        DebugConsole.OnConsoleDisplay?.Invoke("Adventure card found");
     }
     
     [ContextMenu("Next Turn (No Bonus)")]

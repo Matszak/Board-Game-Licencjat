@@ -34,7 +34,7 @@ public class FightSystem : MonoBehaviour
         if(_currentPlayer != player ) return;
         _enemy = enemy;
         PlayerAttack(player);
-        DebugConsole.Log("Fight Started");
+        DebugConsole.LogCentered($"= {_currentPlayer.Name} is attacked =");
     }
 
     private void PlayerAttack(Player player)
@@ -43,7 +43,7 @@ public class FightSystem : MonoBehaviour
         {
             _playerAttackValue = player.PlayerObject.GetComponent<PlayerController>().Attack(i);
             EnemyAttack(_enemy);
-            DebugConsole.Log($"Player rolled {_playerAttackValue}");
+            DebugConsole.Log($"{_currentPlayer.Name} rolled = {_playerAttackValue}");
         });
         
     }
@@ -54,7 +54,7 @@ public class FightSystem : MonoBehaviour
          enemy.enemyAttackAttackBehaviour.EnemyAttack(attackValue =>
         { 
             _enemyAttackValue = attackValue;
-            DebugConsole.Log($"Enemy rolled {_enemyAttackValue}");
+            DebugConsole.Log($"{enemy.name} rolled = {_enemyAttackValue}");
             EndFight();
         });
         
@@ -70,11 +70,14 @@ public class FightSystem : MonoBehaviour
         
         if (_playerAttackValue > _enemyAttackValue)
         {
-            DebugConsole.Log("Player Wins");
+            DebugConsole.Log($"{_currentPlayer.Name} Wins");
+            {
+                DebugConsole.Log($"{_currentPlayer.Name} is moving {(_playerAttackValue - _enemyAttackValue)}");
+            }
         }
         else if (_enemyAttackValue > _playerAttackValue)
         {
-            DebugConsole.Log("Player Loses");
+            DebugConsole.Log($"{_currentPlayer.Name} Loses");
         }
         else if (_playerAttackValue == _enemyAttackValue)
         {

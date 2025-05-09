@@ -16,7 +16,6 @@ public class PlayerMovement : MonoBehaviour
     public LayerMask playerLayer;
 
     public event Action<Player> OnEndMovePlayerMove;
-   // private int dicePenalty = 0;
    
    public Player _player;
 
@@ -69,7 +68,6 @@ public class PlayerMovement : MonoBehaviour
                     Vector3 offset = movePosition + Vector3.right * 100f * j;
                     playerOnTile[j].transform.position = offset;
                     rb.isKinematic = false;
-                    Debug.Log("Wykryto graczy: " + playerOnTile.Length);
             }
             
             sequence.Append(player.PlayerObject.transform.DOJump(movePosition, 6f, 0, 0.5f).SetEase(Ease.OutSine));
@@ -84,9 +82,8 @@ public class PlayerMovement : MonoBehaviour
                     sequence.Kill();
                 }
             });
+            
         }
-        
-
         sequence.OnComplete(() =>
         {
             player.TileIndex = targetTileIndex;

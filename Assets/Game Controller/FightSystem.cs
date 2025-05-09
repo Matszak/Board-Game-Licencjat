@@ -6,6 +6,7 @@ using UnityEngine;
 
 public class FightSystem : MonoBehaviour
 {
+    
  
     public static event Action<bool, Player, EnemyCard> EndEnemyFight;
     public static event Action<Player> fightStarted;
@@ -33,6 +34,7 @@ public class FightSystem : MonoBehaviour
         if(_currentPlayer != player ) return;
         _enemy = enemy;
         PlayerAttack(player);
+        DebugConsole.LogCentered($"= {_currentPlayer.Name} is attacked =");
     }
 
     private void PlayerAttack(Player player)
@@ -41,7 +43,9 @@ public class FightSystem : MonoBehaviour
         {
             _playerAttackValue = player.PlayerObject.GetComponent<PlayerController>().Attack(i);
             EnemyAttack(_enemy);
+            DebugConsole.Log($"{_currentPlayer.Name} rolled = {_playerAttackValue}");
         });
+        
     }
 
     private void EnemyAttack(EnemyCard enemy)
@@ -50,8 +54,10 @@ public class FightSystem : MonoBehaviour
          enemy.enemyAttackAttackBehaviour.EnemyAttack(attackValue =>
         { 
             _enemyAttackValue = attackValue;
+            DebugConsole.Log($"{enemy.name} rolled = {_enemyAttackValue}");
             EndFight();
         });
+        
     }
 
     private void EndFight()
@@ -61,6 +67,22 @@ public class FightSystem : MonoBehaviour
         bool endFightState = _playerAttackValue > _enemyAttackValue;
         
         StartCoroutine(DelayedEndFight(0.5f, endFightState));
+        
+        if (_playerAttackValue > _enemyAttackValue)
+        {
+            DebugConsole.Log($"{_currentPlayer.Name} Wins");
+            {
+                DebugConsole.Log($"{_currentPlayer.Name} is moving {(_playerAttackValue - _enemyAttackValue)}");
+            }
+        }
+        else if (_enemyAttackValue > _playerAttackValue)
+        {
+            DebugConsole.Log($"{_currentPlayer.Name} Loses");
+        }
+        else if (_playerAttackValue == _enemyAttackValue)
+        {
+            DebugConsole.Log("Draw");
+        }
     }
 
     private IEnumerator DelayedEndFight(float delay, bool win)

@@ -16,7 +16,11 @@ public enum PlayerState
     Walking,
     Fighting,
     Stunned,
+    FightWin,
+    CardPickUp
 }
+
+
 
 public class PlayerController : MonoBehaviour
 {
@@ -25,8 +29,8 @@ public class PlayerController : MonoBehaviour
     private PlayerSelector _playerSelector;
     [SerializeField] private DiceRoll diceRoll;
     
-    public PlayerState playerState;
- 
+    public PlayerState  playerState;
+    public PlayerState playerSecondState;
     
     public Player CurrentPlayer { get; private set; }
     
@@ -49,14 +53,14 @@ public class PlayerController : MonoBehaviour
         
         if (win)
         {
-            enemyCard.enemyDefeatedBehaviour.EnemyDefeated(fightingPlayer);
-            playerState = PlayerState.None;
-            Destroy(enemyCard);
-            GameManager.Instance.TurnEnded(CurrentPlayer);
+             playerSecondState  = PlayerState.FightWin;
+             enemyCard.enemyDefeatedBehaviour.EnemyDefeated(fightingPlayer);
+             
+ 
         }
         else
         {
-            playerState = PlayerState.Fighting;
+            playerSecondState = PlayerState.Fighting;
             GameManager.Instance.TurnEnded(CurrentPlayer);
         }
     }
@@ -71,20 +75,40 @@ public class PlayerController : MonoBehaviour
     private void CheckIfOnCard(Player player)
     {
         if(player != CurrentPlayer) return;
-        if(playerState == PlayerState.Fighting) return;
-        
+        if (playerState != PlayerState.Walking && playerSecondState == PlayerState.FightWin)
+        {
+            GameManager.Instance.TurnEnded(CurrentPlayer);
+        }
+
+        if (playerSecondState == PlayerState.CardPickUp && playerState != PlayerState.Walking)
+        {
+            GameManager.Instance.TurnEnded(CurrentPlayer);
+        }
+        if (playerSecondState == PlayerState.CardPickUp && playerState == PlayerState.Walking)
+        {
+            GameManager.Instance.TurnEnded(CurrentPlayer);
+        }
+ 
         if (!_adventureCardsChecker.CheckIfStayOnCard(CurrentPlayer))
         {
             GameManager.Instance.TurnEnded(CurrentPlayer);
         }
-        else
+        else 
         {
             AdventureTile adventureTile = _adventureCardsChecker.GetTile(CurrentPlayer);
+ 
             GameManager.Instance.CardTriggered(CurrentPlayer,adventureTile);
-            
+        
         }
-
+    
     }
+
+    public void CardPickedUp(Player player)
+    {
+        playerSecondState = PlayerState.CardPickUp;
+        CheckIfOnCard(player);
+    }
+     
 
     [SerializeField] private int stunnedFor;
     [ContextMenu("StunPlayer")]
@@ -110,7 +134,7 @@ public class PlayerController : MonoBehaviour
         {
             playerState = PlayerState.Walking;       
         }
-        else 
+        else if (playerState == PlayerState.Fighting)
         {
             data.Player.currentEnemyCard.TriggerCard(CurrentPlayer);
         }
@@ -135,8 +159,9 @@ public class PlayerController : MonoBehaviour
                 {
                     playerState = PlayerState.Walking;
                 }
-                //GameManager.Instance.TurnEnded(CurrentPlayer);
+                GameManager.Instance.TurnEnded(CurrentPlayer);
                 break;
+           
         }
     }
 
@@ -145,8 +170,7 @@ public class PlayerController : MonoBehaviour
 
     public void MovePlayer(Player player)
     {
-        if (playerState == PlayerState.None) return;
-        
+        playerState = PlayerState.Walking;
         diceRoll.RequestDiceRoll(false, result =>
         {
             _playerMovement.MovePlayer(result, player);

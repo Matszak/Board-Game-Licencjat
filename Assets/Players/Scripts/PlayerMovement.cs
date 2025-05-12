@@ -49,6 +49,7 @@ public class PlayerMovement : MonoBehaviour
     public void MovePlayer(int steps, Player player)
     {
         _player = player;
+        _player.PlayerObject.GetComponent<PlayerController>().playerState = PlayerState.Walking;
         int targetTileIndex = Math.Min(player.TileIndex + steps, tiles.Length - 1);
         
         Sequence sequence = DOTween.Sequence();
@@ -77,7 +78,7 @@ public class PlayerMovement : MonoBehaviour
             int currentTileIndex = i;
             sequence.AppendCallback(() =>
             {
-                if (IsEnemyOnTile(player.PlayerObject.transform.position) && player.PlayerObject.GetComponent<PlayerController>().playerState != PlayerState.Fighting)
+                if (IsEnemyOnTile(player.PlayerObject.transform.position) && player.PlayerObject.GetComponent<PlayerController>().playerSecondState != PlayerState.FightWin)
                 {
                     player.TileIndex = currentTileIndex;
                     OnEndMovePlayerMove?.Invoke(player);

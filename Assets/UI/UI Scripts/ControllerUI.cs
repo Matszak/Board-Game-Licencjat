@@ -6,6 +6,8 @@ using UnityEngine;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine.UI;
+using TMPro;
+using UnityEditor.Searcher;
 
 public class ControllerUI : MonoBehaviour
 {
@@ -18,8 +20,8 @@ public class ControllerUI : MonoBehaviour
 
     public List<GameObject> _cards;
     private Player _player;
-    
-    
+
+ 
 
     private void OnEnable()
     {
@@ -80,11 +82,13 @@ public class ControllerUI : MonoBehaviour
                 break;
         }
        
+      
     }
 
     public void OnButtonClicked()
     {
-     
+        
+        DebugConsole.LogCentered("== Turn Ended ==");
         GameManager.Instance.NextTurn(false);
         nextTurnButton.SetActive(false);
     }

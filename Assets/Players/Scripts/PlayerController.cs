@@ -144,17 +144,16 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    
-    
-
     public void MovePlayer(Player player)
     {
         if (playerState == PlayerState.None) return;
         
         diceRoll.RequestDiceRoll(false, result =>
         {
+            DebugConsole.Log($"{CurrentPlayer.Name} rolled = {result}");
             _playerMovement.MovePlayer(result, player);
         });
+    
     }
 
     private void OnDisable()

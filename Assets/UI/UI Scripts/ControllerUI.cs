@@ -6,6 +6,8 @@ using UnityEngine;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine.UI;
+using TMPro;
+using UnityEditor.Searcher;
 
 public class ControllerUI : MonoBehaviour
 {
@@ -80,6 +82,8 @@ public class ControllerUI : MonoBehaviour
                 break;
         }
        
+        nextTurnButton.SetActive(true);
+        DebugConsole.LogCentered("== Turn Ended ==");
     }
 
     public void OnButtonClicked()
@@ -87,6 +91,7 @@ public class ControllerUI : MonoBehaviour
      
         GameManager.Instance.NextTurn(false);
         nextTurnButton.SetActive(false);
+        DebugConsole.LogCentered("== New Turn ==");
     }
 
     public void NextTurnButtonNameChange(string message)

@@ -18,12 +18,12 @@ public class ControllerUI : MonoBehaviour
 
     public List<GameObject> _cards;
     private Player _player;
-
- 
+    
+    
 
     private void OnEnable()
     {
-        GameManager.Instance.TurnStarted += OnUIUpdated;
+        GameManager.Instance.TurnStarted += UpdateUI;
         GameManager.Instance.OnTurnEnded += EndTurn;
         GameManager.Instance.OnWinGame += WinnerUi;
         nextTurnButton.SetActive(false);
@@ -40,8 +40,8 @@ public class ControllerUI : MonoBehaviour
         currentTurnText.text = $"Winner: {obj}";
         
     }
-
-    private void OnUIUpdated(GameManager.TurnStatedData obj)
+ 
+    public void UpdateUI(GameManager.TurnStatedData obj)
     {
         if (_player == obj.Player) return; 
         
@@ -53,14 +53,33 @@ public class ControllerUI : MonoBehaviour
  
     void OnDestroy()
     {
-        GameManager.Instance.TurnStarted -= OnUIUpdated;
+        GameManager.Instance.TurnStarted -= UpdateUI;
     }
 
-    void EndTurn(Player player)
+    public void EndTurn(Player player)
     {
         if (player != _player) return;
         LoadCards(_player);
-        nextTurnButton.SetActive(true);
+        var state = player.PlayerObject.GetComponent<PlayerController>().playerState;
+        switch (state)
+        {
+            case PlayerState.FightStarted:
+                nextTurnButton.SetActive(false);
+                break;
+            case PlayerState.FightLose:
+                nextTurnButton.SetActive(true); 
+                break;
+            case PlayerState.FightWin:
+                 
+                break;
+            case PlayerState.CardPickedUp:
+                nextTurnButton.SetActive(true);
+                break;
+            case PlayerState.None:
+                nextTurnButton.SetActive(true);
+                break;
+        }
+       
     }
 
     public void OnButtonClicked()

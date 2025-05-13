@@ -11,6 +11,8 @@ using Random = UnityEngine.Random;
 
 public class AdventuresCards : MonoBehaviour
 {
+    [SerializeField] private ControllerUI controllerUI;
+    
     [SerializeField] private GameObject cardsUI;
     
     [SerializeField] private Image cardImage;
@@ -31,7 +33,7 @@ public class AdventuresCards : MonoBehaviour
    
     private Card _selectedCard;
     private bool checkForCard = false;
-    
+    private GameManager.TurnStatedData turnStartedData;
     private void OnEnable()
     {
         GameManager.Instance.TurnStarted += OnTurnStarted;
@@ -53,6 +55,7 @@ public class AdventuresCards : MonoBehaviour
         // assign current player
         checkForCard = true;
         _player = obj.Player;
+        turnStartedData = obj;
     }
 
     private void OnDisable()
@@ -101,11 +104,18 @@ public class AdventuresCards : MonoBehaviour
              _player.playerCards.Add(_selectedCard);
              checkForCard = false;  
              cardsUI.SetActive(false);
+             controllerUI.UpdateUI(turnStartedData);   
+             _player.PlayerObject.GetComponent<PlayerController>().playerState = PlayerState.CardPickedUp;
              EndTurn(_player);
+             
+             
+ 
+             
          }
          else if (_selectedCard is EnemyCard card)
          {
              _player.currentEnemyCard = card;
+             checkForCard = false;
              cardsUI.SetActive(false);
              card.TriggerCard(_player);
          }

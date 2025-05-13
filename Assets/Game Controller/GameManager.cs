@@ -45,7 +45,7 @@ public class GameManager : MonoBehaviour
     {
         {
             _playersRank = _playersRank.OrderByDescending(p => p.TileIndex).ToList();
-            currentPlayerState = currentPlayerObj.PlayerObject.GetComponent<PlayerController>().playerState;
+           // currentPlayerState = currentPlayerObj.PlayerObject.GetComponent<PlayerController>().playerState;
         }
          
     }

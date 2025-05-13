@@ -14,7 +14,12 @@ public enum PlayerState
 {
     None,
     Walking,
+    CardPickedUp,
+    FightStarted,
     Fighting,
+    FightEnded,
+    FightWin,
+    FightLose,
     Stunned,
 }
 
@@ -46,17 +51,16 @@ public class PlayerController : MonoBehaviour
     {
         if(CurrentPlayer != fightingPlayer || enemyCard is BossCard) return;
         Debug.Log($"player {fightingPlayer}, {win}");
-        
+         
         if (win)
         {
+            playerState = PlayerState.FightWin;
             enemyCard.enemyDefeatedBehaviour.EnemyDefeated(fightingPlayer);
-            playerState = PlayerState.None;
-            Destroy(enemyCard);
-            GameManager.Instance.TurnEnded(CurrentPlayer);
+            //CheckIfOnCard(fightingPlayer);
         }
         else
         {
-            playerState = PlayerState.Fighting;
+            playerState = PlayerState.FightLose;
             GameManager.Instance.TurnEnded(CurrentPlayer);
         }
     }
@@ -64,21 +68,21 @@ public class PlayerController : MonoBehaviour
     private void ChangeStateToFight(Player player, EnemyCard enemyCard)
     {
         if(player != CurrentPlayer) return;
-       playerState = PlayerState.Fighting;
+       playerState = PlayerState.FightStarted;
     }
 
 
     private void CheckIfOnCard(Player player)
-    {
+    {   
         if(player != CurrentPlayer) return;
-        if(playerState == PlayerState.Fighting) return;
-        
+        //if(playerState is  PlayerState.FightLose or PlayerState.FightStarted) return;
         if (!_adventureCardsChecker.CheckIfStayOnCard(CurrentPlayer))
         {
             GameManager.Instance.TurnEnded(CurrentPlayer);
         }
         else
         {
+            
             AdventureTile adventureTile = _adventureCardsChecker.GetTile(CurrentPlayer);
             GameManager.Instance.CardTriggered(CurrentPlayer,adventureTile);
             
@@ -106,11 +110,11 @@ public class PlayerController : MonoBehaviour
     private void OnTurnStarted(GameManager.TurnStatedData data)
     {
         if (data.Player != CurrentPlayer) return;
-        if (data.Player.currentEnemyCard == null && playerState == PlayerState.None)
+        if (data.Player.currentEnemyCard == null && playerState is PlayerState.None or PlayerState.FightWin or PlayerState.CardPickedUp)
         {
             playerState = PlayerState.Walking;       
         }
-        else 
+        else if(playerState == PlayerState.FightLose)
         {
             data.Player.currentEnemyCard.TriggerCard(CurrentPlayer);
         }
@@ -119,7 +123,7 @@ public class PlayerController : MonoBehaviour
         {
             case PlayerState.None:
                 break;
-            case PlayerState.Fighting:
+            case PlayerState.FightStarted:
                 data.Player.currentEnemyCard.TriggerCard(data.Player);
                 break;
             case PlayerState.Walking:

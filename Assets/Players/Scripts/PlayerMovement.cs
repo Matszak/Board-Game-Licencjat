@@ -27,7 +27,7 @@ public class PlayerMovement : MonoBehaviour
         
        Sequence sequence = DOTween.Sequence();
         
-       for (int i = player.TileIndex; i >= targetTileIndex; i--)
+       for (int i = player.TileIndex -1; i >= targetTileIndex; i--)
        {
            Vector3 movePosition = new Vector3(
                tiles[i].position.x,
@@ -49,11 +49,12 @@ public class PlayerMovement : MonoBehaviour
     public void MovePlayer(int steps, Player player)
     {
         _player = player;
+         
         int targetTileIndex = Math.Min(player.TileIndex + steps, tiles.Length - 1);
         
         Sequence sequence = DOTween.Sequence();
         
-        for (int i = player.TileIndex; i <= targetTileIndex; i++)
+        for (int i = player.TileIndex +1; i <= targetTileIndex; i++)
         {
             Vector3 movePosition = new Vector3(
                 tiles[i].position.x,
@@ -77,12 +78,14 @@ public class PlayerMovement : MonoBehaviour
             int currentTileIndex = i;
             sequence.AppendCallback(() =>
             {
-                if (IsEnemyOnTile(player.PlayerObject.transform.position) && player.PlayerObject.GetComponent<PlayerController>().playerState != PlayerState.Fighting)
+                if (IsEnemyOnTile(player.PlayerObject.transform.position) && player.PlayerObject.GetComponent<PlayerController>().playerState != PlayerState.FightWin)
                 {
                     player.TileIndex = currentTileIndex;
                     OnEndMovePlayerMove?.Invoke(player);
                     sequence.Kill();
                 }
+
+                
             });
         }
         
@@ -102,10 +105,13 @@ public class PlayerMovement : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(playerPosition, Vector3.down, out hit, Mathf.Infinity))
         {
-            if (hit.collider.GetComponent<BattleTile>() && _player.PlayerObject.gameObject.GetComponent<PlayerController>().playerState != PlayerState.Fighting)
+            PlayerState playerState = _player.PlayerObject.gameObject.GetComponent<PlayerController>().playerState;
+            if (hit.collider.GetComponent<BattleTile>())
             {
                 return true;
             }
+            
+        
         }
         return false;
     }

@@ -11113,8 +11113,6 @@ MonoBehaviour:
     TileIndex: 0
     playerCards: []
     currentEnemyCard: {fileID: 0}
-  currentTurn: 0
-  currentPlayerState: 0
   playerSpawner: {fileID: 0}
 --- !u!114 &766044894
 MonoBehaviour:

@@ -62,12 +62,13 @@ public class AdventuresCards : MonoBehaviour
 
     private void TriggerCard(Player player, AdventureTile adventureTile)
     {
-         if (player != _player ) return;
-          
+         if (player != _player) return;
+     
          switch (adventureTile)
          {
              case BonusTile:
                  _selectedCard = bonusCards[Random.Range(0, bonusCards.Length)];
+             
                  break;
              case DisadvantageTile:
                  _selectedCard = disadvantageCards[Random.Range(0, disadvantageCards.Length)];
@@ -89,6 +90,7 @@ public class AdventuresCards : MonoBehaviour
          cardImage.sprite = _selectedCard.cardImage;
          cardText.text = _selectedCard.nameText;
          descriptionText.text = _selectedCard.descriptionText;
+        
          cardsUI.SetActive(true);
         }
 
@@ -118,8 +120,7 @@ public class AdventuresCards : MonoBehaviour
 
     private void EndTurn(Player obj)
     {
-        
-        obj.PlayerObject.GetComponent<PlayerController>().CardPickedUp(obj);
+        GameManager.Instance.TurnEnded(obj);
         _selectedCard.OnCardCompleted -= EndTurn;
     }
 }

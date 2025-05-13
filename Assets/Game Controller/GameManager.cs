@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Cards;
 using Cards.EnemyCards;
-using TMPro;
+
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -26,9 +26,6 @@ public class GameManager : MonoBehaviour
     [SerializeField] private PlayerState currentPlayerState;
     
     public PlayerSpawner playerSpawner;
-
-    [SerializeField] private TextMeshProUGUI cosnoleText;
-    
     
     private void Awake()
     {
@@ -50,13 +47,12 @@ public class GameManager : MonoBehaviour
             _playersRank = _playersRank.OrderByDescending(p => p.TileIndex).ToList();
            // currentPlayerState = currentPlayerObj.PlayerObject.GetComponent<PlayerController>().playerState;
         }
+         
     }
     
     
     public void Start()
     {
-        DebugConsole.LogCentered("== Game Started ==");
-        
         playerSpawner = FindObjectOfType<PlayerSpawner>();
         _players = playerSpawner.playersList;
         _playersRank = _players;
@@ -80,8 +76,8 @@ public class GameManager : MonoBehaviour
                 gameObject.GetComponent<PlayerMovement>().tiles[j] = tileObject.transform;
             }
         }
-
-        TurnStarted?.Invoke(new TurnStatedData { Turn = currentTurn, Player = _players[currentPlayer] });
+ 
+        TurnStarted?.Invoke(new TurnStatedData{Turn = currentTurn, Player = _players[currentPlayer]});
         
     }
 
@@ -166,7 +162,6 @@ public class GameManager : MonoBehaviour
         TurnStarted?.Invoke(new TurnStatedData
         {
             Turn = currentTurn, Player = currentPlayerObj, BonusTurn = bonusTurn
-            
         });
     }
     

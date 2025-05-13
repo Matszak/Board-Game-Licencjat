@@ -155,11 +155,6 @@ public class PlayerController : MonoBehaviour
         {
             _playerMovement.MovePlayer(result, player);
         });
-       diceRoll.RequestDiceRoll(false, result =>
-       {
-           DebugConsole.Log($"{CurrentPlayer.Name} rolled = {result}");
-           _playerMovement.MovePlayer(result, player);
-       });
     }
 
     private void OnDisable()

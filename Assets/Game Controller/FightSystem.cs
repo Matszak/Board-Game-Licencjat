@@ -6,6 +6,7 @@ using UnityEngine;
 
 public class FightSystem : MonoBehaviour
 {
+    public GameObject BattleScreenCanvas;
     
     public static event Action<bool, Player, EnemyCard> EndEnemyFight;
     public static event Action<Player> fightStarted;
@@ -81,6 +82,7 @@ public class FightSystem : MonoBehaviour
         {
             DebugConsole.Log("Draw");
         }
+        
     }
 
     private IEnumerator DelayedEndFight(float delay, bool win)
@@ -89,5 +91,7 @@ public class FightSystem : MonoBehaviour
         EndEnemyFight?.Invoke(win,_currentPlayer, _enemy);
         
     }
+    
+    
  
 }

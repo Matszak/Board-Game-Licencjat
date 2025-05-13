@@ -70,7 +70,7 @@ public class FightSystem : MonoBehaviour
         {
             DebugConsole.Log($"{_currentPlayer.Name} Wins");
             {
-                DebugConsole.Log($"{_currentPlayer.Name} is moving {(_playerAttackValue - _enemyAttackValue)}");
+                DebugConsole.Log($"{_currentPlayer.Name} is moving 4");
             }
         }
         else if (_enemyAttackValue > _playerAttackValue)

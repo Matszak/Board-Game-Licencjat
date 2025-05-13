@@ -14,8 +14,8 @@ public class AdventuresCards : MonoBehaviour
     [SerializeField] private GameObject cardsUI;
     
     [SerializeField] private Image cardImage;
-    [SerializeField] private TextMeshProUGUI cardText;
-    [SerializeField] private TextMeshProUGUI descriptionText;
+    //[SerializeField] private TextMeshProUGUI cardText;
+    //[SerializeField] private TextMeshProUGUI descriptionText;
     
     [SerializeField] private Card[] cards;
     [SerializeField] private Card[] bonusCards;
@@ -88,8 +88,8 @@ public class AdventuresCards : MonoBehaviour
                  break;
          }
          cardImage.sprite = _selectedCard.cardImage;
-         cardText.text = _selectedCard.nameText;
-         descriptionText.text = _selectedCard.descriptionText;
+         //cardText.text = _selectedCard.nameText;
+         //descriptionText.text = _selectedCard.descriptionText;
         
          cardsUI.SetActive(true);
         }

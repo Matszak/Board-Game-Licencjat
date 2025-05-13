@@ -7,7 +7,6 @@ using TMPro;
 using Unity.VisualScripting;
 using UnityEngine.UI;
 using TMPro;
-using UnityEditor.Searcher;
 
 public class ControllerUI : MonoBehaviour
 {

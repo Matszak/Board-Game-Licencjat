@@ -6417,8 +6417,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.000022173, y: -0.29002}
-  m_SizeDelta: {x: 200, y: 280}
+  m_AnchoredPosition: {x: 0.000022888, y: 0.000019073}
+  m_SizeDelta: {x: 280, y: 400}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &428158197
 MonoBehaviour:
@@ -11371,8 +11371,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardsUI: {fileID: 1532603954}
   cardImage: {fileID: 428158197}
-  cardText: {fileID: 0}
-  descriptionText: {fileID: 0}
   cards:
   - {fileID: 11400000, guid: e29f3676356feca40898fd174362be76, type: 2}
   - {fileID: 11400000, guid: 1ec61058abd72df4197c07337898377e, type: 2}
@@ -13686,7 +13684,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &945536080
 RectTransform:
   m_ObjectHideFlags: 0
@@ -14658,10 +14656,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: f64ae661fde89de47b57087f2032340e,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1617074044}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: f64ae661fde89de47b57087f2032340e,
-        type: 3}
-      insertIndex: -1
       addedObject: {fileID: 1617074045}
   m_SourcePrefab: {fileID: 100100000, guid: f64ae661fde89de47b57087f2032340e, type: 3}
 --- !u!4 &1007703100 stripped
@@ -14884,8 +14878,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.0000095367, y: -168.3}
-  m_SizeDelta: {x: 200, y: 40.6922}
+  m_AnchoredPosition: {x: 0.95264, y: -263.3323}
+  m_SizeDelta: {x: 281.91, y: 57.3567}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1024691603
 MonoBehaviour:
@@ -23590,18 +23584,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1007703099}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1617074044
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1617074043}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4c2344ebeb0d47c4c927838ef4c698ac, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!65 &1617074045
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -25165,7 +25147,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Fight
+  m_text: Check
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a70aea1866d557344bf6264fcf4ccf72, type: 2}
   m_sharedMaterial: {fileID: 3493118698482586819, guid: a70aea1866d557344bf6264fcf4ccf72,
@@ -30670,7 +30652,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.002243, y: 0}
+  m_AnchoredPosition: {x: -0.002243042, y: 0}
   m_SizeDelta: {x: 280.61, y: 36.6951}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2128487757

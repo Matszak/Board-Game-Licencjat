@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardPrefab: {fileID: 1075834351943545949, guid: 7392d011aea06b946a33dd18eb24b885,
     type: 3}
-  cardImage: {fileID: 0}
+  cardImage: {fileID: 21300000, guid: b97cb6fef1dcd5e49ad2fc23ee657a5b, type: 3}
   nameText: Big orc
   descriptionText: throw higher value than this enemy
   enemyAttackAttackBehaviour: {fileID: 11400000, guid: 9969afc5720b10e4aa5797ac2a74bfe2,

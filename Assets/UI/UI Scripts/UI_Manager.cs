@@ -44,14 +44,7 @@ public class UI_Manager : MonoBehaviour
         settingsPanel.SetActive(false);
 
     }
-
     
-    public void ButtonOne()
-    {
-        playerSpawner.SpawnPlayer(1);
-        LoadingSceneManager.sceneToLoad = "SampleScene";
-        SceneManager.LoadScene("LoadingScreen");
-    }
 
     public void ButtonTwo()
     {

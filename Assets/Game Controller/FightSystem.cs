@@ -7,21 +7,19 @@ using UnityEngine;
 public class FightSystem : MonoBehaviour
 {
     
- 
     public static event Action<bool, Player, EnemyCard> EndEnemyFight;
     public static event Action<Player> fightStarted;
     [SerializeField] EnemyCard _enemy;
     private Player _player;
     private Player _currentPlayer;
 
-    private int _playerAttackValue;
-    private int _enemyAttackValue;
+    public int _playerAttackValue { get; private set; }
+    public int _enemyAttackValue { get; private set; }
     
     public void OnEnable()
     {
        GameManager.Instance.TurnStarted += InstanceOnTurnStarted;
        GameManager.Instance.OnFightStarted += StartFight;
-       
     }
 
     private void InstanceOnTurnStarted(GameManager.TurnStatedData obj)
@@ -72,7 +70,7 @@ public class FightSystem : MonoBehaviour
         {
             DebugConsole.Log($"{_currentPlayer.Name} Wins");
             {
-                DebugConsole.Log($"{_currentPlayer.Name} is moving {(_playerAttackValue - _enemyAttackValue)}");
+                DebugConsole.Log($"{_currentPlayer.Name} is moving 4");
             }
         }
         else if (_enemyAttackValue > _playerAttackValue)

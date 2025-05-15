@@ -11480,6 +11480,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BattleScreenCanvas: {fileID: 945536079}
+  playerCard: {fileID: 0}
+  enemyBattleScreen: {fileID: 1406810620}
+  closeRollButton: {fileID: 1809008821}
+  closeRollResult: {fileID: 0}
+  playerRollResult: {fileID: 0}
+  enemyRollResult: {fileID: 0}
 --- !u!1001 &771364290
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -26436,7 +26442,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 0, y: 20}
+  m_AnchoredPosition: {x: 809.79, y: 20}
   m_SizeDelta: {x: 280.42236, y: 53.0529}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &1809008821
@@ -30804,7 +30810,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 0, y: 80}
+  m_AnchoredPosition: {x: 0, y: 32}
   m_SizeDelta: {x: 245.1721, y: 206.5392}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!1001 &2137592793

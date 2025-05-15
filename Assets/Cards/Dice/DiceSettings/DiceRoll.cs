@@ -15,6 +15,7 @@ public class DiceRoll : MonoBehaviour
     private EnemyCard _enemyCard;
     private DiceRollAnimation _diceRollAnimation;
     private int _rollResult;
+
  
     private Action<int> _onDiceRolled;
     

@@ -5909,7 +5909,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Texture: {fileID: 2800000, guid: a454050719005b444b59a84eaafba779, type: 3}
+  m_Texture: {fileID: 2800000, guid: 8eb69fafe4f719b49bb2dd1a7358aaaa, type: 3}
   m_UVRect:
     serializedVersion: 2
     x: 0
@@ -11452,6 +11452,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa6945ecf81c98343ab0091e0be7ead8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  BattleScreenCanvas: {fileID: 0}
   _enemy: {fileID: 0}
 --- !u!114 &766044895
 MonoBehaviour:
@@ -19759,7 +19760,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Texture: {fileID: 2800000, guid: a454050719005b444b59a84eaafba779, type: 3}
+  m_Texture: {fileID: 2800000, guid: 8eb69fafe4f719b49bb2dd1a7358aaaa, type: 3}
   m_UVRect:
     serializedVersion: 2
     x: 0
@@ -26433,11 +26434,11 @@ RectTransform:
   - {fileID: 1242377063}
   m_Father: {fileID: 1203218881}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 1, y: 0}
-  m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -10, y: 20}
-  m_SizeDelta: {x: 280.4224, y: 53.0529}
-  m_Pivot: {x: 1, y: 0}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 0}
+  m_AnchoredPosition: {x: 0, y: 20}
+  m_SizeDelta: {x: 280.42236, y: 53.0529}
+  m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &1809008821
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -30803,7 +30804,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 0, y: 31}
+  m_AnchoredPosition: {x: 0, y: 80}
   m_SizeDelta: {x: 245.1721, y: 206.5392}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!1001 &2137592793

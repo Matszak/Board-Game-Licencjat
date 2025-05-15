@@ -9,18 +9,30 @@ public class PlayerSelector : MonoBehaviour
     private Player _selectedPlayer;
     private Color _tempColor;
     private Renderer _renderer;
+    Material[] materials;
+    private static readonly int OutLineWidth = Shader.PropertyToID("_OutLineWidth");
+    private static readonly int OutLineColor = Shader.PropertyToID("_OutLineColor");
     
     private void OnEnable()
     {
         GameManager.Instance.OnInvokeSelection += TurnOnSelection;
         GameManager.Instance.OnCardPlayerSelected += TurnSelectionOff;
-        _renderer = GetComponentInChildren<Renderer>();
+     
+   
     }
-    
+
+    private void Start()
+    {
+        _renderer = GetComponentInChildren<Renderer>();
+        materials = _renderer.materials;
+    }
+
     private void TurnSelectionOff(Player  selectedPlayer)
     {
         _selectedPlayer = selectedPlayer;
         isActive = false;
+        materials[1].SetFloat(OutLineWidth, 0.188f);
+        materials[1].SetColor(OutLineColor, Color.white);
     }
     
     private void TurnOnSelection(Player player)
@@ -44,13 +56,15 @@ public class PlayerSelector : MonoBehaviour
     private void OnMouseOver()
     {
         if(!isActive) return;   
-        _renderer.material.color = Color.red;
+        materials[1].SetFloat(OutLineWidth, 0.188f);
+        materials[1].SetColor(OutLineColor, Color.red);
     }
 
     private void OnMouseExit()
     {
         if(!isActive) return;   
-        _renderer.material.color = _tempColor;
+        materials[1].SetFloat(OutLineWidth, 0.0f);
+        materials[1].SetColor(OutLineColor, Color.white);
     }
 }
  

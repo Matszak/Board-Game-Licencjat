@@ -35,10 +35,9 @@ public class UICardUsage : MonoBehaviour,IPointerEnterHandler, IPointerExitHandl
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        _isHovering = true;
-        if (!_isDragging)
+     
         {
-            transform.DOMove(new Vector2(_originalPosition.x, _originalPosition.y + 100f), 0.5f, true);
+            transform.DOMove(new Vector2(_originalPosition.x, _originalPosition.y + Input.mousePosition.y ), 0.5f, true);
         }
     }
 

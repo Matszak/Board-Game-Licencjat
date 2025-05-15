@@ -31,7 +31,7 @@ Transform:
   m_GameObject: {fileID: 5338167064597384778}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.24, y: -1.8499999, z: -21.14}
+  m_LocalPosition: {x: 0, y: -1.8499999, z: -21.14}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -368,10 +368,40 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -1439730007547781893, guid: 2cca404e3add1db49aa5aafd552d0477,
+        type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: -1439730007547781893, guid: 2cca404e3add1db49aa5aafd552d0477,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 695d36bb7fbf7bc49b0b18ecb06b8560, type: 2}
+    - target: {fileID: -1439730007547781893, guid: 2cca404e3add1db49aa5aafd552d0477,
+        type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: b3d85f1030941984bb0202b75876e0f9, type: 2}
     - target: {fileID: 919132149155446097, guid: 2cca404e3add1db49aa5aafd552d0477,
         type: 3}
       propertyPath: m_Name
       value: pionek_niebieski
+      objectReference: {fileID: 0}
+    - target: {fileID: 3316992658331686828, guid: 2cca404e3add1db49aa5aafd552d0477,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3316992658331686828, guid: 2cca404e3add1db49aa5aafd552d0477,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3316992658331686828, guid: 2cca404e3add1db49aa5aafd552d0477,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:

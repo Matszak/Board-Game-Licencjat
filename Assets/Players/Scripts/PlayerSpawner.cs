@@ -22,7 +22,7 @@ public class PlayerSpawner : MonoBehaviour
         {
             Player player = new();
             player.Name = $"Player{i + 1}";
-
+           
             player.PlayerObject = playerPrefabs[i];
             //player.PlayerObject.GetComponentInChildren<Renderer>().material.color =  UnityEngine.Random.ColorHSV(0f, 1f, 0.5f, 1f, 0.5f, 1f);
             playersList.Add(player);

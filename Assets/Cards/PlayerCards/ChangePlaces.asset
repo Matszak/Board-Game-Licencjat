@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 211403501c804d3f9dd98f262724ea82, type: 3}
   m_Name: ChangePlaces
   m_EditorClassIdentifier: 
-  cardPrefab: {fileID: 1075834351943545949, guid: fdae8ae7916ab4640960a54d4348860c,
+  cardPrefab: {fileID: 1075834351943545949, guid: 7392d011aea06b946a33dd18eb24b885,
     type: 3}
   cardImage: {fileID: 21300000, guid: 9f25d68ae35400b46af27029f8debf9a, type: 3}
   nameText: Swap places

@@ -25,8 +25,10 @@ public enum PlayerState
 
 public class PlayerController : MonoBehaviour
 {
-    private static readonly int OutLineWidth = Shader.PropertyToID("_OutLineWidth");
-    private static readonly int OutLineColor = Shader.PropertyToID("_OutLineColor");
+    private static readonly int OutLineBool = Shader.PropertyToID("_TurnOn");
+    private static readonly int OutLineColor = Shader.PropertyToID("_outLineColor");
+ 
+    
     private PlayerMovement _playerMovement;
     private AdventureCardsChecker _adventureCardsChecker;
     private PlayerSelector _playerSelector;
@@ -111,9 +113,11 @@ public class PlayerController : MonoBehaviour
     
     private void OnTurnStarted(GameManager.TurnStatedData data)
     {
-        Material[] materials = CurrentPlayer.PlayerObject.GetComponentInChildren<Renderer>().materials;
-        materials[1].SetFloat(OutLineWidth, 0.0f);
+        
+        Material[] materials = gameObject.GetComponentInChildren<Renderer>().materials;
+        materials[1].SetFloat(OutLineBool, 0);
         materials[1].SetColor(OutLineColor, Color.white);
+        
         if (data.Player != CurrentPlayer) return;
         if (data.Player.currentEnemyCard == null && playerState is PlayerState.None or PlayerState.FightWin or PlayerState.CardPickedUp)
         {
@@ -123,8 +127,10 @@ public class PlayerController : MonoBehaviour
         {
             data.Player.currentEnemyCard.TriggerCard(CurrentPlayer);
         }
-        materials[1].SetFloat(OutLineWidth, 0.188f);
-   
+        
+        materials[1].SetColor(OutLineColor, Color.white);
+        materials[1].SetFloat(OutLineBool, 1);
+        
         switch (playerState)
         {
             case PlayerState.None:

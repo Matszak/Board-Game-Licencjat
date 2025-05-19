@@ -21,6 +21,7 @@ public class PlayerMovement : MonoBehaviour
 
    public void MovePlayerBack(int steps, Player player)
    {
+       player.PlayerObject.GetComponent<PlayerController>().playerState = PlayerState.Walking;
        _player = player;
        int targetTileIndex = Math.Max(player.TileIndex - steps, 0);
         
@@ -40,6 +41,7 @@ public class PlayerMovement : MonoBehaviour
        {
            player.TileIndex = targetTileIndex;
            //GameManager.Instance.NextTurn();
+           
            OnEndMovePlayerMove?.Invoke(player);
        });
        sequence.Play();
@@ -47,6 +49,7 @@ public class PlayerMovement : MonoBehaviour
    
     public void MovePlayer(int steps, Player player)
     {
+        player.PlayerObject.GetComponent<PlayerController>().playerState = PlayerState.Walking;
         _player = player;
          
         int targetTileIndex = Math.Min(player.TileIndex + steps, tiles.Length - 1);

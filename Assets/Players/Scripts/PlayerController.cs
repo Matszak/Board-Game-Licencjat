@@ -79,9 +79,11 @@ public class PlayerController : MonoBehaviour
     private void CheckIfOnCard(Player player)
     {   
         if(player != CurrentPlayer) return;
+        
         //if(playerState is  PlayerState.FightLose or PlayerState.FightStarted) return;
-        if (!_adventureCardsChecker.CheckIfStayOnCard(CurrentPlayer))
+        if (!_adventureCardsChecker.CheckIfStayOnCard(CurrentPlayer) || playerState == PlayerState.Stunned)
         {
+            playerState = PlayerState.None;
             GameManager.Instance.TurnEnded(CurrentPlayer);
         }
         else
@@ -159,7 +161,7 @@ public class PlayerController : MonoBehaviour
     public void MovePlayer(Player player)
     {
         if (playerState == PlayerState.None) return;
-        
+      
         diceRoll.RequestDiceRoll(false, result =>
         {
             DebugConsole.Log($"{CurrentPlayer.Name} rolled = {result}");

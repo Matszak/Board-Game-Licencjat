@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Cards.CardsInGame
+namespace Cards.PlayerCards
 {   
     [CreateAssetMenu(fileName = "ChangePlaces", menuName = "Card/PickupCards/ChangePlaces")]
     public class ChangePlaces : PickUpCard

@@ -78,7 +78,7 @@ public class ControllerUI : MonoBehaviour
                 break;
             case PlayerState.None:
                 nextTurnButton.SetActive(true);
-                break;
+                break;  
         }
        
       
@@ -106,21 +106,31 @@ public class ControllerUI : MonoBehaviour
         _cards.Clear();
 
         if(player.playerCards.Count == 0) return;
+
+        float spacing = 125f;
+        int cardCount = player.playerCards.Count;
+        
+        float totalWidth = (cardCount -1) * spacing;
+        float startX = playerCards.transform.position.x - totalWidth / 2;
         
         for (int i = 0; i < player.playerCards.Count; i++)
         {
             _cards.Add(Instantiate(player.playerCards[i].cardPrefab,
-                new Vector3(playerCards.transform.position.x + i * 450,
+                new Vector3(startX + i * spacing,
                     playerCards.transform.position.y,
-                    playerCards.transform.position.z)
-                , Quaternion.identity, playerCards.transform));
-             _cards[i].GameObject().name = player.playerCards[i].nameText;
-             if (_cards[i].TryGetComponent(out UICardUsage cardUsage))
-             {
-                 cardUsage.SetCard(player.playerCards[i], player);
+                    playerCards.transform.position.z
+                    )
+                , Quaternion.identity, playerCards.transform)
+            );
+            
+            _cards[i].GameObject().name = player.playerCards[i].nameText;
+            if (_cards[i].TryGetComponent(out UICardUsage cardUsage))
+            {
+                cardUsage.SetCard(player.playerCards[i], player);
                  
-             }
+            }
         }
       
     }
+ 
 }

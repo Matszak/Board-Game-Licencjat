@@ -155,6 +155,9 @@ public class PlayerController : MonoBehaviour
                 }
                 //GameManager.Instance.TurnEnded(CurrentPlayer);
                 break;
+            case PlayerState.CardPickedUp:
+                break;
+                
         }
     }
 

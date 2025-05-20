@@ -65,13 +65,17 @@ public class PlayerMovement : MonoBehaviour
             
             Collider[] playerOnTile = Physics.OverlapSphere(movePosition, 1f, playerLayer);
 
+            Vector3 center = movePosition;
+            float radius = 0.5f;
+            
             for (int j = 0; j < playerOnTile.Length; j++)
             {
-                    Rigidbody rb = playerOnTile[j].GetComponent<Rigidbody>();
-                    rb.isKinematic = true;
-                    Vector3 offset = movePosition + Vector3.right * 100f * j;
-                    playerOnTile[j].transform.position = offset;
-                    rb.isKinematic = false;
+                float angle = j * Mathf.PI * 2f /  playerOnTile.Length;
+                Vector3 offset = new Vector3(Mathf.Cos(angle), Mathf.Sin(angle)) * radius;
+                Vector3 targetPosition = center + offset;
+                
+                playerOnTile[j].transform.position = targetPosition;
+                
             }
             
             sequence.Append(player.PlayerObject.transform.DOJump(movePosition, 6f, 0, 0.5f).SetEase(Ease.OutSine));

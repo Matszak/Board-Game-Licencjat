@@ -121,14 +121,18 @@ public class PlayerController : MonoBehaviour
         materials[1].SetColor(OutLineColor, Color.white);
         
         if (data.Player != CurrentPlayer) return;
-        if (data.Player.currentEnemyCard == null && playerState is PlayerState.None or PlayerState.FightWin or PlayerState.CardPickedUp)
+        /*if (data.Player.currentEnemyCard == null && playerState is PlayerState.None or PlayerState.FightWin) //or PlayerState.CardPickedUp)
         {
             playerState = PlayerState.Walking;       
+        }
+        else if (playerState == PlayerState.CardPickedUp)
+        {
+            playerState = PlayerState.Walking;
         }
         else if(playerState == PlayerState.FightLose)
         {
             data.Player.currentEnemyCard.TriggerCard(CurrentPlayer);
-        }
+        }*/
         
         materials[1].SetColor(OutLineColor, Color.white);
         materials[1].SetFloat(OutLineBool, 1);
@@ -136,11 +140,17 @@ public class PlayerController : MonoBehaviour
         switch (playerState)
         {
             case PlayerState.None:
+                MovePlayer(data.Player);
                 break;
             case PlayerState.FightStarted:
                 data.Player.currentEnemyCard.TriggerCard(data.Player);
                 break;
+            case PlayerState.FightLose:
+                data.Player.currentEnemyCard.TriggerCard(CurrentPlayer);
+                break;
+            case PlayerState.FightWin:
             case PlayerState.Walking:
+            case PlayerState.CardPickedUp:
                 MovePlayer(data.Player);
                 break;
             case PlayerState.Stunned:
@@ -151,11 +161,9 @@ public class PlayerController : MonoBehaviour
                 }
                 else
                 {
-                    playerState = PlayerState.Walking;
+                    MovePlayer(data.Player);
                 }
                 //GameManager.Instance.TurnEnded(CurrentPlayer);
-                break;
-            case PlayerState.CardPickedUp:
                 break;
                 
         }
@@ -163,7 +171,7 @@ public class PlayerController : MonoBehaviour
 
     public void MovePlayer(Player player)
     {
-        if (playerState == PlayerState.None) return;
+        //if (playerState == PlayerState.None) return;
       
         diceRoll.RequestDiceRoll(false, result =>
         {

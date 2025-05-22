@@ -34,7 +34,7 @@ public class PlayerMovement : MonoBehaviour
                player.PlayerObject.transform.position.y,
                tiles[i].position.z);
 
-           sequence.Append(player.PlayerObject.transform.DOJump(movePosition, 6f, 1, 0.5f).SetEase(Ease.InQuad));
+           sequence.Append(player.PlayerObject.transform.DOJump(movePosition, 6f, 1, 0.5f).SetEase(Ease.InOutSine));
        }
 
        sequence.OnComplete(() =>

@@ -23,17 +23,12 @@ public class AdventuresCards : MonoBehaviour
     [SerializeField] private Card[] bonusCards;
     [SerializeField] private Card[] disadvantageCards;
     private Player _player;
-    
-    public static event Action<Card> BonusTileTriggered;
-    public static event Action<Card> DisadvantageTileTriggered;
-    public static event Action<Card> PickUpTileTriggered;
-    public static event Action<Card> BattleTileTriggered;
-    public static event Action<Card> RandomTileTriggered;
-    public static event Action<Card> BossTileTriggered;  
-   
+ 
     private Card _selectedCard;
     private bool checkForCard = false;
+    
     private GameManager.TurnStatedData turnStartedData;
+    
     private void OnEnable()
     {
         GameManager.Instance.TurnStarted += OnTurnStarted;
@@ -66,29 +61,35 @@ public class AdventuresCards : MonoBehaviour
     private void TriggerCard(Player player, AdventureTile adventureTile)
     {
          if (player != _player) return;
-     
+         
          switch (adventureTile)
          {
              case BonusTile:
                  _selectedCard = bonusCards[Random.Range(0, bonusCards.Length)];
-             
                  break;
              case DisadvantageTile:
                  _selectedCard = disadvantageCards[Random.Range(0, disadvantageCards.Length)];
-                 DisadvantageTileTriggered?.Invoke(_selectedCard);
                  break;
              case PickUpTile pickUpTile:
+                 if (pickUpTile.pickUpCard == null)
+                 {
+                    GameManager.Instance.TurnEnded(_player);
+                 }
                  _selectedCard = pickUpTile.pickUpCard;
-                 PickUpTileTriggered?.Invoke(_selectedCard);
                  break;
              case BattleTile battleTile:
                  _selectedCard = battleTile.enemyCard;
-                 BattleTileTriggered?.Invoke(_selectedCard);
-                 break; 
+                 break;
              default:
                  _selectedCard = cards[Random.Range(0, cards.Length)];
-                 RandomTileTriggered?.Invoke(_selectedCard);
                  break;
+         }
+
+         if (_selectedCard == null)
+         {
+             _player.PlayerObject.GetComponent<PlayerController>().playerState = PlayerState.CardPickedUp;
+             GameManager.Instance.TurnEnded(_player);
+             return;
          }
          cardImage.sprite = _selectedCard.cardImage;
          //cardText.text = _selectedCard.nameText;
@@ -99,18 +100,20 @@ public class AdventuresCards : MonoBehaviour
 
     public void OnButtonClick()
     {
+        
          if (_selectedCard is PickUpCard)
          {
+             if (_selectedCard == null)
+             {
+                 EndTurn(_player);
+                 _player.PlayerObject.GetComponent<PlayerController>().playerState = PlayerState.CardPickedUp;
+             }
              _player.playerCards.Add(_selectedCard);
              checkForCard = false;  
              cardsUI.SetActive(false);
              controllerUI.UpdateUI(turnStartedData);   
              _player.PlayerObject.GetComponent<PlayerController>().playerState = PlayerState.CardPickedUp;
              EndTurn(_player);
-             
-             
- 
-             
          }
          else if (_selectedCard is EnemyCard card)
          {
@@ -121,9 +124,10 @@ public class AdventuresCards : MonoBehaviour
          }
          else
          {
-            _selectedCard.TriggerCard(_player);
              checkForCard = false;
              _selectedCard.OnCardCompleted += EndTurn;
+             _player.PlayerObject.GetComponent<PlayerController>().playerState = PlayerState.CardPickedUp;
+            _selectedCard.TriggerCard(_player);
             cardsUI.SetActive(false);
          }
     }

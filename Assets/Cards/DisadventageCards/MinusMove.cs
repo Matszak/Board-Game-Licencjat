@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "MinusMove", menuName = "Card/Disadventage/MinusMove")]
-public class MinusMove : Card
+public class MinusMove  : Card
 {
     public int movePlayerBack;
      

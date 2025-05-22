@@ -38,8 +38,10 @@ public class PlayerController : MonoBehaviour
  
     
     public Player CurrentPlayer { get; private set; }
-    
-    
+
+    // for minus dice roll
+    [SerializeField] private bool minusToRoll;
+    int minusRollValue;
     
     private void OnEnable()
     {
@@ -172,9 +174,23 @@ public class PlayerController : MonoBehaviour
     public void MovePlayer(Player player)
     {
         //if (playerState == PlayerState.None) return;
-      
+        
         diceRoll.RequestDiceRoll(false, result =>
         {
+            if (minusToRoll)
+            {
+                result -= minusRollValue;
+                minusToRoll = false;
+                minusRollValue = 0;
+            }
+            
+            if (result < 0)
+            {
+                DebugConsole.Log($"{CurrentPlayer.Name} rolled = {result}");
+                _playerMovement.MovePlayerBack(Mathf.Abs(result), player);
+                return;
+            }
+
             DebugConsole.Log($"{CurrentPlayer.Name} rolled = {result}");
             _playerMovement.MovePlayer(result, player);
         });
@@ -189,12 +205,18 @@ public class PlayerController : MonoBehaviour
 
     public int Attack(int rollResult)
     {
-        return rollResult;
+        return rollResult - minusRollValue;
     }
 
     public void SetPlayer(Player player)
     {
         CurrentPlayer = player;
+    }
+
+    public void SetMinusDiceRoll(int minusDiceRoll)
+    {
+        minusToRoll = true;
+        minusRollValue = minusDiceRoll;
     }
 }
 

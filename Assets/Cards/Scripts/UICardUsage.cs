@@ -19,6 +19,8 @@ public class UICardUsage : MonoBehaviour,IPointerEnterHandler, IPointerExitHandl
     private bool _isHovering;
     
     private Vector2 _originalPosition;
+    
+    
 
     
     public void Start()
@@ -32,12 +34,13 @@ public class UICardUsage : MonoBehaviour,IPointerEnterHandler, IPointerExitHandl
         _card = card;
         _player = player;
     }
-
+    
     public void OnPointerEnter(PointerEventData eventData)
     {
      
         {
-            transform.DOMove(new Vector2(_originalPosition.x, _originalPosition.y + Input.mousePosition.y ), 0.5f, true);
+            transform.DOMove(new Vector2(_originalPosition.x, _originalPosition.y + 150), 0.5f, true);
+            transform.DOScale(3f, 0.5f);    
         }
     }
 
@@ -48,6 +51,7 @@ public class UICardUsage : MonoBehaviour,IPointerEnterHandler, IPointerExitHandl
         if (!_isDragging)
         {
             transform.DOMove(_originalPosition, 0.5f, true);
+            transform.DOScale(1.5f, 0.5f);
         }
     }
 

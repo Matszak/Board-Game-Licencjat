@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb052b1d1edc453f84177f92b1f1ae8f, type: 3}
+  m_Name: Rewind!
+  m_EditorClassIdentifier: 
+  cardPrefab: {fileID: 1075834351943545949, guid: fdae8ae7916ab4640960a54d4348860c,
+    type: 3}
+  cardImage: {fileID: 21300000, guid: b3b409aa9efc0b1479f15ccb9366a377, type: 3}
+  nameText: 
+  descriptionText: 

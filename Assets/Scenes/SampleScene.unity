@@ -9864,11 +9864,11 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: f64ae661fde89de47b57087f2032340e,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: 637822922}
+      addedObject: {fileID: 637822923}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: f64ae661fde89de47b57087f2032340e,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: 637822923}
+      addedObject: {fileID: 637822924}
   m_SourcePrefab: {fileID: 100100000, guid: f64ae661fde89de47b57087f2032340e, type: 3}
 --- !u!4 &637822921 stripped
 Transform:
@@ -9876,18 +9876,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 637822920}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &637822922
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 148519439}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 66234fff72e84862a482603495ce9e28, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!65 &637822923
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -9909,6 +9897,18 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.17824891, y: 0.1941577, z: 0.01552191}
   m_Center: {x: 0.0000027758706, y: -2.2984087e-10, z: 0.0077611846}
+--- !u!114 &637822924
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 148519439}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c2344ebeb0d47c4c927838ef4c698ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &647570251
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12529,14 +12529,16 @@ MonoBehaviour:
   cardsUI: {fileID: 1532603954}
   cardImage: {fileID: 428158197}
   cards:
-  - {fileID: 11400000, guid: e29f3676356feca40898fd174362be76, type: 2}
-  - {fileID: 11400000, guid: e29f3676356feca40898fd174362be76, type: 2}
-  bonusCards:
-  - {fileID: 11400000, guid: 54f845757f9d2964ca61d196a4ed6bbb, type: 2}
   - {fileID: 11400000, guid: fb284e54434f9db438ae1074b491c4d0, type: 2}
-  disadvantageCards:
+  - {fileID: 11400000, guid: 14bd088adcc3487478e138cd53d2985c, type: 2}
+  - {fileID: 11400000, guid: 54f845757f9d2964ca61d196a4ed6bbb, type: 2}
+  - {fileID: 11400000, guid: e29f3676356feca40898fd174362be76, type: 2}
+  - {fileID: 11400000, guid: 4c85d7d11013dcb41b70dace7a47f99c, type: 2}
   - {fileID: 11400000, guid: 191256f9ec747274092c389a284f9c62, type: 2}
   - {fileID: 11400000, guid: 1ec61058abd72df4197c07337898377e, type: 2}
+  - {fileID: 11400000, guid: 844c15eb76eaf164aba21bcf50565b67, type: 2}
+  bonusCards: []
+  disadvantageCards: []
 --- !u!114 &766044892
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20173,11 +20175,11 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: f64ae661fde89de47b57087f2032340e,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1239976762}
+      addedObject: {fileID: 1239976763}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: f64ae661fde89de47b57087f2032340e,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1239976763}
+      addedObject: {fileID: 1239976764}
   m_SourcePrefab: {fileID: 100100000, guid: f64ae661fde89de47b57087f2032340e, type: 3}
 --- !u!4 &1239976761 stripped
 Transform:
@@ -20185,18 +20187,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1239976760}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1239976762
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1104923738}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7f74e46e6657454e937c637a3367fdb4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!65 &1239976763
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -20218,6 +20208,18 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.17824891, y: 0.1941577, z: 0.01552191}
   m_Center: {x: 0.00000289508, y: -2.2984087e-10, z: 0.007761304}
+--- !u!114 &1239976764
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1104923738}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c2344ebeb0d47c4c927838ef4c698ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1241685690
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -23816,7 +23818,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9bfdd3397ca345319e494a8ac5dad526, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyCard: {fileID: 11400000, guid: fb170e57c7960ff48b7d28f2e53b8450, type: 2}
+  enemyCard: {fileID: 11400000, guid: fbfbddd3c4e7f4a40a67684dd939f03c, type: 2}
 --- !u!1001 &1472020748
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -25681,7 +25683,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8ae2d6cbc564697a48ca25bb397a154, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pickUpCard: {fileID: 11400000, guid: e29f3676356feca40898fd174362be76, type: 2}
+  pickUpCard: {fileID: 11400000, guid: 844c15eb76eaf164aba21bcf50565b67, type: 2}
 --- !u!1001 &1628655125
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -28659,7 +28661,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8ae2d6cbc564697a48ca25bb397a154, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pickUpCard: {fileID: 11400000, guid: e29f3676356feca40898fd174362be76, type: 2}
+  pickUpCard: {fileID: 11400000, guid: 14bd088adcc3487478e138cd53d2985c, type: 2}
 --- !u!1 &1809008819
 GameObject:
   m_ObjectHideFlags: 0

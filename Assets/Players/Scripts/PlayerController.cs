@@ -40,8 +40,13 @@ public class PlayerController : MonoBehaviour
     public Player CurrentPlayer { get; private set; }
 
     // for minus dice roll
-    [SerializeField] private bool minusToRoll;
-    int minusRollValue;
+    [SerializeField] private bool minusToRoll = false;
+    private int _minusRollValue;
+
+    private bool _bonusToRoll = false;
+    private int _bonusRollValue;
+    
+    private bool _magicShield = false;
     
     private void OnEnable()
     {
@@ -177,22 +182,58 @@ public class PlayerController : MonoBehaviour
         
         diceRoll.RequestDiceRoll(false, result =>
         {
-            if (minusToRoll)
+            if (minusToRoll && _bonusToRoll)
             {
-                result -= minusRollValue;
+                result = _bonusRollValue + _minusRollValue;
+                DebugConsole.Log($"{CurrentPlayer.Name} rolled = {result}");
+                switch (result)
+                {
+                    case > 0:
+                        _playerMovement.MovePlayer(result, player);
+                        minusToRoll = false;
+                        _bonusToRoll = false;
+                        _minusRollValue = 0;
+                        _bonusRollValue = 0;
+                        return;
+                    case < 0:
+                        _playerMovement.MovePlayerBack(Mathf.Abs(result), player);
+                        minusToRoll = false;
+                        _bonusToRoll = false;
+                        _minusRollValue = 0;
+                        _bonusRollValue = 0;
+                        return;
+                }
+            }
+            else if(_bonusToRoll)
+            {
+                result += _bonusRollValue;
+                DebugConsole.Log($"{CurrentPlayer.Name} rolled = {result}");
+                
+                _playerMovement.MovePlayer(result, player);
+                
+                if (result < 0)
+                {
+                    _playerMovement.MovePlayerBack(Mathf.Abs(result), player);
+                }
+                _bonusToRoll = false;
+                _bonusRollValue = 0;
+                
+            }
+            else if(minusToRoll)
+            {
+                result -= _minusRollValue;
+                DebugConsole.Log($"{CurrentPlayer.Name} rolled = {result}");
+                if (result < 0)
+                {
+                    _playerMovement.MovePlayerBack(Mathf.Abs(result), player);
+                }
                 minusToRoll = false;
-                minusRollValue = 0;
+                _minusRollValue = 0;
             }
             
-            if (result < 0)
-            {
-                DebugConsole.Log($"{CurrentPlayer.Name} rolled = {result}");
-                _playerMovement.MovePlayerBack(Mathf.Abs(result), player);
-                return;
-            }
+             
 
-            DebugConsole.Log($"{CurrentPlayer.Name} rolled = {result}");
-            _playerMovement.MovePlayer(result, player);
+           
         });
     
     }
@@ -205,7 +246,22 @@ public class PlayerController : MonoBehaviour
 
     public int Attack(int rollResult)
     {
-        return rollResult - minusRollValue;
+        int attackValue = rollResult;
+        if (_bonusToRoll)
+        {
+            attackValue = rollResult + _bonusRollValue;
+            _bonusToRoll = false;
+            _bonusRollValue = 0;
+            
+        }
+        else if(minusToRoll)
+        {
+            attackValue = rollResult - _minusRollValue;
+            minusToRoll = false;
+            _minusRollValue = 0;
+        }
+
+        return attackValue;
     }
 
     public void SetPlayer(Player player)
@@ -216,7 +272,18 @@ public class PlayerController : MonoBehaviour
     public void SetMinusDiceRoll(int minusDiceRoll)
     {
         minusToRoll = true;
-        minusRollValue = minusDiceRoll;
+        _minusRollValue = minusDiceRoll;
+    }
+
+    public void SetBonusDiceRoll(int bonusDiceRoll)
+    {
+        _bonusToRoll = true;
+        _bonusRollValue = bonusDiceRoll;
+    }
+
+    public void SetMagicShield(bool magicShield)
+    {
+        _magicShield = magicShield;
     }
 }
 

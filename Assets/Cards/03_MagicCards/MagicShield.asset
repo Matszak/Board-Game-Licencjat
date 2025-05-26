@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73639304d80abc74e80195f8c68adb20, type: 3}
   m_Name: MagicShield
   m_EditorClassIdentifier: 
-  cardPrefab: {fileID: 0}
+  cardPrefab: {fileID: 1075834351943545949, guid: 7392d011aea06b946a33dd18eb24b885,
+    type: 3}
   cardImage: {fileID: 0}
-  nameText: 
+  nameText: magic shieled
   descriptionText: 

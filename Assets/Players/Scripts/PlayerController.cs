@@ -46,7 +46,7 @@ public class PlayerController : MonoBehaviour
     private bool _bonusToRoll = false;
     private int _bonusRollValue;
     
-    private bool _magicShield = false;
+    [FormerlySerializedAs("_magicShield")] public bool magicShield = false;
     
     private void OnEnable()
     {
@@ -128,18 +128,6 @@ public class PlayerController : MonoBehaviour
         materials[1].SetColor(OutLineColor, Color.white);
         
         if (data.Player != CurrentPlayer) return;
-        /*if (data.Player.currentEnemyCard == null && playerState is PlayerState.None or PlayerState.FightWin) //or PlayerState.CardPickedUp)
-        {
-            playerState = PlayerState.Walking;       
-        }
-        else if (playerState == PlayerState.CardPickedUp)
-        {
-            playerState = PlayerState.Walking;
-        }
-        else if(playerState == PlayerState.FightLose)
-        {
-            data.Player.currentEnemyCard.TriggerCard(CurrentPlayer);
-        }*/
         
         materials[1].SetColor(OutLineColor, Color.white);
         materials[1].SetFloat(OutLineBool, 1);
@@ -178,7 +166,6 @@ public class PlayerController : MonoBehaviour
 
     public void MovePlayer(Player player)
     {
-        //if (playerState == PlayerState.None) return;
         
         diceRoll.RequestDiceRoll(false, result =>
         {
@@ -229,6 +216,10 @@ public class PlayerController : MonoBehaviour
                 }
                 minusToRoll = false;
                 _minusRollValue = 0;
+            }
+            else
+            {
+                _playerMovement.MovePlayer(result,player);
             }
             
              
@@ -283,7 +274,7 @@ public class PlayerController : MonoBehaviour
 
     public void SetMagicShield(bool magicShield)
     {
-        _magicShield = magicShield;
+        this.magicShield = magicShield;
     }
 }
 

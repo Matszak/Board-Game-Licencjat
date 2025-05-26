@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 820486dfb4d38004ab11fabe3d1fddca, type: 3}
   m_Name: GoBack!
   m_EditorClassIdentifier: 
-  cardPrefab: {fileID: 1075834351943545949, guid: fdae8ae7916ab4640960a54d4348860c,
+  cardPrefab: {fileID: 1075834351943545949, guid: a1656e021786b194793b790dc46cb82c,
     type: 3}
   cardImage: {fileID: 21300000, guid: 44d750e4e2316b04e9931fbb9af68422, type: 3}
   nameText: 

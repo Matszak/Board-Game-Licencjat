@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af69294283df43aab7f51f0854d37953, type: 3}
   m_Name: ExtraTurn!
   m_EditorClassIdentifier: 
-  cardPrefab: {fileID: 1075834351943545949, guid: fdae8ae7916ab4640960a54d4348860c,
+  cardPrefab: {fileID: 1075834351943545949, guid: a77de011d965d3b429cc267d1e19c9e6,
     type: 3}
   cardImage: {fileID: 21300000, guid: 6c88013e141e4db42b2d53af14e7d32d, type: 3}
   nameText: 

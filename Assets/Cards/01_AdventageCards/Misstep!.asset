@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89764dc2129c4ba5a050838294beb31d, type: 3}
   m_Name: Misstep!
   m_EditorClassIdentifier: 
-  cardPrefab: {fileID: 1075834351943545949, guid: fdae8ae7916ab4640960a54d4348860c,
+  cardPrefab: {fileID: 1075834351943545949, guid: 46ce098a64e051248b8b403e20656212,
     type: 3}
   cardImage: {fileID: 21300000, guid: 069cd8d7d45570e4caadeeb8dd2cf131, type: 3}
   nameText: InFrontBack

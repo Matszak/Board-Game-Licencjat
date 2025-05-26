@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 184244d2b9dcbed4199c947bd6489ad3, type: 3}
   m_Name: Stun!
   m_EditorClassIdentifier: 
-  cardPrefab: {fileID: 1075834351943545949, guid: fdae8ae7916ab4640960a54d4348860c,
+  cardPrefab: {fileID: 1075834351943545949, guid: f65c7948748a3744a959aa1d9889c6f9,
     type: 3}
   cardImage: {fileID: 21300000, guid: 6669506463703884a8ddc603c294d6d1, type: 3}
   nameText: stun

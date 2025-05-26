@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d68d7aa31db27f546806aaaaf8fe84be, type: 3}
   m_Name: MoveCard!
   m_EditorClassIdentifier: 
-  cardPrefab: {fileID: 1075834351943545949, guid: fdae8ae7916ab4640960a54d4348860c,
+  cardPrefab: {fileID: 1075834351943545949, guid: 6c42385ff942f1446b8661051e2fc12f,
     type: 3}
   cardImage: {fileID: 21300000, guid: 13fc4c5b30516ef40a10f68da251153b, type: 3}
   nameText: 

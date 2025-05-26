@@ -19,6 +19,8 @@ public class ControllerUI : MonoBehaviour
 
     public List<GameObject> _cards;
     private Player _player;
+    
+    
 
  
 
@@ -107,7 +109,7 @@ public class ControllerUI : MonoBehaviour
 
         if(player.playerCards.Count == 0) return;
 
-        float spacing = 125f;
+        float spacing = 75f;
         int cardCount = player.playerCards.Count;
         
         float totalWidth = (cardCount -1) * spacing;
@@ -124,13 +126,14 @@ public class ControllerUI : MonoBehaviour
             );
             
             _cards[i].GameObject().name = player.playerCards[i].nameText;
+            
             if (_cards[i].TryGetComponent(out UICardUsage cardUsage))
             {
                 cardUsage.SetCard(player.playerCards[i], player);
-                 
             }
         }
       
     }
+    
  
 }

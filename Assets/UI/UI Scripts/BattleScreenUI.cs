@@ -10,30 +10,29 @@ public class BattleScreenUI : MonoBehaviour
 {
     public GameObject BattleScreenCanvas;
     public GameObject enemyImage;
+    private Vector2 startPosition;
+
+    public RectTransform buttonRectTransform;
     private void Start()
     {
         GameManager.Instance.OnFightStarted += EnableBattleScreen;
         FightSystem.EndEnemyFight += DisableBattleScreen;
-        GameManager.Instance.TurnStarted += TurnStartedData ;
+        startPosition = transform.position;
     }
-
-    private void TurnStartedData (GameManager.TurnStatedData playerState)
-    {
-        
-    }
-
-    private void DisableBattleScreen (bool end, Player player, EnemyCard enemyCard)
-    {
-        BattleScreenCanvas.SetActive(false);
- 
-    }
-
-
     private void EnableBattleScreen (Player player, EnemyCard enemyCard)
     {
         BattleScreenCanvas.gameObject.SetActive(true);
         enemyImage.GetComponent<RawImage>().texture = enemyCard.cardImage.texture;
+        buttonRectTransform.anchoredPosition = new Vector2(-820, 230);
     }
+    private void DisableBattleScreen (bool end, Player player, EnemyCard enemyCard)
+    {
+        BattleScreenCanvas.SetActive(false);
+        buttonRectTransform.anchoredPosition = startPosition;
+
+    }
+
+
 
     private void OnDisable()
     {

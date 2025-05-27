@@ -49,7 +49,18 @@ public class PlayerMovement : MonoBehaviour
    
     public void MovePlayer(int steps, Player player)
     {
-        player.PlayerObject.GetComponent<PlayerController>().playerState = PlayerState.Walking;
+
+
+        if (player.PlayerObject.GetComponent<PlayerController>().playerState == PlayerState.Stunned)
+        {
+            player.PlayerObject.GetComponent<PlayerController>().playerState = PlayerState.Stunned;
+        }
+        else
+        {
+            player.PlayerObject.GetComponent<PlayerController>().playerState = PlayerState.Walking;
+        }
+        
+        
         _player = player;
          
         int targetTileIndex = Math.Min(player.TileIndex + steps, tiles.Length - 1);

@@ -35,7 +35,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private DiceRoll diceRoll;
     
     public PlayerState playerState;
- 
+    public PlayerState recentPlayerState;
     
     public Player CurrentPlayer { get; private set; }
 
@@ -43,7 +43,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private bool minusToRoll = false;
     private int _minusRollValue;
 
-    private bool _bonusToRoll = false;
+    [SerializeField] private bool _bonusToRoll = false;
     private int _bonusRollValue;
     
     [FormerlySerializedAs("_magicShield")] public bool magicShield = false;
@@ -86,12 +86,15 @@ public class PlayerController : MonoBehaviour
     private void CheckIfOnCard(Player player)
     {   
         if(player != CurrentPlayer) return;
-        
+        recentPlayerState = playerState;
         //if(playerState is  PlayerState.FightLose or PlayerState.FightStarted) return;
+        
+        
+        
         if (!_adventureCardsChecker.CheckIfStayOnCard(CurrentPlayer) || playerState == PlayerState.Stunned)
         {
-            playerState = PlayerState.None;
             GameManager.Instance.TurnEnded(CurrentPlayer);
+            //playerState = PlayerState.None;
         }
         else
         {
@@ -131,91 +134,114 @@ public class PlayerController : MonoBehaviour
         
         materials[1].SetColor(OutLineColor, Color.white);
         materials[1].SetFloat(OutLineBool, 1);
+
         
         switch (playerState)
         {
             case PlayerState.None:
                 MovePlayer(data.Player);
+ 
                 break;
             case PlayerState.FightStarted:
                 data.Player.currentEnemyCard.TriggerCard(data.Player);
+       
                 break;
             case PlayerState.FightLose:
                 data.Player.currentEnemyCard.TriggerCard(CurrentPlayer);
+             
+               // recentPlayerState = PlayerState.FightLose;
                 break;
             case PlayerState.FightWin:
+             //   recentPlayerState = playerState;
+     
+                break;
             case PlayerState.Walking:
-            case PlayerState.CardPickedUp:
+               // recentPlayerState = playerState;
                 MovePlayer(data.Player);
+ 
+                break;
+            case PlayerState.CardPickedUp:
+         //       recentPlayerState = PlayerState.CardPickedUp;
+                MovePlayer(data.Player);
+                 
                 break;
             case PlayerState.Stunned:
-                _playerMovement.MovePlayer(0,data.Player);
                 if (stunnedFor > 0)
                 {
                     stunnedFor--;
+                    _playerMovement.MovePlayer(0,data.Player);
                 }
                 else
                 {
+                     
                     MovePlayer(data.Player);
                 }
+    
                 //GameManager.Instance.TurnEnded(CurrentPlayer);
+             //   recentPlayerState = PlayerState.Stunned;
                 break;
-                
         }
+         
     }
 
     public void MovePlayer(Player player)
     {
-        
+        playerState = PlayerState.Walking;
         diceRoll.RequestDiceRoll(false, result =>
         {
             if (minusToRoll && _bonusToRoll)
             {
-                result = _bonusRollValue + _minusRollValue;
+                var resultBoth = _bonusRollValue + _minusRollValue;
                 DebugConsole.Log($"{CurrentPlayer.Name} rolled = {result}");
-                switch (result)
+                switch (resultBoth)
                 {
                     case > 0:
-                        _playerMovement.MovePlayer(result, player);
+                        _playerMovement.MovePlayer(resultBoth, player);
                         minusToRoll = false;
                         _bonusToRoll = false;
                         _minusRollValue = 0;
                         _bonusRollValue = 0;
+                      
                         return;
                     case < 0:
-                        _playerMovement.MovePlayerBack(Mathf.Abs(result), player);
+                        _playerMovement.MovePlayerBack(Mathf.Abs(resultBoth), player);
                         minusToRoll = false;
                         _bonusToRoll = false;
                         _minusRollValue = 0;
                         _bonusRollValue = 0;
+                       
                         return;
                 }
+
+                resultBoth = 0;
             }
             else if(_bonusToRoll)
             {
-                result += _bonusRollValue;
-                DebugConsole.Log($"{CurrentPlayer.Name} rolled = {result}");
+                 int bonusResult = result + _bonusRollValue;
+                DebugConsole.Log($"{CurrentPlayer.Name} rolled = {bonusResult}");
                 
-                _playerMovement.MovePlayer(result, player);
+                _playerMovement.MovePlayer(bonusResult, player);
                 
-                if (result < 0)
+                if (bonusResult < 0)
                 {
                     _playerMovement.MovePlayerBack(Mathf.Abs(result), player);
                 }
                 _bonusToRoll = false;
                 _bonusRollValue = 0;
-                
+                bonusResult = 0;
+
             }
             else if(minusToRoll)
             {
-                result -= _minusRollValue;
-                DebugConsole.Log($"{CurrentPlayer.Name} rolled = {result}");
-                if (result < 0)
+                var minusResult = result + _minusRollValue;
+                DebugConsole.Log($"{CurrentPlayer.Name} rolled = {minusResult}");
+                if (minusResult < 0)
                 {
-                    _playerMovement.MovePlayerBack(Mathf.Abs(result), player);
+                    _playerMovement.MovePlayerBack(Mathf.Abs(minusResult), player);
                 }
                 minusToRoll = false;
                 _minusRollValue = 0;
+                minusResult = 0;
             }
             else
             {

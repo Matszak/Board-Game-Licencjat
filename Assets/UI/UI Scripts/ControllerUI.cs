@@ -74,7 +74,6 @@ public class ControllerUI : MonoBehaviour
                 nextTurnButton.SetActive(true); 
                 break;
             case PlayerState.FightWin:
-                 
                 break;
             case PlayerState.CardPickedUp:
                 nextTurnButton.SetActive(true);
@@ -83,6 +82,9 @@ public class ControllerUI : MonoBehaviour
                 nextTurnButton.SetActive(true);
                 break;  
             case PlayerState.Stunned:
+                nextTurnButton.SetActive(true);
+                break;
+            case PlayerState.Walking:
                 nextTurnButton.SetActive(true);
                 break;
         }

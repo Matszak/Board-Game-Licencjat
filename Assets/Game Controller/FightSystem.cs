@@ -33,7 +33,6 @@ public class FightSystem : MonoBehaviour
         if(_currentPlayer != player ) return;
         _enemy = enemy;
         PlayerAttack(player);
-        DebugConsole.LogCentered($"= {_currentPlayer.Name} is attacked =");
     }
 
     private void PlayerAttack(Player player)

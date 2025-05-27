@@ -79,7 +79,8 @@ public class PlayerController : MonoBehaviour
     private void ChangeStateToFight(Player player, EnemyCard enemyCard)
     {
         if(player != CurrentPlayer) return;
-       playerState = PlayerState.FightStarted;
+        DebugConsole.Log($"{CurrentPlayer.Name} is attacked by {enemyCard.name}");
+        playerState = PlayerState.FightStarted;
     }
 
 

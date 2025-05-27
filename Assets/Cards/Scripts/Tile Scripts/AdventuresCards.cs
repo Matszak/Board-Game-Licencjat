@@ -15,6 +15,8 @@ public class AdventuresCards : MonoBehaviour
     
     [SerializeField] private GameObject cardsUI;
     
+    private Card card;
+    
     [SerializeField] private Image cardImage;
     //[SerializeField] private TextMeshProUGUI cardText;
     //[SerializeField] private TextMeshProUGUI descriptionText;
@@ -95,6 +97,7 @@ public class AdventuresCards : MonoBehaviour
              GameManager.Instance.TurnEnded(_player);
              return;
          }
+         DebugConsole.Log($"{player.Name} picked up {_selectedCard.name}");
          cardImage.sprite = _selectedCard.cardImage;
          //cardText.text = _selectedCard.nameText;
          //descriptionText.text = _selectedCard.descriptionText;

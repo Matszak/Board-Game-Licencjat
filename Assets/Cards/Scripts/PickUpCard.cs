@@ -14,7 +14,7 @@ namespace Cards
 
         public override void TriggerCard(Player currentPlayer)
         {
-            DebugConsole.Log($"{currentPlayer.Name} found card");
+            DebugConsole.Log($"{currentPlayer.Name} picked up card {cardPrefab.name}");
             Debug.Log($"Card picked up by {currentPlayer.Name}");
             GameManager.Instance.InvokeSelection(currentPlayer);
    

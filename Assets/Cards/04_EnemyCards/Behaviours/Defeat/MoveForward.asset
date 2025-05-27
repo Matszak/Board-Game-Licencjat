@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1d85e58d81a428b8abe5dd61801ff13, type: 3}
   m_Name: MoveForward
   m_EditorClassIdentifier: 
+  winText: Win - move forward 4 poles
   steps: 4

@@ -5,5 +5,6 @@ namespace Cards.EnemyCards.DefeatBehaviours
     public abstract class EnemyDefeatedBehaviour : ScriptableObject
     {
         public abstract void EnemyDefeated(Player player);
+        public string winText;
     }
 }

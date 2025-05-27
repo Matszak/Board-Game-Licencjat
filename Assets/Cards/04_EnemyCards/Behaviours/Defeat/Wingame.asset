@@ -12,3 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f4625be8d464c46824b5eb039ad08fb, type: 3}
   m_Name: Wingame
   m_EditorClassIdentifier: 
+  winText: Win - You are the Winner!!!

@@ -87,18 +87,13 @@ public class PlayerController : MonoBehaviour
     {   
         if(player != CurrentPlayer) return;
         recentPlayerState = playerState;
-        //if(playerState is  PlayerState.FightLose or PlayerState.FightStarted) return;
-        
-        
-        
+ 
         if (!_adventureCardsChecker.CheckIfStayOnCard(CurrentPlayer) || playerState == PlayerState.Stunned)
         {
             GameManager.Instance.TurnEnded(CurrentPlayer);
-            //playerState = PlayerState.None;
         }
         else
         {
-            
             AdventureTile adventureTile = _adventureCardsChecker.GetTile(CurrentPlayer);
             GameManager.Instance.CardTriggered(CurrentPlayer,adventureTile);
             
@@ -140,30 +135,17 @@ public class PlayerController : MonoBehaviour
         {
             case PlayerState.None:
                 MovePlayer(data.Player);
- 
                 break;
             case PlayerState.FightStarted:
                 data.Player.currentEnemyCard.TriggerCard(data.Player);
-       
                 break;
             case PlayerState.FightLose:
                 data.Player.currentEnemyCard.TriggerCard(CurrentPlayer);
-             
-               // recentPlayerState = PlayerState.FightLose;
                 break;
             case PlayerState.FightWin:
-             //   recentPlayerState = playerState;
-     
-                break;
             case PlayerState.Walking:
-               // recentPlayerState = playerState;
-                MovePlayer(data.Player);
- 
-                break;
             case PlayerState.CardPickedUp:
-         //       recentPlayerState = PlayerState.CardPickedUp;
                 MovePlayer(data.Player);
-                 
                 break;
             case PlayerState.Stunned:
                 if (stunnedFor > 0)
@@ -173,12 +155,8 @@ public class PlayerController : MonoBehaviour
                 }
                 else
                 {
-                     
                     MovePlayer(data.Player);
                 }
-    
-                //GameManager.Instance.TurnEnded(CurrentPlayer);
-             //   recentPlayerState = PlayerState.Stunned;
                 break;
         }
          

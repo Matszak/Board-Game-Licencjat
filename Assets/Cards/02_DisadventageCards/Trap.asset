@@ -16,4 +16,4 @@ MonoBehaviour:
   cardImage: {fileID: 0}
   nameText: 
   descriptionText: 
-  numberOfTurns: 0
+  numberOfTurns: 1

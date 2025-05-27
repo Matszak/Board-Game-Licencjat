@@ -64,6 +64,7 @@ public class ControllerUI : MonoBehaviour
         if (player != _player) return;
         LoadCards(_player);
         var state = player.PlayerObject.GetComponent<PlayerController>().playerState;
+        var recentState = player.PlayerObject.GetComponent<PlayerController>().recentPlayerState;
         switch (state)
         {
             case PlayerState.FightStarted:
@@ -81,7 +82,17 @@ public class ControllerUI : MonoBehaviour
             case PlayerState.None:
                 nextTurnButton.SetActive(true);
                 break;  
+            case PlayerState.Stunned:
+                nextTurnButton.SetActive(true);
+                break;
         }
+
+        /*switch (recentState)
+        {
+            case PlayerState.Stunned:
+                nextTurnButton.SetActive(true);
+                break;
+        }*/
        
       
     }

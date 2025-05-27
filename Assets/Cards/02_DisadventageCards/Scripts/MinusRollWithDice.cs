@@ -1,8 +1,8 @@
 using UnityEngine;
 
-namespace Cards.DisadventageCards
+namespace Cards._02_DisadventageCards.Scripts
 {
-    [CreateAssetMenu(fileName = "MinusMoveRoll", menuName = "Card/Disadventage/MinusMoveRoll")]
+    [CreateAssetMenu(fileName = "MinusMoveRoll", menuName = "Card/Disadvantage/MinusMoveRoll")]
     public class MinusRollWithDice : Card
     {
         public override void TriggerCard(Player currentPlayer)

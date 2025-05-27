@@ -1,4 +1,4 @@
-namespace Cards.DisadventageCards
+namespace Cards._02_DisadventageCards.Scripts
 {
     public class MoveRandomPlayerForward : Card
     {

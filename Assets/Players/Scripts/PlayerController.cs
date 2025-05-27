@@ -35,13 +35,18 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private DiceRoll diceRoll;
     
     public PlayerState playerState;
- 
+    public PlayerState recentPlayerState;
     
     public Player CurrentPlayer { get; private set; }
 
     // for minus dice roll
-    [SerializeField] private bool minusToRoll;
-    int minusRollValue;
+    [SerializeField] private bool minusToRoll = false;
+    private int _minusRollValue;
+
+    [SerializeField] private bool _bonusToRoll = false;
+    private int _bonusRollValue;
+    
+    [FormerlySerializedAs("_magicShield")] public bool magicShield = false;
     
     private void OnEnable()
     {
@@ -81,16 +86,14 @@ public class PlayerController : MonoBehaviour
     private void CheckIfOnCard(Player player)
     {   
         if(player != CurrentPlayer) return;
-        
-        //if(playerState is  PlayerState.FightLose or PlayerState.FightStarted) return;
+        recentPlayerState = playerState;
+ 
         if (!_adventureCardsChecker.CheckIfStayOnCard(CurrentPlayer) || playerState == PlayerState.Stunned)
         {
-            playerState = PlayerState.None;
             GameManager.Instance.TurnEnded(CurrentPlayer);
         }
         else
         {
-            
             AdventureTile adventureTile = _adventureCardsChecker.GetTile(CurrentPlayer);
             GameManager.Instance.CardTriggered(CurrentPlayer,adventureTile);
             
@@ -123,21 +126,10 @@ public class PlayerController : MonoBehaviour
         materials[1].SetColor(OutLineColor, Color.white);
         
         if (data.Player != CurrentPlayer) return;
-        /*if (data.Player.currentEnemyCard == null && playerState is PlayerState.None or PlayerState.FightWin) //or PlayerState.CardPickedUp)
-        {
-            playerState = PlayerState.Walking;       
-        }
-        else if (playerState == PlayerState.CardPickedUp)
-        {
-            playerState = PlayerState.Walking;
-        }
-        else if(playerState == PlayerState.FightLose)
-        {
-            data.Player.currentEnemyCard.TriggerCard(CurrentPlayer);
-        }*/
         
         materials[1].SetColor(OutLineColor, Color.white);
         materials[1].SetFloat(OutLineBool, 1);
+
         
         switch (playerState)
         {
@@ -156,43 +148,87 @@ public class PlayerController : MonoBehaviour
                 MovePlayer(data.Player);
                 break;
             case PlayerState.Stunned:
-                _playerMovement.MovePlayer(0,data.Player);
                 if (stunnedFor > 0)
                 {
                     stunnedFor--;
+                    _playerMovement.MovePlayer(0,data.Player);
                 }
                 else
                 {
                     MovePlayer(data.Player);
                 }
-                //GameManager.Instance.TurnEnded(CurrentPlayer);
                 break;
-                
         }
+         
     }
 
     public void MovePlayer(Player player)
     {
-        //if (playerState == PlayerState.None) return;
-        
+        playerState = PlayerState.Walking;
         diceRoll.RequestDiceRoll(false, result =>
         {
-            if (minusToRoll)
+            if (minusToRoll && _bonusToRoll)
             {
-                result -= minusRollValue;
+                var resultBoth = _bonusRollValue + _minusRollValue;
+                DebugConsole.Log($"{CurrentPlayer.Name} rolled = {result}");
+                switch (resultBoth)
+                {
+                    case > 0:
+                        _playerMovement.MovePlayer(resultBoth, player);
+                        minusToRoll = false;
+                        _bonusToRoll = false;
+                        _minusRollValue = 0;
+                        _bonusRollValue = 0;
+                      
+                        return;
+                    case < 0:
+                        _playerMovement.MovePlayerBack(Mathf.Abs(resultBoth), player);
+                        minusToRoll = false;
+                        _bonusToRoll = false;
+                        _minusRollValue = 0;
+                        _bonusRollValue = 0;
+                       
+                        return;
+                }
+
+                resultBoth = 0;
+            }
+            else if(_bonusToRoll)
+            {
+                 int bonusResult = result + _bonusRollValue;
+                DebugConsole.Log($"{CurrentPlayer.Name} rolled = {bonusResult}");
+                
+                _playerMovement.MovePlayer(bonusResult, player);
+                
+                if (bonusResult < 0)
+                {
+                    _playerMovement.MovePlayerBack(Mathf.Abs(result), player);
+                }
+                _bonusToRoll = false;
+                _bonusRollValue = 0;
+                bonusResult = 0;
+
+            }
+            else if(minusToRoll)
+            {
+                var minusResult = result + _minusRollValue;
+                DebugConsole.Log($"{CurrentPlayer.Name} rolled = {minusResult}");
+                if (minusResult < 0)
+                {
+                    _playerMovement.MovePlayerBack(Mathf.Abs(minusResult), player);
+                }
                 minusToRoll = false;
-                minusRollValue = 0;
+                _minusRollValue = 0;
+                minusResult = 0;
+            }
+            else
+            {
+                _playerMovement.MovePlayer(result,player);
             }
             
-            if (result < 0)
-            {
-                DebugConsole.Log($"{CurrentPlayer.Name} rolled = {result}");
-                _playerMovement.MovePlayerBack(Mathf.Abs(result), player);
-                return;
-            }
+             
 
-            DebugConsole.Log($"{CurrentPlayer.Name} rolled = {result}");
-            _playerMovement.MovePlayer(result, player);
+           
         });
     
     }
@@ -205,7 +241,22 @@ public class PlayerController : MonoBehaviour
 
     public int Attack(int rollResult)
     {
-        return rollResult - minusRollValue;
+        int attackValue = rollResult;
+        if (_bonusToRoll)
+        {
+            attackValue = rollResult + _bonusRollValue;
+            _bonusToRoll = false;
+            _bonusRollValue = 0;
+            
+        }
+        else if(minusToRoll)
+        {
+            attackValue = rollResult - _minusRollValue;
+            minusToRoll = false;
+            _minusRollValue = 0;
+        }
+
+        return attackValue;
     }
 
     public void SetPlayer(Player player)
@@ -216,7 +267,18 @@ public class PlayerController : MonoBehaviour
     public void SetMinusDiceRoll(int minusDiceRoll)
     {
         minusToRoll = true;
-        minusRollValue = minusDiceRoll;
+        _minusRollValue = minusDiceRoll;
+    }
+
+    public void SetBonusDiceRoll(int bonusDiceRoll)
+    {
+        _bonusToRoll = true;
+        _bonusRollValue = bonusDiceRoll;
+    }
+
+    public void SetMagicShield(bool magicShield)
+    {
+        this.magicShield = magicShield;
     }
 }
 

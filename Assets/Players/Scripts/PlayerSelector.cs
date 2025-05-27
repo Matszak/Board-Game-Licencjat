@@ -70,6 +70,11 @@ public class PlayerSelector : MonoBehaviour
         {
             return;
         }
+
+        if (gameObject.GetComponent<PlayerController>().magicShield)
+        {
+            return;
+        }
         Debug.Log($"Clicked on: {player.CurrentPlayer.Name}");
         GameManager.Instance.PlayerIsSelected(player.CurrentPlayer);
          

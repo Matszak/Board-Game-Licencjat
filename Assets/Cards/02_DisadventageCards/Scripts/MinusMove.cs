@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "MinusMove", menuName = "Card/Disadventage/MinusMove")]
+[CreateAssetMenu(fileName = "MinusMove", menuName = "Card/Disadvantage/MinusMove")]
 public class MinusMove  : Card
 {
     public int movePlayerBack;

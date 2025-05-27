@@ -22,6 +22,7 @@ public class AdventuresCards : MonoBehaviour
     [SerializeField] private Card[] cards;
     [SerializeField] private Card[] bonusCards;
     [SerializeField] private Card[] disadvantageCards;
+    [SerializeField] private EnemyCard[] enemiesCards;
     private Player _player;
  
     private Card _selectedCard;
@@ -79,6 +80,9 @@ public class AdventuresCards : MonoBehaviour
                  break;
              case BattleTile battleTile:
                  _selectedCard = battleTile.enemyCard;
+                 break;
+             case RandomEnemyTile randomEnemyTile:
+                 _selectedCard = enemiesCards[Random.Range(0, enemiesCards.Length)];
                  break;
              default:
                  _selectedCard = cards[Random.Range(0, cards.Length)];

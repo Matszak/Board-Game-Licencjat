@@ -17,7 +17,7 @@ MonoBehaviour:
   cardImage: {fileID: 21300000, guid: bc97946f280e2bc41b19de5405680a58, type: 3}
   nameText: boss
   descriptionText: Throw bigger value than two boss rolls
-  enemyAttackAttackBehaviour: {fileID: 11400000, guid: 5f24a7e3a661c074fa4295b084eb126d,
+  enemyAttackAttackBehaviour: {fileID: 11400000, guid: dc3ad0eed7244584dbe53e9130b239ca,
     type: 2}
   enemyDefeatedBehaviour: {fileID: 11400000, guid: 4a57898cfa48a4549a0b51ab0b5e22bc,
     type: 2}

@@ -165,9 +165,11 @@ public class PlayerController : MonoBehaviour
 
     public void MovePlayer(Player player)
     {
+        Debug.LogError($"Player is moving {player.Name}");
         playerState = PlayerState.Walking;
         diceRoll.RequestDiceRoll(false, result =>
         {
+            Debug.LogError($"Player is rolled and walks {player.Name}");
             if (minusToRoll && _bonusToRoll)
             {
                 var resultBoth = _bonusRollValue + _minusRollValue;

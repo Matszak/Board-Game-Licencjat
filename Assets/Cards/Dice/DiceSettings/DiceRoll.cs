@@ -10,7 +10,7 @@ using UnityEngine.UI;
 public class DiceRoll : MonoBehaviour
 {   
  
-    [FormerlySerializedAs("uiButtonPrefab")] [SerializeField] private  GameObject  RollDicesButton;
+    [SerializeField] private  GameObject  RollDicesButton;
     [SerializeField] private Player _player;
     private EnemyCard _enemyCard;
     private DiceRollAnimation _diceRollAnimation;

@@ -176751,7 +176751,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1332564162}
+      - m_Target: {fileID: 1332564164}
         m_TargetAssemblyTypeName: DiceRoll, Assembly-CSharp
         m_MethodName: OnButtonClick
         m_Mode: 1

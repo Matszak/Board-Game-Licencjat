@@ -96,6 +96,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 if (IsEnemyOnTile(player.PlayerObject.transform.position) && player.PlayerObject.GetComponent<PlayerController>().playerState != PlayerState.FightWin)
                 {
+                    player.PlayerObject.GetComponent<PlayerController>().playerState = PlayerState.FightStarted;
                     player.TileIndex = currentTileIndex;
                     OnEndMovePlayerMove?.Invoke(player);
                     sequence.Kill();

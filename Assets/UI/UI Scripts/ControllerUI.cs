@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Cards;
+using Cards.EnemyCards;
 using UnityEngine;
 using TMPro;
 using Unity.VisualScripting;
@@ -29,6 +30,12 @@ public class ControllerUI : MonoBehaviour
         GameManager.Instance.TurnStarted += UpdateUI;
         GameManager.Instance.OnTurnEnded += EndTurn;
         GameManager.Instance.OnWinGame += WinnerUi;
+        GameManager.Instance.OnFightStarted += TurnOffNextTurnButton;
+        nextTurnButton.SetActive(false);
+    }
+
+    private void TurnOffNextTurnButton(Player arg1, EnemyCard arg2)
+    {
         nextTurnButton.SetActive(false);
     }
 
@@ -85,7 +92,7 @@ public class ControllerUI : MonoBehaviour
                 nextTurnButton.SetActive(true);
                 break;
             case PlayerState.Walking:
-                nextTurnButton.SetActive(true);
+                //nextTurnButton.SetActive(true);
                 break;
         }
 

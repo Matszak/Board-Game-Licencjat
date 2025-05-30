@@ -91,7 +91,15 @@ public class PlayerController : MonoBehaviour
  
         if (!_adventureCardsChecker.CheckIfStayOnCard(CurrentPlayer) || playerState == PlayerState.Stunned)
         {
-            GameManager.Instance.TurnEnded(CurrentPlayer);
+            if (playerState == PlayerState.Stunned)
+            {
+                GameManager.Instance.TurnEnded(CurrentPlayer);
+            }
+            else
+            {
+                playerState = PlayerState.None;
+                GameManager.Instance.TurnEnded(CurrentPlayer);
+            }
         }
         else
         {

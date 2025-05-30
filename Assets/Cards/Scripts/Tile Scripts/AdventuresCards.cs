@@ -97,7 +97,11 @@ public class AdventuresCards : MonoBehaviour
              GameManager.Instance.TurnEnded(_player);
              return;
          }
-         DebugConsole.Log($"{player.Name} picked up {_selectedCard.name}");
+
+         if (_selectedCard is not EnemyCard)
+         {
+            DebugConsole.Log($"{player.Name} picked up {_selectedCard.name}");  
+         }
          cardImage.sprite = _selectedCard.cardImage;
          //cardText.text = _selectedCard.nameText;
          //descriptionText.text = _selectedCard.descriptionText;

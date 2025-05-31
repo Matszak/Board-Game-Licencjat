@@ -6,33 +6,42 @@ using UnityEngine.UI;
 
 public class PauseMenu : MonoBehaviour
 {
-    public GameObject pauseMenuPanel;
-    public GameObject resumeButton;
-    public GameObject backButton;
-
+    public GameObject pauseMenu;
+    public GameObject SettingsMenu;
+    public GameObject QuitMenu;
+    
     public void Update()
     {
         if (Input.GetKeyDown(KeyCode.P))
         {
-            pauseMenuPanel.SetActive(true);
+            Time.timeScale = 0;
+            pauseMenu.SetActive(true);
+            SettingsMenu.SetActive(false);
         }
     }
-    
-    public void PauseGame()
+    // public void PauseButton()
+    // {
+    //     Time.timeScale = 0;
+    //     pauseMenu.SetActive(true);
+    //     SettingsMenu.SetActive(false);
+    // }
+    public void SettingsButton()
     {
-        Time.timeScale = 0;
-        pauseMenuPanel.SetActive(true);
-        resumeButton.SetActive(false);
+        pauseMenu.SetActive(false);
+        SettingsMenu.SetActive(true);
     }
-    
-    public void ResumeGame()
+    public void ResumeButton()
     {
         Time.timeScale = 1;
-        pauseMenuPanel.SetActive(false);
-        resumeButton.SetActive(true);
+        pauseMenu.SetActive(false);
     }
-    
-    public void BackToMainMenu()
+
+    public void CloseMenuButton()
+    {
+        SettingsMenu.SetActive(false);
+        pauseMenu.SetActive(true);
+    }
+    public void BackToMainMenuButton()
     {
         LoadingSceneManager.sceneToLoad = "MainMenu";
         SceneManager.LoadScene("LoadingScreen");

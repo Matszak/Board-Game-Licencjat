@@ -934,6 +934,9 @@ MonoBehaviour:
   backgroundMusic: {fileID: 8300000, guid: 668fd29136e525f41990a95a942e80ab, type: 3}
   menuMusic: {fileID: 0}
   buttonSound: {fileID: 8300000, guid: 8f1fe89944a6cec48acb3caef1a7bef5, type: 3}
+  rollSound: {fileID: 8300000, guid: 7f01bd38e313f3b43b311537cd70d0db, type: 3}
+  jumpSound: {fileID: 8300000, guid: 872aab62e468258439b4c675bd0fdba1, type: 3}
+  fightSound: {fileID: 8300000, guid: 727eebf873b920c47b2dc32da232ae5f, type: 3}
 --- !u!4 &288836222
 Transform:
   m_ObjectHideFlags: 0

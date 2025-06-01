@@ -49,6 +49,7 @@ public class DiceRoll : MonoBehaviour
     {
         _onDiceRolled = callback;
         _rollResult = 0;
+        AudioManager.instance.PlayRollDiceSound();
         for (int i = 0; i < numberOfDices; i++)
         {
            _rollResult += typeOfDice.RollDice();

@@ -2,9 +2,14 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class AudioManager : MonoBehaviour
 {
+    public AudioManager()
+    {
+        
+    }
     [Header("Audio Sources")]
     [SerializeField] AudioSource musicSource;
     [SerializeField] AudioSource sfxSource;
@@ -13,9 +18,12 @@ public class AudioManager : MonoBehaviour
     [SerializeField] AudioClip backgroundMusic;
     [SerializeField] AudioClip menuMusic;
     [SerializeField] AudioClip buttonSound;
+    [SerializeField] AudioClip rollSound;
+    [SerializeField] AudioClip jumpSound;
+    [SerializeField] AudioClip fightSound;
 
     public static AudioManager instance;
-    
+
     private void Awake()
     {
         if (instance == null)
@@ -40,4 +48,9 @@ public class AudioManager : MonoBehaviour
     {
         sfxSource.PlayOneShot(buttonSound);
     }
+
+    public void PlayRollDiceSound() => sfxSource.PlayOneShot(rollSound);
+
+    internal void PlayJumpSound() => sfxSource.PlayOneShot(jumpSound);
+    internal void PlayFightSound() => sfxSource.PlayOneShot(fightSound);
 }

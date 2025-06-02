@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9198ed099771b9240a3c81dee836760f, type: 3}
   m_Name: Trap
   m_EditorClassIdentifier: 
-  cardPrefab: {fileID: 0}
-  cardImage: {fileID: 0}
+  cardPrefab: {fileID: 1075834351943545949, guid: f65c7948748a3744a959aa1d9889c6f9,
+    type: 3}
+  cardImage: {fileID: 21300000, guid: 61aca6f0f1c98364b8f271dce3295c94, type: 3}
   nameText: 
   descriptionText: 
   numberOfTurns: 1

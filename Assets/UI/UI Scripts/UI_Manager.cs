@@ -32,6 +32,13 @@ public class UI_Manager : MonoBehaviour
         playerMenuPanel.SetActive(false);
     }
 
+    public void CreditsButton()
+    {
+        creditsPanel.SetActive(true);
+        playerMenuPanel.SetActive(false);
+        settingsPanel.SetActive(false);
+    }
+
     public void QuitGame()
     {
         Application.Quit();

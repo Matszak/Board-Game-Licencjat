@@ -4,14 +4,12 @@ using System.Collections.Generic;
 using Cards.EnemyCards;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Audio;
+using UnityEngine.UI;
 
 public class AudioManager : MonoBehaviour
 {
     
-    public AudioManager()
-    {
-        
-    }
     [Header("Audio Sources")]
     [SerializeField] AudioSource musicSource;
     [SerializeField] AudioSource sfxSource;
@@ -25,6 +23,7 @@ public class AudioManager : MonoBehaviour
     [SerializeField] AudioClip fightSound;
 
     public static AudioManager instance;
+    [SerializeField] AudioMixer mixer;
     
     private void Awake()
     {
@@ -38,6 +37,8 @@ public class AudioManager : MonoBehaviour
             Destroy(gameObject);
         }
 
+        
+
         GameManager.Instance.OnFightStarted += InstanceOnOnFightStarted;
     }
 
@@ -49,8 +50,16 @@ public class AudioManager : MonoBehaviour
 
     private void Start()
     {
-        musicSource.clip = backgroundMusic;
-        musicSource.Play();
+     float musicVolume = PlayerPrefs.GetFloat("musicVolume");
+     float sfxVolume = PlayerPrefs.GetFloat("SFXVolume");
+
+     mixer.SetFloat("music", Mathf.Log10
+         (Mathf.Clamp(musicVolume, 0.0001f, 1f)) * 20);
+     mixer.SetFloat("SFX", Mathf.Log10
+         (Mathf.Clamp(sfxVolume, 0.0001f, 1f)) * 20);
+
+     musicSource.clip = backgroundMusic; 
+     musicSource.Play();
     }
 
     public void PlayButtonSound()

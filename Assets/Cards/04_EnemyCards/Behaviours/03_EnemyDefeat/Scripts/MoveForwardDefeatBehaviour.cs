@@ -2,7 +2,8 @@ using UnityEngine;
 
 namespace Cards.EnemyCards.DefeatBehaviours
 {
-    [CreateAssetMenu(fileName = "DefeatBehaviour: move_forward", menuName = "Behaviours/Enemy/DefeatBehaviours/MoveForward")]
+    [CreateAssetMenu(fileName = "DefeatBehaviour: move_forward", 
+        menuName = "Behaviours/Enemy/DefeatBehaviours/MoveForward")]
     public class MoveForwardDefeatBehaviour : EnemyDefeatedBehaviour
     {
         public int steps;

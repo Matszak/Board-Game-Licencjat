@@ -14,7 +14,8 @@ public class BattleScreenUI : MonoBehaviour
     private Vector2 startPosition;
 
     public TextMeshProUGUI playerWinText;
-
+    public TextMeshProUGUI playerLoseText;
+    public TextMeshProUGUI playerDrawText;
     public RectTransform buttonRectTransform;
     private void Start()
     {
@@ -27,6 +28,8 @@ public class BattleScreenUI : MonoBehaviour
         BattleScreenCanvas.gameObject.SetActive(true);
         enemyImage.GetComponent<RawImage>().texture = enemyCard.cardImage.texture;
         playerWinText.text = enemyCard.enemyDefeatedBehaviour.winText;
+        playerDrawText.text = enemyCard.enemyDrawBehaviour.drawText;
+        playerLoseText.text = enemyCard.enemyWinBehaviour.loseText;
         buttonRectTransform.anchoredPosition = new Vector2(-1122, 327);
         playerImage.GetComponent<RawImage>().texture = player.PlayerObject.GetComponent<Image>().sprite.texture;
     }

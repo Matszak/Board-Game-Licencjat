@@ -17,7 +17,9 @@ MonoBehaviour:
   cardImage: {fileID: 21300000, guid: 4467ed1ad0df54a498892fa426c77c8d, type: 3}
   nameText: Magic Sword
   descriptionText: Roll number higher than 2
-  enemyAttackAttackBehaviour: {fileID: 11400000, guid: 9969afc5720b10e4aa5797ac2a74bfe2,
+  enemyAttackAttackBehaviour: {fileID: 11400000, guid: 36702f7728abec746956998454b162eb,
     type: 2}
   enemyDefeatedBehaviour: {fileID: 11400000, guid: ff8bf8ec54da8464c907f9da8b317d72,
     type: 2}
+  enemyWinBehaviour: {fileID: 11400000, guid: 10284fb29cebe79448d82e9efd1bb2be, type: 2}
+  enemyDrawBehaviour: {fileID: 11400000, guid: 3679d1cd6a3628540ae9dd674e0b6dac, type: 2}

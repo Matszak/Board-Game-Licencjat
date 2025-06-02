@@ -10,16 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4ac9ec710a7640c59a4b3d6e736d8d79, type: 3}
-  m_Name: Wolf
+  m_Name: Boss 1
   m_EditorClassIdentifier: 
   cardPrefab: {fileID: 1075834351943545949, guid: 7392d011aea06b946a33dd18eb24b885,
     type: 3}
-  cardImage: {fileID: 21300000, guid: 88034cb057a257a45bfb35196b9c2d2c, type: 3}
+  cardImage: {fileID: 21300000, guid: fa8d55edc8395434d8d73baf4ac8358c, type: 3}
   nameText: 
   descriptionText: 
-  enemyAttackAttackBehaviour: {fileID: 11400000, guid: 36702f7728abec746956998454b162eb,
+  enemyAttackAttackBehaviour: {fileID: 11400000, guid: dc3ad0eed7244584dbe53e9130b239ca,
     type: 2}
-  enemyDefeatedBehaviour: {fileID: 11400000, guid: fb196c9762a3ea24d8a57cc01861155e,
+  enemyDefeatedBehaviour: {fileID: 11400000, guid: 4a57898cfa48a4549a0b51ab0b5e22bc,
     type: 2}
   enemyWinBehaviour: {fileID: 11400000, guid: 10284fb29cebe79448d82e9efd1bb2be, type: 2}
   enemyDrawBehaviour: {fileID: 11400000, guid: 3679d1cd6a3628540ae9dd674e0b6dac, type: 2}

@@ -41,10 +41,10 @@ public class PlayerController : MonoBehaviour
 
     // for minus dice roll
     [SerializeField] private bool minusToRoll = false;
-    private int _minusRollValue;
+    [SerializeField] private int _minusRollValue;
 
     [SerializeField] private bool _bonusToRoll = false;
-    private int _bonusRollValue;
+    [SerializeField] private int _bonusRollValue;
     
     [FormerlySerializedAs("_magicShield")] public bool magicShield = false;
     
@@ -91,6 +91,10 @@ public class PlayerController : MonoBehaviour
  
         if (!_adventureCardsChecker.CheckIfStayOnCard(CurrentPlayer) || playerState == PlayerState.Stunned)
         {
+            if (playerState == PlayerState.Walking)
+            {
+                playerState = PlayerState.None;
+            }
             if (playerState == PlayerState.Stunned)
             {
                 GameManager.Instance.TurnEnded(CurrentPlayer);
@@ -98,9 +102,11 @@ public class PlayerController : MonoBehaviour
             else
             {
                 playerState = PlayerState.None;
-                GameManager.Instance.TurnEnded(CurrentPlayer);
+               
             }
+            GameManager.Instance.TurnEnded(CurrentPlayer);    
         }
+        
         else
         {
             AdventureTile adventureTile = _adventureCardsChecker.GetTile(CurrentPlayer);
@@ -173,76 +179,52 @@ public class PlayerController : MonoBehaviour
 
     public void MovePlayer(Player player)
     {
-        Debug.LogError($"Player is moving {player.Name}");
         playerState = PlayerState.Walking;
         diceRoll.RequestDiceRoll(false, result =>
         {
-            Debug.LogError($"Player is rolled and walks {player.Name}");
-            if (minusToRoll && _bonusToRoll)
-            {
-                var resultBoth = _bonusRollValue + _minusRollValue;
-                DebugConsole.Log($"{CurrentPlayer.Name} rolled = {result}");
-                switch (resultBoth)
-                {
-                    case > 0:
-                        _playerMovement.MovePlayer(resultBoth, player);
-                        minusToRoll = false;
-                        _bonusToRoll = false;
-                        _minusRollValue = 0;
-                        _bonusRollValue = 0;
-                      
-                        return;
-                    case < 0:
-                        _playerMovement.MovePlayerBack(Mathf.Abs(resultBoth), player);
-                        minusToRoll = false;
-                        _bonusToRoll = false;
-                        _minusRollValue = 0;
-                        _bonusRollValue = 0;
-                       
-                        return;
-                }
+            int totalMovement = CalculateModifiedRoll(result);
+            DebugConsole.Log($"{CurrentPlayer.Name} rolled = {totalMovement}");
 
-                resultBoth = 0;
-            }
-            else if(_bonusToRoll)
+            if (totalMovement < 0)
             {
-                 int bonusResult = result + _bonusRollValue;
-                DebugConsole.Log($"{CurrentPlayer.Name} rolled = {bonusResult}");
-                
-                _playerMovement.MovePlayer(bonusResult, player);
-                
-                if (bonusResult < 0)
-                {
-                    _playerMovement.MovePlayerBack(Mathf.Abs(result), player);
-                }
-                _bonusToRoll = false;
-                _bonusRollValue = 0;
-                bonusResult = 0;
-
-            }
-            else if(minusToRoll)
-            {
-                var minusResult = result + _minusRollValue;
-                DebugConsole.Log($"{CurrentPlayer.Name} rolled = {minusResult}");
-                if (minusResult < 0)
-                {
-                    _playerMovement.MovePlayerBack(Mathf.Abs(minusResult), player);
-                }
-                minusToRoll = false;
-                _minusRollValue = 0;
-                minusResult = 0;
+                _playerMovement.MovePlayerBack(Mathf.Abs(totalMovement), player);
             }
             else
             {
-                _playerMovement.MovePlayer(result,player);
+                _playerMovement.MovePlayer(totalMovement, player);
             }
-            
-             
 
-           
+            ResetModifiers();
         });
-    
     }
+
+    private int CalculateModifiedRoll(int baseResult)
+    {
+        int total = baseResult;
+
+        if (_bonusToRoll)
+        {
+            total += _bonusRollValue;
+        }
+
+        if (minusToRoll)
+        {
+            total -= _minusRollValue;
+        }
+
+        return total;
+    }
+
+    private void ResetModifiers()
+    {
+        _bonusToRoll = false;
+        minusToRoll = false;
+        _bonusRollValue = 0;
+        _minusRollValue = 0;
+    }
+
+     
+ 
 
     private void OnDisable()
     {

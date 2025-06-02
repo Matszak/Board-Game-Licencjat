@@ -11,6 +11,7 @@ namespace Cards._02_DisadventageCards.Scripts
             {
                 currentPlayer.PlayerObject.GetComponent<PlayerMovement>().MovePlayerBack(i, currentPlayer);
             });
+            currentPlayer.PlayerObject.GetComponent<PlayerMovement>().OnEndMovePlayerMove += CompleteCard;
         }
     }
 }

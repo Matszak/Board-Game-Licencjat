@@ -1,11 +1,13 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Cards.EnemyCards;
 using UnityEngine;
 using UnityEngine.Events;
 
 public class AudioManager : MonoBehaviour
 {
+    
     public AudioManager()
     {
         
@@ -23,7 +25,7 @@ public class AudioManager : MonoBehaviour
     [SerializeField] AudioClip fightSound;
 
     public static AudioManager instance;
-
+    
     private void Awake()
     {
         if (instance == null)
@@ -35,8 +37,15 @@ public class AudioManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
-        
+
+        GameManager.Instance.OnFightStarted += InstanceOnOnFightStarted;
     }
+
+    private void InstanceOnOnFightStarted(Player arg1, EnemyCard arg2)
+    {
+        PlayFightSound();
+    }
+
 
     private void Start()
     {

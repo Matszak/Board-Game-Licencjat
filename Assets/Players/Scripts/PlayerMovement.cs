@@ -33,7 +33,7 @@ public class PlayerMovement : MonoBehaviour
                 tiles[i].position.x,
                 player.PlayerObject.transform.position.y,
                 tiles[i].position.z);
-
+            sequence.AppendCallback(() => AudioManager.instance.PlayJumpSound());
             sequence.Append(player.PlayerObject.transform.DOJump(movePosition, 6f, 1, 0.5f).SetEase(Ease.InOutSine));
         }
 
@@ -94,8 +94,7 @@ public class PlayerMovement : MonoBehaviour
             int currentTileIndex = i;
             sequence.AppendCallback(() =>
             {
-                if (IsOnAnyEnemyTile(player.PlayerObject.transform.position))
-                    AudioManager.instance.PlayFightSound();
+       
                 if (IsEnemyOnTile(player.PlayerObject.transform.position) && player.PlayerObject.GetComponent<PlayerController>().playerState != PlayerState.FightWin)
                 {
                     player.PlayerObject.GetComponent<PlayerController>().playerState = PlayerState.FightStarted;

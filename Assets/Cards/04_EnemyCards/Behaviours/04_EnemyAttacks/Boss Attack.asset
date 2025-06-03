@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e87002b674c475d988a188fb629992b, type: 3}
   m_Name: Boss Attack
   m_EditorClassIdentifier: 
-  damage: 4
+  damage: 11

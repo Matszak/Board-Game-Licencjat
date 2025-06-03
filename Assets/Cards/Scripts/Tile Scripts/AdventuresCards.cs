@@ -24,6 +24,7 @@ public class AdventuresCards : MonoBehaviour
     [SerializeField] private Card[] cards;
     [SerializeField] private Card[] bonusCards;
     [SerializeField] private Card[] disadvantageCards;
+    [SerializeField] private Card[] magicCards;
     [SerializeField] private EnemyCard[] enemiesCards;
     private Player _player;
  
@@ -85,6 +86,9 @@ public class AdventuresCards : MonoBehaviour
                  break;
              case RandomEnemyTile randomEnemyTile:
                  _selectedCard = enemiesCards[Random.Range(0, enemiesCards.Length)];
+                 break;
+             case MagicTile magicTile:
+                 _selectedCard = magicCards[Random.Range(0, magicCards.Length)];
                  break;
              default:
                  _selectedCard = cards[Random.Range(0, cards.Length)];

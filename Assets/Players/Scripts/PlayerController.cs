@@ -58,22 +58,31 @@ public class PlayerController : MonoBehaviour
  
     }
  
-    private void OnFightEnded(bool win, Player fightingPlayer, EnemyCard enemyCard)
+    private void OnFightEnded(FightSystem.FightResult fightResult, Player fightingPlayer, EnemyCard enemyCard)
     {
         if(CurrentPlayer != fightingPlayer || enemyCard is BossCard) return;
-        Debug.Log($"player {fightingPlayer}, {win}");
-         
-        if (win)
+
+        //Debug.Log($"player {fightingPlayer}, {fightResult}");
+        switch (fightResult)
         {
-            playerState = PlayerState.FightWin;
-            enemyCard.enemyDefeatedBehaviour.EnemyDefeated(fightingPlayer);
-            //CheckIfOnCard(fightingPlayer);
+            case FightSystem.FightResult.Win: 
+                playerState = PlayerState.FightWin;
+                DebugConsole.Log($"{CurrentPlayer.Name} Wins");
+                enemyCard.enemyDefeatedBehaviour.EnemyDefeated(fightingPlayer);
+                //CheckIfOnCard(fightingPlayer);
+                break;
+            case FightSystem.FightResult.Draw:
+                DebugConsole.Log($"{CurrentPlayer.Name} Draw");
+                enemyCard.enemyDrawBehaviour.EnemyDraw(fightingPlayer); 
+                break;
+            case FightSystem.FightResult.Lose:
+                playerState = PlayerState.FightLose;
+                DebugConsole.Log($"{CurrentPlayer.Name} Loses");
+                enemyCard.enemyWinBehaviour.EnemyWin(fightingPlayer);
+                GameManager.Instance.TurnEnded(CurrentPlayer);
+                break;
         }
-        else
-        {
-            playerState = PlayerState.FightLose;
-            GameManager.Instance.TurnEnded(CurrentPlayer);
-        }
+        
     }
 
     private void ChangeStateToFight(Player player, EnemyCard enemyCard)

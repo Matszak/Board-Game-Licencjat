@@ -7,8 +7,14 @@ using UnityEngine;
 public class FightSystem : MonoBehaviour
 {
     public GameObject BattleScreenCanvas;
-    
-    public static event Action<bool, Player, EnemyCard> EndEnemyFight;
+    public enum FightResult
+    {
+        Win,
+        Lose,
+        Draw
+    }
+   
+    public static event Action<FightResult, Player, EnemyCard> EndEnemyFight;
     public static event Action<Player> fightStarted;
     [SerializeField] EnemyCard _enemy;
     private Player _player;
@@ -84,32 +90,30 @@ public class FightSystem : MonoBehaviour
     {
         Debug.Log($"playerRolled {_playerAttackValue}, enemyRolled {_enemyAttackValue}");
         Debug.Log($"endFight {EndEnemyFight} for {_currentPlayer}, {_player}");
-        bool endFightState = _playerAttackValue > _enemyAttackValue;
         
-        StartCoroutine(DelayedEndFight(0.5f, endFightState));
-        
+        FightResult fightResult;
         if (_playerAttackValue > _enemyAttackValue)
         {
-            DebugConsole.Log($"{_currentPlayer.Name} Wins");
-            {
-                DebugConsole.Log($"{_currentPlayer.Name} is moving 4");
-            }
+            fightResult = FightResult.Win;
         }
-        else if (_enemyAttackValue > _playerAttackValue)
+        else if (_playerAttackValue == _playerAttackValue)
         {
-            DebugConsole.Log($"{_currentPlayer.Name} Loses");
+            fightResult = FightResult.Draw;
         }
-        else if (_playerAttackValue == _enemyAttackValue)
+        else
         {
-            DebugConsole.Log("Draw");
+            fightResult = FightResult.Lose;
         }
+        StartCoroutine(DelayedEndFight(0.5f, fightResult));
+        
+ 
         
     }
 
-    private IEnumerator DelayedEndFight(float delay, bool win)
+    private IEnumerator DelayedEndFight(float delay, FightResult fightState)
     {
         yield return new WaitForSeconds(delay);
-        EndEnemyFight?.Invoke(win,_currentPlayer, _enemy);
+        EndEnemyFight?.Invoke(fightState, _currentPlayer, _enemy);
         
     }
     

@@ -18,6 +18,8 @@ public class ControllerUI : MonoBehaviour
     [SerializeField] private GameObject nextTurnButton;
     [SerializeField] private GameObject playerCards;
 
+    [SerializeField] private GameObject winScreen;
+    
     public List<GameObject> _cards;
     private Player _player;
     
@@ -32,6 +34,7 @@ public class ControllerUI : MonoBehaviour
         GameManager.Instance.OnWinGame += WinnerUi;
         GameManager.Instance.OnFightStarted += TurnOffNextTurnButton;
         nextTurnButton.SetActive(false);
+        winScreen.SetActive(false);
     }
 
     private void TurnOffNextTurnButton(Player arg1, EnemyCard arg2)
@@ -48,6 +51,9 @@ public class ControllerUI : MonoBehaviour
     {
         Debug.Log($"winner: {obj.Name}");
         currentTurnText.text = $"Winner: {obj}";
+        winScreen.SetActive(true);
+        var playerText = playerCards.GetComponent<TextMeshProUGUI>();
+        playerText.text = $"Winner: {obj.Name}!";
         
     }
  

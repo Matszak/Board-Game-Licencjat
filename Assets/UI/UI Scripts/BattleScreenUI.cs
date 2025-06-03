@@ -31,7 +31,7 @@ public class BattleScreenUI : MonoBehaviour
         buttonRectTransform.anchoredPosition = new Vector2(-1122, 327);
         playerImage.GetComponent<RawImage>().texture = player.PlayerObject.GetComponent<Image>().sprite.texture;
     }
-    private void DisableBattleScreen (bool end, Player player, EnemyCard enemyCard)
+    private void DisableBattleScreen (FightSystem.FightResult fightResult, Player player, EnemyCard enemyCard)
     {
         BattleScreenCanvas.SetActive(false);
         buttonRectTransform.anchoredPosition = new Vector2(-10, 20);

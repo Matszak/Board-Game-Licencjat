@@ -23,8 +23,8 @@ public class AdventuresCards : MonoBehaviour
     
     [SerializeField] private Card[] cards;
     [SerializeField] private Card[] bonusCards;
-    [SerializeField] private Card[] disadvantageCards;
-    [SerializeField] private Card[] magicCards;
+    [SerializeField] private Card[] disadvantageCards; 
+    public Card[] magicCards;
     [SerializeField] private EnemyCard[] enemiesCards;
     private Player _player;
  

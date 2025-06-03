@@ -93,7 +93,7 @@ public class AdventuresCards : MonoBehaviour
 
          if (_selectedCard == null)
          {
-             _player.PlayerObject.GetComponent<PlayerController>().playerState = PlayerState.CardPickedUp;
+             _player.PlayerObject.GetComponent<PlayerController>().playerState = PlayerState.None;
              GameManager.Instance.TurnEnded(_player);
              return;
          }

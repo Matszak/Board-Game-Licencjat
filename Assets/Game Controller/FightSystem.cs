@@ -31,8 +31,15 @@ public class FightSystem : MonoBehaviour
     private void StartFight(Player player, EnemyCard enemy)
     {
         if(_currentPlayer != player ) return;
-        _enemy = enemy;
-        PlayerAttack(player);
+        
+        if (enemy is BossCard)
+        {
+            PlayerBossAttack(player);
+        }
+        else
+        {
+            PlayerAttack(player);
+        }
     }
 
     private void PlayerAttack(Player player)
@@ -46,6 +53,21 @@ public class FightSystem : MonoBehaviour
         
     }
 
+    private void PlayerBossAttack(Player player)
+    {
+        GameManager.Instance.diceRoll.RequestDiceRoll(false, i =>
+        {
+            DebugConsole.Log($"{_currentPlayer.Name} rolled = {i}");
+            GameManager.Instance.diceRoll.RequestDiceRoll(false, j =>
+            {
+                DebugConsole.Log($"{_currentPlayer.Name} rolled = {j}");
+                _playerAttackValue = player.PlayerObject.GetComponent<PlayerController>().Attack(i + j);
+                DebugConsole.Log($"{_currentPlayer.Name} total value = {_playerAttackValue}");
+                EnemyAttack(_enemy);
+            });
+        });
+    }
+    
     private void EnemyAttack(EnemyCard enemy)
     {
         

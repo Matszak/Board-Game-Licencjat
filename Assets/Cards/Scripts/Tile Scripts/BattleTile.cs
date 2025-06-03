@@ -6,5 +6,5 @@ namespace CardsAndTilesScripts.adventureTiles
     public class BattleTile : AdventureTile
     {
         [SerializeField] public EnemyCard enemyCard;
-    }
+    }   
 }

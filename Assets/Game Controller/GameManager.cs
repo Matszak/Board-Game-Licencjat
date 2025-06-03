@@ -20,7 +20,7 @@ public class GameManager : MonoBehaviour
     
     public int currentPlayer = 0;
     public Player currentPlayerObj;
-    [SerializeField] private int currentTurn = 0;
+    public int currentTurn = 0;
     private int avaialblePlayerIndex;
     public List<Player> _playersRank { get; private set; }
     [SerializeField] private PlayerState currentPlayerState;

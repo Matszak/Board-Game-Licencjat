@@ -55,9 +55,17 @@ public class PlayerController : MonoBehaviour
         GameManager.Instance.OnFightStarted += ChangeStateToFight;
         GameManager.Instance.TurnStarted += OnTurnStarted;
         _playerMovement.OnEndMovePlayerMove += CheckIfOnCard;
+        CardsOnStart.OnStartCardSelect += OnStartCardSelect;
  
     }
- 
+
+    private void OnStartCardSelect(Card magicCard, Player player)
+    {
+        if(player != CurrentPlayer) return;
+        CurrentPlayer.playerCards.Add(magicCard);
+        CardsOnStart.OnStartCardSelect -= OnStartCardSelect;
+    }
+
     private void OnFightEnded(FightSystem.FightResult fightResult, Player fightingPlayer, EnemyCard enemyCard)
     {
         if(CurrentPlayer != fightingPlayer || enemyCard is BossCard) return;
@@ -239,6 +247,7 @@ public class PlayerController : MonoBehaviour
     {
         GameManager.Instance.TurnStarted -= OnTurnStarted;
         _playerMovement.OnEndMovePlayerMove -= CheckIfOnCard;
+        CardsOnStart.OnStartCardSelect -= OnStartCardSelect;
     }
 
     public int Attack(int rollResult)

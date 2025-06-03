@@ -17,7 +17,7 @@ MonoBehaviour:
   cardImage: {fileID: 21300000, guid: 88034cb057a257a45bfb35196b9c2d2c, type: 3}
   nameText: 
   descriptionText: 
-  enemyAttackAttackBehaviour: {fileID: 11400000, guid: 36702f7728abec746956998454b162eb,
+  enemyAttackAttackBehaviour: {fileID: 11400000, guid: 843c7fe2b7ed2424386505e6927c05a9,
     type: 2}
   enemyDefeatedBehaviour: {fileID: 11400000, guid: fb196c9762a3ea24d8a57cc01861155e,
     type: 2}

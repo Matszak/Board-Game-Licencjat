@@ -67,8 +67,9 @@ MonoBehaviour:
       m_Calls: []
   m_text: P1
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: a70aea1866d557344bf6264fcf4ccf72, type: 2}
+  m_sharedMaterial: {fileID: 3493118698482586819, guid: a70aea1866d557344bf6264fcf4ccf72,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -218,7 +219,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 1
+  m_PresetInfoIsWorld: 0
 --- !u!114 &4130488006337321264
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -483,7 +484,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   diceRoll: {fileID: 0}
   playerState: 0
+  recentPlayerState: 0
   minusToRoll: 0
+  _minusRollValue: 0
+  _bonusToRoll: 0
+  _bonusRollValue: 0
+  magicShield: 0
   stunnedFor: 0
 --- !u!114 &5312665996492989908
 MonoBehaviour:
@@ -561,7 +567,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 5074cdff33bf83e4fb1bbc238b5d513f, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 8fd31dd6456e7f74a95701a4571c4953, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

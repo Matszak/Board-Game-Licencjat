@@ -8,7 +8,7 @@ public class MagicShield : PickUpCard
 {
     public override void TriggerCard(Player currentPlayer)
     {
-        currentPlayer.PlayerObject.GetComponent<PlayerController>().SetMagicShield(true);
+        currentPlayer.Controller.SetMagicShield(true);
    
     }
 }

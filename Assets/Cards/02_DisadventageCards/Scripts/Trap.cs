@@ -8,7 +8,7 @@ namespace Cards._02_DisadventageCards.Scripts
         public int numberOfTurns;
         public override void TriggerCard(Player currentPlayer)
         {
-            currentPlayer.PlayerObject.GetComponent<PlayerController>().StunPlayer(numberOfTurns);
+            currentPlayer.Controller.StunPlayer(numberOfTurns);
             CompleteCard();
         }
     }

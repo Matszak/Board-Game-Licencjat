@@ -66,11 +66,11 @@ public class GameManager : MonoBehaviour
             _players[i].PlayerObject = gameObject;    
     
             int count = tileParent.transform.childCount;
-            gameObject.GetComponent<PlayerMovement>().tiles = new Transform[count];
+            _players[i].Movement.tiles = new Transform[count];
             for (int j= 0; j < count; j++)
             {
                 GameObject tileObject = tileParent.transform.GetChild(j).gameObject;
-                gameObject.GetComponent<PlayerMovement>().tiles[j] = tileObject.transform;
+                _players[i].Movement.tiles[j] = tileObject.transform;
             }
         }
         Player.SetPlayer(_players[0]);

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Playables;
 
 namespace Cards.EnemyCards.WinBehaviour
 {
@@ -13,7 +14,9 @@ namespace Cards.EnemyCards.WinBehaviour
 
         public override void EnemyWin()
         {
-            Player.CurrentPlayer.PlayerObject.GetComponent<PlayerMovement>().MovePlayerBack(steps);
+            Player.CurrentPlayer.Controller.playerState = PlayerState.FightLose;
+            Player.CurrentPlayer.Movement.MovePlayerBack(steps);
+            GameManager.Instance.TurnEnded();
         }
     }
 

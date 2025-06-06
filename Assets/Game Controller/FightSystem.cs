@@ -43,24 +43,11 @@ public class FightSystem : MonoBehaviour
     {
         GameManager.Instance.diceRoll.RequestDiceRoll(false, i =>
         {
-            _playerAttackValue = player.PlayerObject.GetComponent<PlayerController>().Attack(i);
+            _playerAttackValue = player.Controller.Attack(i);
             EnemyAttack(player.currentEnemyCard);
             DebugConsole.Log($"{Player.CurrentPlayer.Name} rolled = {_playerAttackValue}");
         });
         
-    }
-
-    private void PlayerAttackFast(Player player)
-    {
-        var result = GameManager.Instance.diceRoll.RequestDiceRoll(false);
-        //, i =>
-        //  {
-        //      _playerAttackValue = player.PlayerObject.GetComponent<PlayerController>().Attack(i);
-        //      EnemyAttack(player.currentEnemyCard);
-        //      DebugConsole.Log($"{_currentPlayer.Name} rolled = {_playerAttackValue}");
-        //  }
-          player.LastRollValue = player.PlayerObject.GetComponent<PlayerController>().Attack(result);
-        EnemyAttack(player.currentEnemyCard);
     }
 
     private void PlayerBossAttack(Player player)
@@ -71,7 +58,6 @@ public class FightSystem : MonoBehaviour
             GameManager.Instance.diceRoll.RequestDiceRoll(false, j =>
             {
                 DebugConsole.Log($"{player.Name} rolled = {j}");
-                player.LastRollValue = player.PlayerObject.GetComponent<PlayerController>().Attack(i + j);
                 DebugConsole.Log($"{player.Name} total value = {_playerAttackValue}");
                 EnemyAttack(player.currentEnemyCard);
             });

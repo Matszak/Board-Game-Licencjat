@@ -52,7 +52,7 @@ public class PlayerSelector : MonoBehaviour
             return;
         }
 
-        if (gameObject.GetComponent<PlayerController>().magicShield)
+        if (Player.Controller.magicShield)
         {
             return;
         }

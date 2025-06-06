@@ -20,7 +20,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void MovePlayerBack(int steps)
     {
-        Player.PlayerObject.GetComponent<PlayerController>().playerState = PlayerState.Walking;
+        Player.Controller.playerState = PlayerState.Walking;
         int targetTileIndex = Math.Max(Player.TileIndex - steps, 0);
 
         Sequence sequence = DOTween.Sequence();
@@ -49,13 +49,13 @@ public class PlayerMovement : MonoBehaviour
     {
 
 
-        if (Player.PlayerObject.GetComponent<PlayerController>().playerState == PlayerState.Stunned)
+        if (Player.Controller.playerState == PlayerState.Stunned)
         {
-            Player.PlayerObject.GetComponent<PlayerController>().playerState = PlayerState.Stunned;
+            Player.Controller.playerState = PlayerState.Stunned;
         }
         else
         {
-            Player.PlayerObject.GetComponent<PlayerController>().playerState = PlayerState.Walking;
+            Player.Controller.playerState = PlayerState.Walking;
         }
 
         int targetTileIndex = Math.Min(Player.TileIndex + steps, tiles.Length - 1);
@@ -90,9 +90,9 @@ public class PlayerMovement : MonoBehaviour
             sequence.AppendCallback(() =>
             {
        
-                if (IsEnemyOnTile(Player.PlayerObject.transform.position) && Player.PlayerObject.GetComponent<PlayerController>().playerState != PlayerState.FightWin)
+                if (IsEnemyOnTile(Player.PlayerObject.transform.position) && Player.Controller.playerState != PlayerState.FightWin)
                 {
-                    Player.PlayerObject.GetComponent<PlayerController>().playerState = PlayerState.FightStarted;
+                    Player.Controller.playerState = PlayerState.FightStarted;
                     Player.TileIndex = currentTileIndex;
                     OnEndMovePlayerMove?.Invoke();
                     sequence.Kill();
@@ -117,23 +117,13 @@ public class PlayerMovement : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(playerPosition, Vector3.down, out hit, Mathf.Infinity))
         {
-            PlayerState playerState = Player.PlayerObject.gameObject.GetComponent<PlayerController>().playerState;
+            PlayerState playerState = Player.Controller.playerState;
             if (hit.collider.GetComponent<BattleTile>())
             {
                 return true;
             }
 
 
-        }
-        return false;
-    }
-    private bool IsOnAnyEnemyTile(Vector3 playerPosition)
-    {
-        RaycastHit hit;
-        if (Physics.Raycast(playerPosition, Vector3.down, out hit, Mathf.Infinity))
-        {
-            PlayerState playerState = Player.PlayerObject.gameObject.GetComponent<PlayerController>().playerState;
-            return hit.collider.GetComponent<RandomEnemyTile>() || hit.collider.GetComponent<BattleTile>() || hit.collider.GetComponent<BossFightTile>();
         }
         return false;
     }

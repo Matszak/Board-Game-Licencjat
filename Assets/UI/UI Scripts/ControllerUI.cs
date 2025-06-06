@@ -72,8 +72,8 @@ public class ControllerUI : MonoBehaviour
     public void EndTurn()
     {
         LoadCards(Player.CurrentPlayer);
-        var state = Player.CurrentPlayer.PlayerObject.GetComponent<PlayerController>().playerState;
-        var recentState = Player.CurrentPlayer.PlayerObject.GetComponent<PlayerController>().recentPlayerState;
+        var state = Player.CurrentPlayer.Controller.playerState;
+        var recentState = Player.CurrentPlayer.Controller.recentPlayerState;
         switch (state)
         {
             case PlayerState.FightStarted:

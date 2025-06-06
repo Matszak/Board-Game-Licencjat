@@ -21,3 +21,5 @@ MonoBehaviour:
     type: 2}
   enemyDefeatedBehaviour: {fileID: 11400000, guid: 4a57898cfa48a4549a0b51ab0b5e22bc,
     type: 2}
+  enemyWinBehaviour: {fileID: 11400000, guid: e7062c361cd8e5c4682d152f326e789c, type: 2}
+  enemyDrawBehaviour: {fileID: 11400000, guid: 110dc2d3ec130624e8e20d098dfa8810, type: 2}

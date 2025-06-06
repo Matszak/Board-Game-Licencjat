@@ -77,7 +77,7 @@ public class AdventuresCards : MonoBehaviour
 
          if (_selectedCard == null)
          {
-             Player.CurrentPlayer.PlayerObject.GetComponent<PlayerController>().playerState = PlayerState.None;
+             Player.CurrentPlayer.Controller.playerState = PlayerState.None;
              GameManager.Instance.TurnEnded();
              return;
          }
@@ -101,12 +101,12 @@ public class AdventuresCards : MonoBehaviour
              if (_selectedCard == null)
              {
                  EndTurn();
-                 Player.CurrentPlayer.PlayerObject.GetComponent<PlayerController>().playerState = PlayerState.CardPickedUp;
+                 Player.CurrentPlayer.Controller.playerState = PlayerState.CardPickedUp;
              }
              Player.CurrentPlayer.playerCards.Add(_selectedCard);
              cardsUI.SetActive(false);
              controllerUI.UpdateUI();   
-             Player.CurrentPlayer.PlayerObject.GetComponent<PlayerController>().playerState = PlayerState.CardPickedUp;
+             Player.CurrentPlayer.Controller.playerState = PlayerState.CardPickedUp;
              EndTurn();
          }
          else if (_selectedCard is EnemyCard card)
@@ -118,7 +118,7 @@ public class AdventuresCards : MonoBehaviour
          else
          {
              _selectedCard.OnCardCompleted += EndTurn;
-             Player.CurrentPlayer.PlayerObject.GetComponent<PlayerController>().playerState = PlayerState.CardPickedUp;
+             Player.CurrentPlayer.Controller.playerState = PlayerState.CardPickedUp;
             _selectedCard.TriggerCard(Player.CurrentPlayer);
             cardsUI.SetActive(false);
          }

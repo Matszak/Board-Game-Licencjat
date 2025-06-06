@@ -9,7 +9,8 @@ namespace Cards.EnemyCards.DefeatBehaviours
         public int steps;
         public override void EnemyDefeated()
         {
-            Player.CurrentPlayer.PlayerObject.GetComponent<PlayerMovement>().MovePlayer(steps);
+            Player.CurrentPlayer.Controller.playerState = PlayerState.FightWin; 
+            Player.CurrentPlayer.Movement.MovePlayer(steps);
         }
     }
 }

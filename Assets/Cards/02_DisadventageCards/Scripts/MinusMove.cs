@@ -9,11 +9,8 @@ public class MinusMove  : Card
      
     
     public override void TriggerCard(Player currentPlayer)
-    {
-         
-        currentPlayer.PlayerObject.TryGetComponent(out PlayerMovement playerMovement);
-        playerMovement.MovePlayerBack(movePlayerBack);
-        currentPlayer.PlayerObject.GetComponent<PlayerMovement>().OnEndMovePlayerMove += CompleteCard;
-
+    {         
+        currentPlayer.Movement.MovePlayerBack(movePlayerBack);
+        currentPlayer.Movement.OnEndMovePlayerMove += CompleteCard;
     }
 }

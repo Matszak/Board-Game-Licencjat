@@ -59682,27 +59682,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _players:
   - Name: 
-    PlayerObject: {fileID: 0}
     TileIndex: 0
     playerCards: []
     currentEnemyCard: {fileID: 0}
+    LastRollValue: 0
   - Name: 
-    PlayerObject: {fileID: 0}
     TileIndex: 0
     playerCards: []
     currentEnemyCard: {fileID: 0}
+    LastRollValue: 0
   tileParent: {fileID: 1036249065}
   spawnPoint: {fileID: 456081202}
   diceRoll: {fileID: 1332564162}
   currentPlayer: 0
-  currentPlayerObj:
-    Name: 
-    PlayerObject: {fileID: 0}
-    TileIndex: 0
-    playerCards: []
-    currentEnemyCard: {fileID: 0}
   currentTurn: 0
-  currentPlayerState: 0
   playerSpawner: {fileID: 0}
   cosnoleText: {fileID: 0}
 --- !u!114 &766044894
@@ -59718,7 +59711,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BattleScreenCanvas: {fileID: 945536079}
-  _enemy: {fileID: 0}
 --- !u!114 &766044895
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -80482,7 +80474,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &951113030
 RectTransform:
   m_ObjectHideFlags: 0
@@ -125443,13 +125435,13 @@ RectTransform:
   - {fileID: 411731567}
   - {fileID: 1117652995}
   - {fileID: 894862351}
-  - {fileID: 1615538674}
   - {fileID: 1189839707}
   - {fileID: 980303497}
   - {fileID: 945536080}
   - {fileID: 1432697870}
   - {fileID: 1044154301}
   - {fileID: 951113030}
+  - {fileID: 1615538674}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}

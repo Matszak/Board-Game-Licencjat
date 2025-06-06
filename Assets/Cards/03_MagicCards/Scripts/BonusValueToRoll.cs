@@ -9,7 +9,7 @@ public class BonusValueToRoll : PickUpCard
     public int bonusToDiceRoll;
     public override void TriggerCard(Player currentPlayer)
     {
-        currentPlayer.PlayerObject.GetComponent<PlayerController>().SetBonusDiceRoll(bonusToDiceRoll);
+        currentPlayer.Controller.SetBonusDiceRoll(bonusToDiceRoll);
         CompleteCard();
     }
 }

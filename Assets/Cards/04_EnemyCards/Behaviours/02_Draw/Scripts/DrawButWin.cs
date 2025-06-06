@@ -11,7 +11,8 @@ namespace Cards.EnemyCards.DrawBehaviour
     {
         public override void EnemyDraw()
         {
-            
+            Player.CurrentPlayer.Controller.playerState = PlayerState.None;
+            GameManager.Instance.TurnEnded();
         }
     }
 }

@@ -13,7 +13,7 @@ namespace Cards.PlayerCards
 
         private void ApplyEffect(Player target)
         {            
-            target.PlayerObject.GetComponent<PlayerController>().StunPlayer(1);
+            target.Controller.StunPlayer(1);
             GameManager.Instance.OnCardPlayerSelected -= ApplyEffect;            
         }
 

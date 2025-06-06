@@ -8,7 +8,7 @@ namespace Cards._02_DisadventageCards.Scripts
         public int minusToDiceValue;
         public override void TriggerCard(Player currentPlayer)
         {
-            currentPlayer.PlayerObject.GetComponent<PlayerController>().SetMinusDiceRoll(minusToDiceValue);
+            currentPlayer.Controller.SetMinusDiceRoll(minusToDiceValue);
             CompleteCard();
         }
     }

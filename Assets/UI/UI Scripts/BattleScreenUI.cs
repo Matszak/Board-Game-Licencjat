@@ -26,9 +26,9 @@ public class BattleScreenUI : MonoBehaviour
         var enemyCard = Player.CurrentPlayer.currentEnemyCard;
         BattleScreenCanvas.gameObject.SetActive(true);
         enemyImage.GetComponent<RawImage>().texture = enemyCard.cardImage.texture;
-        playerWinText.text = enemyCard.enemyDefeatedBehaviour.winText;
-        playerDrawText.text = enemyCard.enemyDrawBehaviour.drawText;
-        playerLoseText.text = enemyCard.enemyWinBehaviour.loseText;
+        playerWinText.text = enemyCard.enemyDefeatedBehaviour?.winText;
+        playerDrawText.text = enemyCard.enemyDrawBehaviour?.drawText;
+        playerLoseText.text = enemyCard.enemyWinBehaviour?.loseText;
         buttonRectTransform.anchoredPosition = new Vector2(-1122, 327);
         playerImage.GetComponent<RawImage>().texture =
             Player.CurrentPlayer.PlayerObject.GetComponent<Image>().sprite.texture;

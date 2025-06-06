@@ -86,25 +86,19 @@ public class PlayerController : MonoBehaviour
         switch (fightResult)
         {
             case FightSystem.FightResult.Win:
-                playerState = PlayerState.FightWin;
                 DebugConsole.Log($"{Player.Name} Wins");
                 Player.currentEnemyCard.enemyDefeatedBehaviour.EnemyDefeated();
                 //CheckIfOnCard(fightingPlayer);
                 break;
             case FightSystem.FightResult.Draw:
-                playerState = PlayerState.None;
                 DebugConsole.Log($"{Player.Name} Draw");
                 Player.currentEnemyCard.enemyDrawBehaviour.EnemyDraw();
-                GameManager.Instance.TurnEnded();
                 break;
             case FightSystem.FightResult.Lose:
-                playerState = PlayerState.FightLose;
                 DebugConsole.Log($"{Player.Name} Loses");
                 Player.currentEnemyCard.enemyWinBehaviour.EnemyWin();
-                GameManager.Instance.TurnEnded();
                 break;
         }
-        Player.currentEnemyCard = null;
     }
 
     private void ChangeStateToFight()

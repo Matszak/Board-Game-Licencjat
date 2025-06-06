@@ -5,9 +5,9 @@ namespace Cards.EnemyCards.DefeatBehaviours
      [CreateAssetMenu(fileName = "OneDice", menuName = "Behaviours/Enemy/DefeatBehaviours/WinGame")]
     public class WinGame : EnemyDefeatedBehaviour
     {
-        public override void EnemyDefeated(Player player)
+        public override void EnemyDefeated()
         {
-            GameManager.Instance.WinGame(player);
+            GameManager.Instance.WinGame();
         }
     }
 }

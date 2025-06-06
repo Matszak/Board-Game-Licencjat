@@ -269,7 +269,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5338167064597384778}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -21.14}
+  m_LocalPosition: {x: 0, y: 0, z: 1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -464,12 +464,6 @@ MonoBehaviour:
   playerLayer:
     serializedVersion: 2
     m_Bits: 128
-  _player:
-    Name: 
-    PlayerObject: {fileID: 0}
-    TileIndex: 0
-    playerCards: []
-    currentEnemyCard: {fileID: 0}
 --- !u!114 &4693992111582609959
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -515,7 +509,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c543795018f34f6fa658425f0aae4db7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isActive: 0
+  IsActive: 0
 --- !u!136 &-7331446288176197329
 CapsuleCollider:
   m_ObjectHideFlags: 0

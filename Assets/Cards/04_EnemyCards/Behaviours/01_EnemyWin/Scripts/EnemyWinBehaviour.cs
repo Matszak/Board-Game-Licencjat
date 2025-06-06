@@ -6,7 +6,7 @@ namespace Cards.EnemyCards.WinBehaviour
 {
     public abstract class EnemyWinBehaviour : ScriptableObject
     {
-        public abstract void EnemyWin(Player player);
+        public abstract void EnemyWin();
         public string loseText;
     }
 }

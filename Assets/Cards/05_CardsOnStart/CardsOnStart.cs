@@ -22,7 +22,8 @@ public class CardsOnStart : MonoBehaviour
     
     Card[] cards = new Card[3];
     
-    public static Action<Card, Player> OnStartCardSelect;
+    public static Action<Card> OnStartCardSelect;
+    static HashSet<Player> _playersThatSelected = new HashSet<Player>();
 
     private void Awake()
     {
@@ -43,32 +44,35 @@ public class CardsOnStart : MonoBehaviour
         cardButton_03.GetComponent<Image>().sprite = cards[2].cardImage;
     }
 
-    private void InstanceOnTurnStarted(GameManager.TurnStatedData obj)
+    private void InstanceOnTurnStarted()
     {
-        _player = obj.Player;
-        if (GameManager.Instance.currentTurn != 0) return;
+        if (_playersThatSelected.Contains(Player.CurrentPlayer)) return;
         gameObject.SetActive(true);
-        
     }
 
     public void StartCardSelect_00()
     {
-        OnStartCardSelect?.Invoke(cards[0], _player);
-        gameObject.SetActive(false);
+        Select(0);
     }
 
     public void StartCardSelect_01()
     {
-        OnStartCardSelect?.Invoke(cards[1], _player);
-        gameObject.SetActive(false);
+        Select(1);
 
     }
 
     public void StartCardSelect_02()
     {
-        OnStartCardSelect?.Invoke(cards[2], _player);
-        gameObject.SetActive(false);
+        Select(2);
+    }
 
+    private void Select(int index)
+    {
+        OnStartCardSelect?.Invoke(cards[index]);
+        _playersThatSelected.Add(Player.CurrentPlayer);
+        gameObject.SetActive(false);
+        if(_playersThatSelected.Count == GameManager.Instance._players.Count)
+            GameManager.Instance.TurnStarted -= InstanceOnTurnStarted;
     }
     
     

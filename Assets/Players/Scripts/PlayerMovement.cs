@@ -15,63 +15,58 @@ public class PlayerMovement : MonoBehaviour
 
     public LayerMask playerLayer;
 
-    public event Action<Player> OnEndMovePlayerMove;
+    public event Action OnEndMovePlayerMove;
+    public Player Player { get; set; }
 
-    public Player _player;
-
-    public void MovePlayerBack(int steps, Player player)
+    public void MovePlayerBack(int steps)
     {
-        player.PlayerObject.GetComponent<PlayerController>().playerState = PlayerState.Walking;
-        _player = player;
-        int targetTileIndex = Math.Max(player.TileIndex - steps, 0);
+        Player.PlayerObject.GetComponent<PlayerController>().playerState = PlayerState.Walking;
+        int targetTileIndex = Math.Max(Player.TileIndex - steps, 0);
 
         Sequence sequence = DOTween.Sequence();
 
-        for (int i = player.TileIndex - 1; i >= targetTileIndex; i--)
+        for (int i = Player.TileIndex - 1; i >= targetTileIndex; i--)
         {
             Vector3 movePosition = new Vector3(
                 tiles[i].position.x,
-                player.PlayerObject.transform.position.y,
+                Player.PlayerObject.transform.position.y,
                 tiles[i].position.z);
             sequence.AppendCallback(() => AudioManager.instance.PlayJumpSound());
-            sequence.Append(player.PlayerObject.transform.DOJump(movePosition, 6f, 1, 0.5f).SetEase(Ease.InOutSine));
+            sequence.Append(Player.PlayerObject.transform.DOJump(movePosition, 6f, 1, 0.5f).SetEase(Ease.InOutSine));
         }
 
         sequence.OnComplete(() =>
         {
-            player.TileIndex = targetTileIndex;
+            Player.TileIndex = targetTileIndex;
             //GameManager.Instance.NextTurn();
 
-            OnEndMovePlayerMove?.Invoke(player);
+            OnEndMovePlayerMove?.Invoke();
         });
         sequence.Play();
     }
 
-    public void MovePlayer(int steps, Player player)
+    public void MovePlayer(int steps)
     {
 
 
-        if (player.PlayerObject.GetComponent<PlayerController>().playerState == PlayerState.Stunned)
+        if (Player.PlayerObject.GetComponent<PlayerController>().playerState == PlayerState.Stunned)
         {
-            player.PlayerObject.GetComponent<PlayerController>().playerState = PlayerState.Stunned;
+            Player.PlayerObject.GetComponent<PlayerController>().playerState = PlayerState.Stunned;
         }
         else
         {
-            player.PlayerObject.GetComponent<PlayerController>().playerState = PlayerState.Walking;
+            Player.PlayerObject.GetComponent<PlayerController>().playerState = PlayerState.Walking;
         }
 
-
-        _player = player;
-
-        int targetTileIndex = Math.Min(player.TileIndex + steps, tiles.Length - 1);
+        int targetTileIndex = Math.Min(Player.TileIndex + steps, tiles.Length - 1);
 
         Sequence sequence = DOTween.Sequence();
 
-        for (int i = player.TileIndex + 1; i <= targetTileIndex; i++)
+        for (int i = Player.TileIndex + 1; i <= targetTileIndex; i++)
         {
             Vector3 movePosition = new Vector3(
                 tiles[i].position.x,
-                player.PlayerObject.transform.position.y,
+                Player.PlayerObject.transform.position.y,
                 tiles[i].position.z);
 
             Collider[] playerOnTile = Physics.OverlapSphere(movePosition, 1f, playerLayer);
@@ -89,17 +84,17 @@ public class PlayerMovement : MonoBehaviour
 
             }
             sequence.AppendCallback(() => AudioManager.instance.PlayJumpSound());
-            sequence.Append(player.PlayerObject.transform.DOJump(movePosition, 6f, 0, 0.5f).SetEase(Ease.OutSine));
+            sequence.Append(Player.PlayerObject.transform.DOJump(movePosition, 6f, 0, 0.5f).SetEase(Ease.OutSine));
 
             int currentTileIndex = i;
             sequence.AppendCallback(() =>
             {
        
-                if (IsEnemyOnTile(player.PlayerObject.transform.position) && player.PlayerObject.GetComponent<PlayerController>().playerState != PlayerState.FightWin)
+                if (IsEnemyOnTile(Player.PlayerObject.transform.position) && Player.PlayerObject.GetComponent<PlayerController>().playerState != PlayerState.FightWin)
                 {
-                    player.PlayerObject.GetComponent<PlayerController>().playerState = PlayerState.FightStarted;
-                    player.TileIndex = currentTileIndex;
-                    OnEndMovePlayerMove?.Invoke(player);
+                    Player.PlayerObject.GetComponent<PlayerController>().playerState = PlayerState.FightStarted;
+                    Player.TileIndex = currentTileIndex;
+                    OnEndMovePlayerMove?.Invoke();
                     sequence.Kill();
                 }
 
@@ -109,9 +104,9 @@ public class PlayerMovement : MonoBehaviour
         }
         sequence.OnComplete(() =>
         {
-            player.TileIndex = targetTileIndex;
+            Player.TileIndex = targetTileIndex;
             //GameManager.Instance.NextTurn();
-            OnEndMovePlayerMove?.Invoke(player);
+            OnEndMovePlayerMove?.Invoke();
         });
         sequence.Play();
 
@@ -122,7 +117,7 @@ public class PlayerMovement : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(playerPosition, Vector3.down, out hit, Mathf.Infinity))
         {
-            PlayerState playerState = _player.PlayerObject.gameObject.GetComponent<PlayerController>().playerState;
+            PlayerState playerState = Player.PlayerObject.gameObject.GetComponent<PlayerController>().playerState;
             if (hit.collider.GetComponent<BattleTile>())
             {
                 return true;
@@ -137,7 +132,7 @@ public class PlayerMovement : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(playerPosition, Vector3.down, out hit, Mathf.Infinity))
         {
-            PlayerState playerState = _player.PlayerObject.gameObject.GetComponent<PlayerController>().playerState;
+            PlayerState playerState = Player.PlayerObject.gameObject.GetComponent<PlayerController>().playerState;
             return hit.collider.GetComponent<RandomEnemyTile>() || hit.collider.GetComponent<BattleTile>() || hit.collider.GetComponent<BossFightTile>();
         }
         return false;

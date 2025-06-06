@@ -21,18 +21,19 @@ public class BattleScreenUI : MonoBehaviour
         GameManager.Instance.OnFightStarted += EnableBattleScreen;
         FightSystem.EndEnemyFight += DisableBattleScreen;
     }
-    private void EnableBattleScreen (Player player, EnemyCard enemyCard)
+    private void EnableBattleScreen ()
     {
+        var enemyCard = Player.CurrentPlayer.currentEnemyCard;
         BattleScreenCanvas.gameObject.SetActive(true);
         enemyImage.GetComponent<RawImage>().texture = enemyCard.cardImage.texture;
         playerWinText.text = enemyCard.enemyDefeatedBehaviour.winText;
         playerDrawText.text = enemyCard.enemyDrawBehaviour.drawText;
         playerLoseText.text = enemyCard.enemyWinBehaviour.loseText;
         buttonRectTransform.anchoredPosition = new Vector2(-1122, 327);
-        playerImage.GetComponent<RawImage>().texture = 
-            player.PlayerObject.GetComponent<Image>().sprite.texture;
+        playerImage.GetComponent<RawImage>().texture =
+            Player.CurrentPlayer.PlayerObject.GetComponent<Image>().sprite.texture;
     }
-    private void DisableBattleScreen (FightSystem.FightResult fightResult, Player player, EnemyCard enemyCard)
+    private void DisableBattleScreen (FightSystem.FightResult fightResult)
     {
         BattleScreenCanvas.SetActive(false);
         buttonRectTransform.anchoredPosition = new Vector2(-10, 20);

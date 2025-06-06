@@ -33,7 +33,14 @@ public class DiceRollAnimation : MonoBehaviour
         animator.SetTrigger(ResultsDiceAnimation[diceRollResult - 1]);
         StartCoroutine(WaitForAnimationToFinish(diceRollResult, callback));
     }
-    
+
+    public void PlayAnimation(int diceRollResult)
+    {
+        diceRollIcon.SetActive(true);
+        animator.SetTrigger(ResultsDiceAnimation[diceRollResult - 1]);
+        StartCoroutine(WaitForAnimationToFinish(diceRollResult));
+    }
+
     private IEnumerator WaitForAnimationToFinish(int diceRollResult, Action callback)
     { 
         _onDiceAnimationEnded = callback;
@@ -42,7 +49,13 @@ public class DiceRollAnimation : MonoBehaviour
         DisableAnimation();
         callback?.Invoke();
     }
-    
+    private IEnumerator WaitForAnimationToFinish(int diceRollResult)
+    {
+        float animationDuration = GetAnimationDuration(diceRollResult);
+        yield return new WaitForSeconds(animationDuration + 3f);
+        DisableAnimation();
+    }
+
     private void DisableAnimation()
     {
         diceRollIcon.SetActive(false);

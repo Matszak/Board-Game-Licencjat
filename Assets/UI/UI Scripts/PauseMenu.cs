@@ -44,6 +44,8 @@ public class PauseMenu : MonoBehaviour
     public void BackToMainMenuButton()
     {
         LoadingSceneManager.sceneToLoad = "MainMenu";
+        GameManager.Instance.playerSpawner.playersList.Clear();
+        Player.SetPlayer(null);
         SceneManager.LoadScene("LoadingScreen");
     }
 }

@@ -36,17 +36,7 @@ public class AudioManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
-
-        
-
-        GameManager.Instance.OnFightStarted += InstanceOnOnFightStarted;
     }
-
-    private void InstanceOnOnFightStarted(Player arg1, EnemyCard arg2)
-    {
-        PlayFightSound();
-    }
-
 
     private void Start()
     {

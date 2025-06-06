@@ -9,14 +9,14 @@ namespace Cards
   
         private void ApplyEffect(PlayerController obj)
         {
-            Debug.Log($"{obj.CurrentPlayer.Name} has been selected");
+            Debug.Log($"{Player.CurrentPlayer.Name} has been selected");
         }
 
         public override void TriggerCard(Player currentPlayer)
         {
             DebugConsole.Log($"{currentPlayer.Name} picked up card {cardPrefab.name}");
             Debug.Log($"Card picked up by {currentPlayer.Name}");
-            GameManager.Instance.InvokeSelection(currentPlayer);
+            GameManager.Instance.InvokeSelection(false);
    
         }
  

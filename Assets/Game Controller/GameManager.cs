@@ -19,11 +19,8 @@ public class GameManager : MonoBehaviour
     public DiceRoll diceRoll;
     
     public int currentPlayer = 0;
-    public Player currentPlayerObj;
     public int currentTurn = 0;
-    private int avaialblePlayerIndex;
     public List<Player> _playersRank { get; private set; }
-    [SerializeField] private PlayerState currentPlayerState;
     
     public PlayerSpawner playerSpawner;
 
@@ -55,23 +52,18 @@ public class GameManager : MonoBehaviour
     
     
     public void Start()
-    {
+    {        
         DebugConsole.LogCentered("== Game Started ==");
         
         playerSpawner = FindObjectOfType<PlayerSpawner>();
         _players = playerSpawner.playersList;
         _playersRank = _players;
+        if (_players.Count == 0)
+            return;
         for (int i = 0; i < _players.Count; i++)
-        {
-        
+        {        
             GameObject gameObject = Instantiate(_players[i].PlayerObject, spawnPoint.position, Quaternion.identity);
-            _players[i].PlayerObject = gameObject;
-            PlayerController controller =  _players[i].PlayerObject.GetComponent<PlayerController>();
-            if (controller != null)
-            {
-                controller.SetPlayer(_players[i]);  // Ensure correct player assignment
-            }
-    
+            _players[i].PlayerObject = gameObject;    
     
             int count = tileParent.transform.childCount;
             gameObject.GetComponent<PlayerMovement>().tiles = new Transform[count];
@@ -81,52 +73,59 @@ public class GameManager : MonoBehaviour
                 gameObject.GetComponent<PlayerMovement>().tiles[j] = tileObject.transform;
             }
         }
+        Player.SetPlayer(_players[0]);
 
-        TurnStarted?.Invoke(new TurnStatedData { Turn = currentTurn, Player = _players[currentPlayer] });
+        TurnStarted?.Invoke();
         
     }
 
-    public event Action<TurnStatedData> TurnStarted;
-    public event Action<Player> OnTurnEnded;
+    public event Action TurnStarted;
+    public event Action OnTurnEnded;
     
     public event Action<Player, AdventureTile> OnCardTriggered;
     
-    public event Action<Player> OnInvokeSelection;
+    public event Action<Color> OnInvokeSelection;
     public event Action<Player> OnCardPlayerSelected;
     
-    public event Action<Player, EnemyCard> OnFightStarted;
-    public event Action<Player, EnemyCard> OnEnemyAttacksEnded;
+    public event Action OnFightStarted;
+    public event Action OnEnemyAttacksEnded;
 
-    public event Action<Player> OnWinGame; 
+    public event Action OnWinGame; 
     
-    public void TurnEnded(Player player)
+    public void TurnEnded()
     {
-        OnTurnEnded?.Invoke(player);
+        OnTurnEnded?.Invoke();
     }
 
-    public void WinGame(Player player)
+    public void WinGame()
     {
-        OnWinGame?.Invoke(player);
+        OnWinGame?.Invoke();
     }
 
-    public void PlayerIsSelected(Player  selectedPlayer)
+    public void PlayerIsSelected(Player target)
     {
-        OnCardPlayerSelected?.Invoke(selectedPlayer);
+        OnCardPlayerSelected?.Invoke(target);
     }
     
-    public void InvokeSelection(Player player)
+    public void InvokeSelection(bool playersAhead)
     {
-        OnInvokeSelection?.Invoke(player);
+        //OnInvokeSelection?.Invoke(Color.red);
+        foreach (var player in _players.Where(x => x != Player.CurrentPlayer && (!playersAhead || playersAhead && x.TileIndex > Player.CurrentPlayer.TileIndex)))
+        {
+            player.Selector.IsActive = true;
+            player.Selector.TurnSelectionOn(Color.red);
+        }
     }
 
-    public void StartFight(Player player, EnemyCard enemyCard)
+    public void StartFight()
     {
-        OnFightStarted?.Invoke(player, enemyCard);
+        AudioManager.instance.PlayFightSound();
+        OnFightStarted?.Invoke();
     }
 
-    public void EndEnemyAttack(Player player, EnemyCard enemyCard)
+    public void EndEnemyAttack()
     {
-        OnEnemyAttacksEnded?.Invoke(player, enemyCard);
+        OnEnemyAttacksEnded?.Invoke();
     }
     
     
@@ -162,21 +161,9 @@ public class GameManager : MonoBehaviour
             
         }
  
-        currentPlayerObj = _players[currentPlayer];
-        TurnStarted?.Invoke(new TurnStatedData
-        {
-            Turn = currentTurn, Player = currentPlayerObj, BonusTurn = bonusTurn
-        });
+        Player.SetPlayer(_players[currentPlayer]);
+        TurnStarted?.Invoke();
     }
-    
-    public class TurnStatedData
-    {
-        public int Turn;
-        public Player Player;
-        public bool BonusTurn;
-    }
- 
- 
 }
 
  

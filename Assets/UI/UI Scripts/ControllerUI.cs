@@ -37,7 +37,7 @@ public class ControllerUI : MonoBehaviour
         winScreen.SetActive(false);
     }
 
-    private void TurnOffNextTurnButton(Player arg1, EnemyCard arg2)
+    private void TurnOffNextTurnButton()
     {
         nextTurnButton.SetActive(false);
     }
@@ -47,24 +47,21 @@ public class ControllerUI : MonoBehaviour
         throw new NotImplementedException();
     }
 
-    private void WinnerUi(Player obj)
+    private void WinnerUi()
     {
-        Debug.Log($"winner: {obj.Name}");
-        currentTurnText.text = $"Winner: {obj}";
+        Debug.Log($"winner: {Player.CurrentPlayer.Name}");
+        currentTurnText.text = $"Winner: {Player.CurrentPlayer}";
         winScreen.SetActive(true);
         var playerText = playerCards.GetComponent<TextMeshProUGUI>();
-        playerText.text = $"Winner: {obj.Name}!";
+        playerText.text = $"Winner: {Player.CurrentPlayer.Name}!";
         
     }
  
-    public void UpdateUI(GameManager.TurnStatedData obj)
-    {
-        if (_player == obj.Player) return; 
-        
-        currentTurnText.text = $"Turn: {obj.Turn}";
-        currentPlayerText.text = obj.Player.Name;
-        _player = obj.Player;
-        LoadCards(obj.Player);
+    public void UpdateUI()
+    {        
+        currentTurnText.text = $"Turn: {GameManager.Instance.currentTurn}";
+        currentPlayerText.text = Player.CurrentPlayer.Name;
+        LoadCards(Player.CurrentPlayer);
     }
  
     void OnDestroy()
@@ -72,12 +69,11 @@ public class ControllerUI : MonoBehaviour
         GameManager.Instance.TurnStarted -= UpdateUI;
     }
 
-    public void EndTurn(Player player)
+    public void EndTurn()
     {
-        if (player != _player) return;
-        LoadCards(_player);
-        var state = player.PlayerObject.GetComponent<PlayerController>().playerState;
-        var recentState = player.PlayerObject.GetComponent<PlayerController>().recentPlayerState;
+        LoadCards(Player.CurrentPlayer);
+        var state = Player.CurrentPlayer.PlayerObject.GetComponent<PlayerController>().playerState;
+        var recentState = Player.CurrentPlayer.PlayerObject.GetComponent<PlayerController>().recentPlayerState;
         switch (state)
         {
             case PlayerState.FightStarted:

@@ -8,14 +8,13 @@ namespace Cards.PlayerCards
         public override void TriggerCard(Player currentPlayer)
         {
             GameManager.Instance.OnCardPlayerSelected += ApplyEffect;
-            GameManager.Instance.InvokeSelection(currentPlayer);
+            GameManager.Instance.InvokeSelection(false);
         }
 
-        private void ApplyEffect(Player selectedPlayer)
-        {
-            selectedPlayer.PlayerObject.GetComponent<PlayerController>().StunPlayer(1,selectedPlayer);
-            GameManager.Instance.OnCardPlayerSelected -= ApplyEffect;
-            
+        private void ApplyEffect(Player target)
+        {            
+            target.PlayerObject.GetComponent<PlayerController>().StunPlayer(1);
+            GameManager.Instance.OnCardPlayerSelected -= ApplyEffect;            
         }
 
         private void OnDestroy()

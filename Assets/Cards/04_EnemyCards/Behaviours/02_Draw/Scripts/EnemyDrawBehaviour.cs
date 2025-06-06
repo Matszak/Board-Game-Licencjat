@@ -6,7 +6,7 @@ namespace Cards.EnemyCards.DrawBehaviour
 {
     public abstract class EnemyDrawBehaviour : ScriptableObject
     {
-        public abstract void EnemyDraw(Player player);
+        public abstract void EnemyDraw();
         public string drawText;
     }
 }

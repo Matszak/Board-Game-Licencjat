@@ -9,11 +9,11 @@ namespace Cards.EnemyCards
             FightSystem. EndEnemyFight += WinGame;         
         }
 
-        private void WinGame(FightSystem.FightResult fightResult, Player player, EnemyCard enemyCard)
+        private void WinGame(FightSystem.FightResult fightResult)
         {
             if (fightResult == FightSystem.FightResult.Win)
             {
-                GameManager.Instance.WinGame(player);
+                GameManager.Instance.WinGame();
             }
         }
     }

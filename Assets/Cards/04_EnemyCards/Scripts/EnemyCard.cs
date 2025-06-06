@@ -17,7 +17,7 @@ namespace Cards.EnemyCards
         
         public override void TriggerCard(Player currentPlayer)
         {
-            GameManager.Instance.StartFight(currentPlayer, this);
+            GameManager.Instance.StartFight();
         }
         
         

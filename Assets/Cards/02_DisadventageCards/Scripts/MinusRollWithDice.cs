@@ -9,7 +9,7 @@ namespace Cards._02_DisadventageCards.Scripts
         {
             GameManager.Instance.diceRoll.RequestDiceRoll(false, i =>
             {
-                currentPlayer.PlayerObject.GetComponent<PlayerMovement>().MovePlayerBack(i, currentPlayer);
+                currentPlayer.PlayerObject.GetComponent<PlayerMovement>().MovePlayerBack(i);
             });
             currentPlayer.PlayerObject.GetComponent<PlayerMovement>().OnEndMovePlayerMove += CompleteCard;
         }

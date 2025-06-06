@@ -9,7 +9,7 @@ public class MoveCard : Card
     public override void TriggerCard(Player currentPlayer)
     {
         currentPlayer.PlayerObject.TryGetComponent(out PlayerMovement playerMovement);
-        playerMovement.MovePlayer(movePlayerBy, currentPlayer);
+        playerMovement.MovePlayer(movePlayerBy);
         playerMovement.OnEndMovePlayerMove += CompleteCard;
     }
 }

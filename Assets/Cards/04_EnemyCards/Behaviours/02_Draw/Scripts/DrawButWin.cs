@@ -9,7 +9,7 @@ namespace Cards.EnemyCards.DrawBehaviour
 
     public class DrawButWinDrawBehaviour : EnemyDrawBehaviour
     {
-        public override void EnemyDraw(Player player)
+        public override void EnemyDraw()
         {
             
         }

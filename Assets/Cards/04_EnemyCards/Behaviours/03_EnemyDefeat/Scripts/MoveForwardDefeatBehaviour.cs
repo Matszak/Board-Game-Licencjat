@@ -7,9 +7,9 @@ namespace Cards.EnemyCards.DefeatBehaviours
     public class MoveForwardDefeatBehaviour : EnemyDefeatedBehaviour
     {
         public int steps;
-        public override void EnemyDefeated(Player player)
+        public override void EnemyDefeated()
         {
-            player.PlayerObject.GetComponent<PlayerMovement>().MovePlayer(steps, player);
+            Player.CurrentPlayer.PlayerObject.GetComponent<PlayerMovement>().MovePlayer(steps);
         }
     }
 }

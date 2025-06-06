@@ -1,3 +1,4 @@
+using System.Linq;
 using UnityEngine;
 
 namespace Cards.PlayerCards
@@ -5,36 +6,46 @@ namespace Cards.PlayerCards
     [CreateAssetMenu(fileName = "ChangePlaces", menuName = "Card/PickupCards/ChangePlaces")]
     public class ChangePlaces : PickUpCard
     {
-        private Player _currentPlayer;
-        public override void TriggerCard(Player currentPlayer)
+        private Player owner;
+        public override void TriggerCard(Player owner)
         {
-            _currentPlayer = currentPlayer;
+            this.owner = owner;
             GameManager.Instance.OnCardPlayerSelected += ApplyEffect;
-            GameManager.Instance.InvokeSelection(currentPlayer);
+            GameManager.Instance.InvokeSelection(true);
             
         }
 
-        private void ApplyEffect(Player  selectedPlayer)
+        private void ApplyEffect(Player target)
         {
-            var playerPosition = selectedPlayer.PlayerObject.transform.position;
-            var tempIndex = _currentPlayer.TileIndex;
-            var tempPosition = _currentPlayer.PlayerObject.transform.position;
+            var playerPosition = target.PlayerObject.transform.position;
+            var tempIndex = owner.TileIndex;
+            var tempPosition = owner.PlayerObject.transform.position;
 
-            _currentPlayer.PlayerObject.transform.position = playerPosition;
-            selectedPlayer.PlayerObject.transform.position = tempPosition;
-            
-            _currentPlayer.TileIndex = selectedPlayer.TileIndex;
-            selectedPlayer.TileIndex = tempIndex;
-            
-                
-            
+            owner.PlayerObject.transform.position = playerPosition;
+            target.PlayerObject.transform.position = tempPosition;
+
+            owner.TileIndex = target.TileIndex;
+            target.TileIndex = tempIndex;
+
             GameManager.Instance.OnCardPlayerSelected -= ApplyEffect;
-            GameManager.Instance.TurnEnded(_currentPlayer);
+            GameManager.Instance.TurnEnded();
         }
- 
+
+        public void Awake()
+        {
+            
+        }
+
+        public void OnEnable()
+        {
+            
+        }
+
         public void OnDestroy()
         {
             GameManager.Instance.OnCardPlayerSelected -= ApplyEffect;
         }
+
+        public override bool CanUse => GameManager.Instance._players.Any(x => x != Player.CurrentPlayer && x.TileIndex < Player.CurrentPlayer.TileIndex);
     }
 }

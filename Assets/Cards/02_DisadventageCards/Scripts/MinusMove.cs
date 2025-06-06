@@ -12,7 +12,7 @@ public class MinusMove  : Card
     {
          
         currentPlayer.PlayerObject.TryGetComponent(out PlayerMovement playerMovement);
-        playerMovement.MovePlayerBack(movePlayerBack, currentPlayer);
+        playerMovement.MovePlayerBack(movePlayerBack);
         currentPlayer.PlayerObject.GetComponent<PlayerMovement>().OnEndMovePlayerMove += CompleteCard;
 
     }

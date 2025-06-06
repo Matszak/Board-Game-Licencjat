@@ -26,35 +26,17 @@ public class AdventuresCards : MonoBehaviour
     [SerializeField] private Card[] disadvantageCards; 
     public Card[] magicCards;
     [SerializeField] private EnemyCard[] enemiesCards;
-    private Player _player;
  
     private Card _selectedCard;
-    private bool checkForCard = false;
-    
-    private GameManager.TurnStatedData turnStartedData;
     
     private void OnEnable()
     {
-        GameManager.Instance.TurnStarted += OnTurnStarted;
         GameManager.Instance.OnCardTriggered += TriggerCard;
-        GameManager.Instance.OnTurnEnded += StopChecking;
-    }
-
-    private void StopChecking(Player obj)
-    {
-        checkForCard = false;
     }
 
     private void Awake()
     {
         cardsUI.SetActive(false);
-    }
-    private void OnTurnStarted(GameManager.TurnStatedData obj)
-    {
-        // assign current player
-        checkForCard = true;
-        _player = obj.Player;
-        turnStartedData = obj;
     }
 
     private void OnDisable()
@@ -63,9 +45,7 @@ public class AdventuresCards : MonoBehaviour
     }
 
     private void TriggerCard(Player player, AdventureTile adventureTile)
-    {
-         if (player != _player) return;
-         
+    {         
          switch (adventureTile)
          {
              case BonusTile:
@@ -77,7 +57,7 @@ public class AdventuresCards : MonoBehaviour
              case PickUpTile pickUpTile:
                  if (pickUpTile.pickUpCard == null)
                  {
-                    GameManager.Instance.TurnEnded(_player);
+                    GameManager.Instance.TurnEnded();
                  }
                  _selectedCard = pickUpTile.pickUpCard;
                  break;
@@ -97,8 +77,8 @@ public class AdventuresCards : MonoBehaviour
 
          if (_selectedCard == null)
          {
-             _player.PlayerObject.GetComponent<PlayerController>().playerState = PlayerState.None;
-             GameManager.Instance.TurnEnded(_player);
+             Player.CurrentPlayer.PlayerObject.GetComponent<PlayerController>().playerState = PlayerState.None;
+             GameManager.Instance.TurnEnded();
              return;
          }
 
@@ -120,36 +100,33 @@ public class AdventuresCards : MonoBehaviour
          {
              if (_selectedCard == null)
              {
-                 EndTurn(_player);
-                 _player.PlayerObject.GetComponent<PlayerController>().playerState = PlayerState.CardPickedUp;
+                 EndTurn();
+                 Player.CurrentPlayer.PlayerObject.GetComponent<PlayerController>().playerState = PlayerState.CardPickedUp;
              }
-             _player.playerCards.Add(_selectedCard);
-             checkForCard = false;  
+             Player.CurrentPlayer.playerCards.Add(_selectedCard);
              cardsUI.SetActive(false);
-             controllerUI.UpdateUI(turnStartedData);   
-             _player.PlayerObject.GetComponent<PlayerController>().playerState = PlayerState.CardPickedUp;
-             EndTurn(_player);
+             controllerUI.UpdateUI();   
+             Player.CurrentPlayer.PlayerObject.GetComponent<PlayerController>().playerState = PlayerState.CardPickedUp;
+             EndTurn();
          }
          else if (_selectedCard is EnemyCard card)
          {
-             _player.currentEnemyCard = card;
-             checkForCard = false;
+             Player.CurrentPlayer.currentEnemyCard = card;
              cardsUI.SetActive(false);
-             card.TriggerCard(_player);
+             card.TriggerCard(Player.CurrentPlayer);
          }
          else
          {
-             checkForCard = false;
              _selectedCard.OnCardCompleted += EndTurn;
-             _player.PlayerObject.GetComponent<PlayerController>().playerState = PlayerState.CardPickedUp;
-            _selectedCard.TriggerCard(_player);
+             Player.CurrentPlayer.PlayerObject.GetComponent<PlayerController>().playerState = PlayerState.CardPickedUp;
+            _selectedCard.TriggerCard(Player.CurrentPlayer);
             cardsUI.SetActive(false);
          }
     }
 
-    private void EndTurn(Player obj)
+    private void EndTurn()
     {
-        GameManager.Instance.TurnEnded(obj);
+        GameManager.Instance.TurnEnded();
         _selectedCard.OnCardCompleted -= EndTurn;
     }
 }

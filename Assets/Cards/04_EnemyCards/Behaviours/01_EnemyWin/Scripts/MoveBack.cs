@@ -11,9 +11,9 @@ namespace Cards.EnemyCards.WinBehaviour
     {
         public int steps;
 
-        public override void EnemyWin(Player player)
+        public override void EnemyWin()
         {
-            player.PlayerObject.GetComponent<PlayerMovement>().MovePlayer(-steps, player);
+            Player.CurrentPlayer.PlayerObject.GetComponent<PlayerMovement>().MovePlayerBack(steps);
         }
     }
 

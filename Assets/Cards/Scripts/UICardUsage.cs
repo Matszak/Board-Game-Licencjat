@@ -58,6 +58,9 @@ public class UICardUsage : MonoBehaviour,IPointerEnterHandler, IPointerExitHandl
     public void OnPointerClick(PointerEventData eventData)
     {
         Debug.Log($"Mouse clicked the card: {_card.nameText}");
+
+        if (!_card.CanUse)
+            return;
         _card.TriggerCard(_player);
         _player.playerCards.Remove(_card);
         DOTween.Kill(_card);

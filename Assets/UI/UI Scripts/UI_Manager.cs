@@ -5,9 +5,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class UI_Manager : MonoBehaviour
-{
-    [SerializeField] PlayerSpawner playerSpawner;
-    
+{    
     public GameObject mainMenuPanel;
     public GameObject playerMenuPanel;
     public GameObject settingsPanel;
@@ -55,21 +53,21 @@ public class UI_Manager : MonoBehaviour
 
     public void ButtonTwo()
     {
-        playerSpawner.SpawnPlayer(2);
+        PlayerSpawner.Instance.SpawnPlayer(2);
         LoadingSceneManager.sceneToLoad = "SampleScene";
         SceneManager.LoadScene("LoadingScreen");
     }
 
     public void ButtonThree()
     {
-        playerSpawner.SpawnPlayer(3);
+        PlayerSpawner.Instance.SpawnPlayer(3);
         LoadingSceneManager.sceneToLoad = "SampleScene";
         SceneManager.LoadScene("LoadingScreen");
     }
 
     public void ButtonFour()
     {
-        playerSpawner.SpawnPlayer(4);
+        PlayerSpawner.Instance.SpawnPlayer(4);
         LoadingSceneManager.sceneToLoad = "SampleScene";
         SceneManager.LoadScene("LoadingScreen");
     }

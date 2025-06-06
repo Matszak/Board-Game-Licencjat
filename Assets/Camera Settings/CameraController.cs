@@ -27,11 +27,11 @@ public class CameraController : MonoBehaviour
         GameManager.Instance.TurnStarted -= OnCameraFollowed;
     }
 
-    public void OnCameraFollowed(GameManager.TurnStatedData data)
+    public void OnCameraFollowed()
     {
-        if (data.Player.PlayerObject != null)
+        if (Player.CurrentPlayer.PlayerObject != null)
         {
-            Transform playerTransform = data.Player.PlayerObject.transform;
+            Transform playerTransform = Player.CurrentPlayer.PlayerObject.transform;
                
             _camera.Follow = playerTransform;
             _camera.LookAt = playerTransform;

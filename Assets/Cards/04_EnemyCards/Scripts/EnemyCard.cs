@@ -7,7 +7,7 @@ using UnityEngine.Serialization;
 
 namespace Cards.EnemyCards
 {
-    [CreateAssetMenu(fileName = "EnemyCard", menuName = "Card/EnemyCard")]
+    [CreateAssetMenu(fileName = "EnemyCard:enemy", menuName = "Card/EnemyCard/Enemy")]
     public class EnemyCard :Card
     {
         public EnemyAttackBehaviour enemyAttackAttackBehaviour;

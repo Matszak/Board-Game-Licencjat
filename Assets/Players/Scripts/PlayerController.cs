@@ -1,14 +1,6 @@
 using Cards.EnemyCards;
-using CardsAndTilesScripts.adventureTiles;
-using DG.Tweening;
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Serialization;
-using static UnityEditor.Experimental.GraphView.GraphView;
 
 
 public enum PlayerState

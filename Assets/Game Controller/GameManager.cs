@@ -105,6 +105,10 @@ public class GameManager : MonoBehaviour
     public void PlayerIsSelected(Player target)
     {
         OnCardPlayerSelected?.Invoke(target);
+        foreach (var player in _players.Where(x => x != Player.CurrentPlayer && x.Selector.isActiveAndEnabled))
+        {
+            player.Selector.TurnSelectionOff();
+        }
     }
     
     public void InvokeSelection(bool playersAhead)

@@ -44,7 +44,7 @@ public class Player
     public void Activate()
     {
         Controller?.Activate();
-        Selector.Activate();
+        Selector?.Activate();
     }
     public void Deactivate()
     {

@@ -31,21 +31,6 @@ namespace Cards.PlayerCards
             GameManager.Instance.TurnEnded();
         }
 
-        public void Awake()
-        {
-            
-        }
-
-        public void OnEnable()
-        {
-            
-        }
-
-        public void OnDestroy()
-        {
-            GameManager.Instance.OnCardPlayerSelected -= ApplyEffect;
-        }
-
-        public override bool CanUse => GameManager.Instance._players.Any(x => x != Player.CurrentPlayer && x.TileIndex < Player.CurrentPlayer.TileIndex);
+        public override bool CanUse => GameManager.Instance._players.Any(x => x != Player.CurrentPlayer && x.TileIndex > Player.CurrentPlayer.TileIndex);
     }
 }

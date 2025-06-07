@@ -58,6 +58,7 @@ public class FightSystem : MonoBehaviour
             GameManager.Instance.diceRoll.RequestDiceRoll(false, j =>
             {
                 DebugConsole.Log($"{player.Name} rolled = {j}");
+                _playerAttackValue = i + j;
                 DebugConsole.Log($"{player.Name} total value = {_playerAttackValue}");
                 EnemyAttack(player.currentEnemyCard);
             });

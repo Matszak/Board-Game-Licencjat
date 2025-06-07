@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0190c60db4593164bbcb7ca2080e4304, type: 3}
-  m_Name: DrawButWin
+  m_Script: {fileID: 11500000, guid: f49dc40822994fa88b26cc5a971a33b9, type: 3}
+  m_Name: DoNothing
   m_EditorClassIdentifier: 
-  drawText: Draw - you win fight, but without extra move
+  drawText: Draw - Do nothing

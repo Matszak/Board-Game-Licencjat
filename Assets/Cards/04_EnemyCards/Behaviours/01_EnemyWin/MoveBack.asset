@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f38cfa210b29a44181b454ab067e1da, type: 3}
   m_Name: MoveBack
   m_EditorClassIdentifier: 
-  loseText: Lose - going back :((, 4 poles
+  loseText: Lose - go back 4 spaces
   steps: 4

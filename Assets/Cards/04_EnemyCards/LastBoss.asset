@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardPrefab: {fileID: 1075834351943545949, guid: 7392d011aea06b946a33dd18eb24b885,
     type: 3}
-  cardImage: {fileID: 21300000, guid: 6a40e4bce63719c4ca4977a2fbf329c4, type: 3}
+  cardImage: {fileID: 21300000, guid: bc97946f280e2bc41b19de5405680a58, type: 3}
   nameText: 
   descriptionText: 
   enemyAttackAttackBehaviour: {fileID: 11400000, guid: dc3ad0eed7244584dbe53e9130b239ca,

@@ -72,8 +72,6 @@ public class PlayerController : MonoBehaviour
 
     private void OnFightEnded(FightSystem.FightResult fightResult)
     {
-        if (Player.currentEnemyCard is BossCard) return;
-
         //Debug.Log($"player {fightingPlayer}, {fightResult}");
         switch (fightResult)
         {
